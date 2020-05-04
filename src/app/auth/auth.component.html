@@ -14,7 +14,7 @@
     <input type="password" name="pass" [(ngModel)]="collegue.motDePasse"  class="form-control" id="exampleInputPassword1"  aria-describedby="passwordHelp">
     <small id="passwordHelp" class="form-text text-muted">superpass</small>
   </div>
-  <button type="submit" class="btn btn-primary float-right" (click)="connecter()">Se connecter</button>
+  <button type="submit" class="btn btn-primary" (click)="connecter()">Se connecter</button>
   <div *ngIf="err" class="alert alert-danger mt-1" role="alert">
     Vos informations d'authentification sont invalides.
   </div>
