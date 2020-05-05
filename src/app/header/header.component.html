@@ -1,30 +1,41 @@
-<nav class="navbar navbar-expand-lg bg-info" style="margin-bottom: 50px;">
-	<a class="navbar-brand" routerLink="tech" style="color: white;">Menu principal</a>
-
-	<ul class="navbar-nav ml-auto">
-		<li class="nav-item mx-0 mx-lg-1">
-			<a class="nav-link py-3 px-0 px-lg-3" routerLink="" style="color: white;">
-				Bouton 1
-			</a>
-		</li>
-		<li class="nav-item mx-0 mx-lg-1">
-			<a class="nav-link py-3 px-0 px-lg-3" routerLink="#" style="color: white;">
-				Bouton 2
-			</a>
-		</li>
-		<li class="nav-item mx-0 mx-lg-1">
-			<a class="nav-link py-3 px-0 px-lg-3" routerLink="#" style="color: white;">
-				Bouton 3
-			</a>
-		</li>
-		<li class="nav-item mx-0 mx-lg-1">
-			<a class="nav-link py-3 px-0 px-lg-3" routerLink="#" style="color: white;">
-				Bouton 4
-			</a>
-		</li>
-		<li class="nav-item">
-			<button class="btn btn-danger" (click)="seDeconnecter()">Se déconnecter</button>
-		</li>
-
-	</ul>
+<nav class="navbar navbar-expand-lg navbar-light mb-4" style="background-color: #e3f2fd;">
+	<ng-container *ngIf="collegueConnecte | async as col">
+		<!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+			aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button> -->
+			<img src="https://media.discordapp.net/attachments/705412798665982013/706796752291889172/CONGES-ET-PREUVES.png"
+		alt="" style="width: 40px;height: 40px;" />
+		<div class="navbar-collapse" id="navbarTogglerDemo01">
+			<a class="navbar-brand ml-2" href="#">Menu</a>
+			<div class="mr-2">|</div>
+			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+				<li routerLinkActive="active" class="nav-item"
+					*ngIf="col.roles[0] == 'ROLE_MANAGER' || 'ROLE_ADMINISTRATEUR' || 'ROLE_UTILISATEUR'">
+					<a class="nav-link" routerLink="#">Gestion des absences</a>
+				</li>
+				<li routerLinkActive="active" class="nav-item"
+					*ngIf="col.roles[0] == 'ROLE_MANAGER' || 'ROLE_ADMINISTRATEUR' || 'ROLE_UTILISATEUR'">
+					<a class="nav-link" routerLink="#">Planning des absences</a>
+				</li>
+				<li routerLinkActive="active" class="nav-item"
+					*ngIf="col.roles[0] == 'ROLE_MANAGER'">
+					<a class="nav-link" routerLink="#">Validation demandes</a>
+				</li>
+				<li routerLinkActive="active" class="nav-item"
+					*ngIf="col.roles[0] == 'ROLE_MANAGER'">
+					<a class="nav-link" routerLink="#">Vues synthétiques</a>
+				</li>
+				<li routerLinkActive="active" class="nav-item"
+					*ngIf="col.roles[0] == 'ROLE_MANAGER' || 'ROLE_ADMINISTRATEUR' || 'ROLE_UTILISATEUR'">
+					<a class="nav-link" routerLink="#">Jours feriés</a>
+				</li>
+			</ul>
+			<form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2 text-center" style="width: 200px;" disabled type="text"
+					placeholder="Bonjour {{col.nom | uppercase}} {{col.prenom }}">
+				<button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Deconnexion</button>
+			</form>
+		</div>
+	</ng-container>
 </nav>
