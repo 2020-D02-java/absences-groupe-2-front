@@ -12,10 +12,13 @@
     </div>
   </ng-container>
 </div> -->
+
 <ng-container *ngIf="collegueConnecte | async as col">
   <app-header *ngIf="!col.estAnonyme()"></app-header>
 </ng-container>
+
 <main class="container">
   <router-outlet></router-outlet>
 </main>
+
 <app-footer></app-footer>
