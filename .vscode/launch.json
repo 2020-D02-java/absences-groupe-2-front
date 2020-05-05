@@ -8,9 +8,9 @@
       "name": "Launch Chrome absences-groupe-2-front on Angular CLI Server",
       "type": "chrome",
       "request": "launch",
-      "port": 9227,
+      "port": 9246,
       "webRoot": "${workspaceFolder}",
-      "url": "http://localhost:4201/#"
+      "url": "http://localhost:4200/#"
     }
   ]
 }
