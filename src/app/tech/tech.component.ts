@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {TechService} from './tech.service';
 import {BackendLink} from './tech.domains';
+import { TechService } from '../service/tech.service';
 
 /**
  * Composant d'affichage d'informations techniques (liens utiles pour connaître l'état du backend).

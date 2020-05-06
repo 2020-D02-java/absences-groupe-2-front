@@ -11,11 +11,11 @@
 			<div class="mr-2">|</div>
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 				<li routerLinkActive="active" class="nav-item"
-					*ngIf="col.roles[0] == 'ROLE_MANAGER' || 'ROLE_ADMINISTRATEUR' || 'ROLE_UTILISATEUR'">
+					*ngIf="col.roles[0] == 'ROLE_MANAGER' || col.roles[0] == 'ROLE_ADMINISTRATEUR' || col.roles[0] == 'ROLE_EMPLOYE'">
 					<a class="nav-link" routerLink="#">Gestion des absences</a>
 				</li>
 				<li routerLinkActive="active" class="nav-item"
-					*ngIf="col.roles[0] == 'ROLE_MANAGER' || 'ROLE_ADMINISTRATEUR' || 'ROLE_UTILISATEUR'">
+					*ngIf="col.roles[0] == 'ROLE_MANAGER' || col.roles[0] == 'ROLE_ADMINISTRATEUR' || col.roles[0] == 'ROLE_EMPLOYE'">
 					<a class="nav-link" routerLink="#">Planning des absences</a>
 				</li>
 				<li routerLinkActive="active" class="nav-item" *ngIf="col.roles[0] == 'ROLE_MANAGER'">
@@ -25,7 +25,7 @@
 					<a class="nav-link" routerLink="#">Vues synthétiques</a>
 				</li>
 				<li routerLinkActive="active" class="nav-item"
-					*ngIf="col.roles[0] == 'ROLE_MANAGER' || 'ROLE_ADMINISTRATEUR' || 'ROLE_UTILISATEUR'">
+					*ngIf="col.roles[0] == 'ROLE_MANAGER' || col.roles[0] == 'ROLE_ADMINISTRATEUR' || col.roles[0] == 'ROLE_EMPLOYE'">
 					<a class="nav-link" routerLink="listerJourFerie">Jours feriés</a>
 				</li>
 			</ul>
