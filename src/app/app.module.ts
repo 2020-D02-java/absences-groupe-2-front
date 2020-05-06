@@ -15,6 +15,7 @@ import { CreationJourFerieComponent } from './jourFerie/creation-jour-ferie/crea
 import { ListerJourFerieComponent } from './jourFerie/lister-jour-ferie/lister-jour-ferie.component';
 import { AccesRefuseComponent } from './erreurNavigation/acces-refuse/acces-refuse.component';
 import { FourOhFourComponent } from './erreurNavigation/four-oh-four/four-oh-four.component';
+import { DemandeAbsenceComponent } from './absence/demande-absence/demande-absence.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { FourOhFourComponent } from './erreurNavigation/four-oh-four/four-oh-fou
     CreationJourFerieComponent,
     ListerJourFerieComponent,
     AccesRefuseComponent,
-    FourOhFourComponent
+    FourOhFourComponent,
+    DemandeAbsenceComponent
   ],
   imports: [
     BrowserModule,
