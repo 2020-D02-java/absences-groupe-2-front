@@ -11,11 +11,11 @@
 			<div class="mr-2">|</div>
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 				<li routerLinkActive="active" class="nav-item"
-					*ngIf="col.roles[0] == 'ROLE_MANAGER' || 'ROLE_ADMINISTRATEUR' || 'ROLE_UTILISATEUR'">
+					*ngIf="col.roles[0] == 'ROLE_MANAGER' || col.roles[0] == 'ROLE_ADMINISTRATEUR' || col.roles[0] == 'ROLE_EMPLOYE'">
 					<a class="nav-link" routerLink="#">Gestion des absences</a>
 				</li>
 				<li routerLinkActive="active" class="nav-item"
-					*ngIf="col.roles[0] == 'ROLE_MANAGER' || 'ROLE_ADMINISTRATEUR' || 'ROLE_UTILISATEUR'">
+					*ngIf="col.roles[0] == 'ROLE_MANAGER' || col.roles[0] == 'ROLE_ADMINISTRATEUR' || col.roles[0] == 'ROLE_EMPLOYE'">
 					<a class="nav-link" routerLink="#">Planning des absences</a>
 				</li>
 				<li routerLinkActive="active" class="nav-item" *ngIf="col.roles[0] == 'ROLE_MANAGER'">
@@ -25,7 +25,7 @@
 					<a class="nav-link" routerLink="#">Vues synthétiques</a>
 				</li>
 				<li routerLinkActive="active" class="nav-item"
-					*ngIf="col.roles[0] == 'ROLE_MANAGER' || 'ROLE_ADMINISTRATEUR' || 'ROLE_UTILISATEUR'">
+					*ngIf="col.roles[0] == 'ROLE_MANAGER' || col.roles[0] == 'ROLE_ADMINISTRATEUR' || col.roles[0] == 'ROLE_EMPLOYE'">
 					<a class="nav-link" routerLink="listerJourFerie">Jours feriés</a>
 				</li>
 			</ul>
@@ -34,15 +34,4 @@
 			<button class="btn btn-outline-danger my-2 my-sm-0" (click)="seDeconnecter()">Deconnexion</button>
 		</div>
 	</ng-container>
-	<!-- <ng-template #casDeconnecte>
-		<img src="https://media.discordapp.net/attachments/705412798665982013/706796752291889172/CONGES-ET-PREUVES.png"
-			alt="" style="width: 40px;height: 40px;" />
-		<div class="navbar-collapse" id="navbarTogglerDemo01">
-			<div class="mr-2">|</div>
-			<form class="form-inline my-2 my-lg-0">
-				<a routerLink="../auth"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Se
-						connecter</button></a>
-			</form>
-		</div>
-	</ng-template> -->
 </nav>

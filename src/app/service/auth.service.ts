@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import {Collegue} from './auth.domains';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import { of, BehaviorSubject, Observable } from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
+import { Collegue } from '../auth/auth.domains';
 
 /**
  * Collègue anonyme.
