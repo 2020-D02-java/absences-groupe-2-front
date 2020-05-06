@@ -19,10 +19,10 @@ const routes: Routes =  [
   { path: 'auth', component: AuthComponent},
   { path: 'listerJourFerie', component: ListerJourFerieComponent,  canActivate: [StatutConnecteService]},
   { path: 'creationJourFerie', component: CreationJourFerieComponent,  canActivate: [StatutConnecteService, StatutAdministrateurService]},
-  { path: 'accesRefuse', component: AccesRefuseComponent,  canActivate: [StatutConnecteService]},
+  { path: 'accesRefuse', component: AccesRefuseComponent},
   { path: '', redirectTo: '/tech', pathMatch: 'full'},
   // Cas url inexistant
-  { path: 'not-found', component: FourOhFourComponent, canActivate: [StatutConnecteService]},
+  { path: 'not-found', component: FourOhFourComponent},
   // Bien faire attention de laisser ce path en fin de liste, mettre les votres avant.
   { path: '**', redirectTo: '/not-found'}
 ];
