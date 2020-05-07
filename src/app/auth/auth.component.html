@@ -1,4 +1,8 @@
-<h2 class="text-center">Authentification</h2>
+<div class="text-center">
+  <img src="https://media.discordapp.net/attachments/705412798665982013/706796752291889172/CONGES-ET-PREUVES.png" alt="" style="width: 130px;height: 130px;" class="rounded img-fluid" />
+</div>
+<h1 class="text-center">GDA</h1>
+<h2 class="text-center">Gestion des Absences</h2>
 <form>
   <div class="form-group">
     <label for="exampleInputEmail1">Email</label>
@@ -12,6 +16,6 @@
   </div>
   <button type="submit" class="btn btn-primary" (click)="connecter()">Se connecter</button>
   <div *ngIf="err" class="alert alert-danger mt-1" role="alert">
-    Oops, les informations saisies ne permettent pas de vous authentifier.
+    Vos informations d'authentification sont invalides.
   </div>
 </form>

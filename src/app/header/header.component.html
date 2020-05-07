@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-light mb-4" style="background-color: #e3f2fd;">
+	<ng-container *ngIf="collegueConnecte | async as col">
+		<!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+			aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button> -->
+		<img src="https://media.discordapp.net/attachments/705412798665982013/706796752291889172/CONGES-ET-PREUVES.png"
+			alt="" style="width: 40px;height: 40px;" />
+		<div class="navbar-collapse" id="navbarTogglerDemo01">
+			<a class="navbar-brand ml-2" href="#">Accueil</a>
+			<div class="mr-2">|</div>
+			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+				<li routerLinkActive="active" class="nav-item"
+					*ngIf="col.roles[0] == 'ROLE_MANAGER' || col.roles[0] == 'ROLE_ADMINISTRATEUR' || col.roles[0] == 'ROLE_EMPLOYE'">
+					<a class="nav-link" routerLink="#">Gestion des absences</a>
+				</li>
+				<li routerLinkActive="active" class="nav-item"
+					*ngIf="col.roles[0] == 'ROLE_MANAGER' || col.roles[0] == 'ROLE_ADMINISTRATEUR' || col.roles[0] == 'ROLE_EMPLOYE'">
+					<a class="nav-link" routerLink="#">Planning des absences</a>
+				</li>
+				<li routerLinkActive="active" class="nav-item" *ngIf="col.roles[0] == 'ROLE_MANAGER'">
+					<a class="nav-link" routerLink="#">Validation demandes</a>
+				</li>
+				<li routerLinkActive="active" class="nav-item" *ngIf="col.roles[0] == 'ROLE_MANAGER'">
+					<a class="nav-link" routerLink="#">Vues synthétiques</a>
+				</li>
+				<li routerLinkActive="active" class="nav-item"
+					*ngIf="col.roles[0] == 'ROLE_MANAGER' || col.roles[0] == 'ROLE_ADMINISTRATEUR' || col.roles[0] == 'ROLE_EMPLOYE'">
+					<a class="nav-link" routerLink="listerJourFerie">Jours feriés</a>
+				</li>
+			</ul>
+			<input class="form-control mr-sm-2 text-center" style="width: 200px;" disabled type="text"
+				placeholder="Bonjour {{col.nom | uppercase}} {{col.prenom }}">
+			<button class="btn btn-outline-danger my-2 my-sm-0" (click)="seDeconnecter()">Deconnexion</button>
+		</div>
+	</ng-container>
+</nav>

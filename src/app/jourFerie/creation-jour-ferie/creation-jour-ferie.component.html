@@ -1,0 +1,33 @@
+<h1>Nouveau jour feri&eacute; / RTT employeur</h1>
+<form [formGroup]="formCreationJourFerme" (ngSubmit)="validerFormulaire()">
+	<div class="form-group row">
+		<label for="dateJourFerme" class="col-sm-2 col-form-label">Date</label>
+		<div class="col-sm-10">
+			<input type="date" class="form-control" id="dateJourFerme" formControlName="dateJourFerme">
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="typeJourFerme" class="col-sm-2 col-form-label">Type de jour</label>
+		<div class="col-sm-10">
+			<select class="custom-select" formControlName="typeJourFerme">
+				<option selected>-Choisir-</option>
+				<option value="RTT_EMPLOYEUR">RTT EMPLOYEUR</option>
+				<option value="JOURS_FERIES">JOURS FERIES</option>
+			</select>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="commentaireJourFerme" class="col-sm-2 col-form-label">Commentaire</label>
+		<div class="col-sm-10">
+			<textarea class="form-control" id="commentaireJourFerme" rows="3"
+				formControlName="commentaireJourFerme"></textarea>
+		</div>
+	</div>
+	<button class="btn btn-success" [disabled]="formCreationJourFerme.invalid">Valider</button>
+	<div class="alert alert-danger" role="danger" *ngIf="messageErreur">
+		{{messageErreur}}
+	</div>
+	<div class="alert alert-success" role="success" *ngIf="messageValidation">
+		{{messageValidation}}
+	</div>
+</form>

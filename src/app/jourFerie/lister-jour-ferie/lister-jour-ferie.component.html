@@ -1,0 +1,5 @@
+<a routerLink="../creationJourFerie"><button class="btn btn-success">[bouton temporaire] formulaire ajouter jour ferie</button></a>
+<h1>AFFICHAGE LISTE DES JOURS FERIES</h1>
+<p *ngFor="let jourFerme of listeJourFerme">
+	<b>DATE</b> : {{jourFerme.date}} <b>TYPE JOUR</b> : {{jourFerme.typeJour}} <b>COMMENTAIRE</b> : {{jourFerme.commentaire}}
+</p>

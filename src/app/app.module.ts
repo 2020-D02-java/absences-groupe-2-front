@@ -6,25 +6,40 @@ import { AppComponent } from './app.component';
 import {AuthComponent} from './auth/auth.component';
 import {TechComponent} from './tech/tech.component';
 import {RouterModule, Routes} from '@angular/router';
-import {StatutConnecteService} from './auth/statut-connecte.service';
 import {AuthInterceptorService} from './auth/auth-interceptor.service';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { CreationJourFerieComponent } from './jourFerie/creation-jour-ferie/creation-jour-ferie.component';
+import { ListerJourFerieComponent } from './jourFerie/lister-jour-ferie/lister-jour-ferie.component';
+import { AccesRefuseComponent } from './erreurNavigation/acces-refuse/acces-refuse.component';
+import { FourOhFourComponent } from './erreurNavigation/four-oh-four/four-oh-four.component';
+import { JourFermeService } from './service/jour-ferme.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
-    TechComponent
+    TechComponent,
+    HeaderComponent,
+    FooterComponent,
+    CreationJourFerieComponent,
+    ListerJourFerieComponent,
+    AccesRefuseComponent,
+    FourOhFourComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [{
+  providers: [
+    JourFermeService,
+    {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorService,
     multi: true
