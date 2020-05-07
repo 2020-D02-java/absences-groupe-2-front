@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Collegue} from './auth.domains';
-import {AuthService} from './auth.service';
 import {Router} from '@angular/router';
+import { AuthService } from '../service/auth.service';
 
 /**
  * Formulaire d'authentification.

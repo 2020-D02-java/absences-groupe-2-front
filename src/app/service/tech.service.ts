@@ -3,8 +3,8 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, merge, of} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {flatMap} from 'rxjs/operators';
-import {Actuator, BackendLink} from './tech.domains';
 import {Injectable} from '@angular/core';
+import { BackendLink, Actuator } from '../tech/tech.domains';
 
 /**
  * Service donnant accès aux informations techniques.

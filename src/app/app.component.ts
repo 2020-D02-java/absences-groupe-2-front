@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import {Collegue} from './auth/auth.domains';
-import {AuthService} from './auth/auth.service';
+import { AuthService } from './service/auth.service';
 
 @Component({
   selector: 'app-root',
