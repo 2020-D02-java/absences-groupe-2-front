@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
-import { JourFerme } from '../models/jourferme';
-import { TypeJourFerme } from '../models/typeJourFerme';
+import { JourFerme } from '../models/jour-ferme';
+import { TypeJourFerme } from '../models/type-jour-ferme';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JourFermeService {
 
-  // Le subject est privé, on le rend "public" avec "abonnementCollegueEnCours()"
-  private jourFermeSubject = new Subject<JourFerme>();
+  // // Le subject est privé, on le rend "public" avec "abonnementCollegueEnCours()"
+  // private jourFermeSubject = new Subject<JourFerme>();
 
   constructor(private http: HttpClient) { }
 
