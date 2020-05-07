@@ -8,18 +8,20 @@ import { StatutConnecteService } from './service/statut-connecte.service';
 import { StatutAdministrateurService } from './service/statut-administrateur.service';
 import { FourOhFourComponent } from './erreurNavigation/four-oh-four/four-oh-four.component';
 import { AccesRefuseComponent } from './erreurNavigation/acces-refuse/acces-refuse.component';
-
+import { DemandeAbsenceComponent} from './absence/demande-absence/demande-absence.component';
 
 const routes: Routes =  [
-  // canActivate: [StatutConnecteService] ==> Permet de vérifier si l'utilisateur est connecté
-  // canActivate: [StatutAdministrateurService] ==> Permet de vérifier si l'utilisateur connecté est bien un administrateur
-  // canActivate: [StatutManagerService] ==> Permet de vérifier si l'utilisateur connecté est bien un manager
-  // canActivate: [StatutEmployeService] ==> Permet de vérifier si l'utilisateur connecté est bien un employe
-  { path: 'tech', component: TechComponent, canActivate: [StatutConnecteService]}, //  tech accessible uniquement si connecté
+  // canActivate: [StatutConnecteService] ==> Permet de vï¿½rifier si l'utilisateur est connectï¿½
+  // canActivate: [StatutAdministrateurService] ==> Permet de vï¿½rifier si l'utilisateur connectï¿½ est bien un administrateur
+  // canActivate: [StatutManagerService] ==> Permet de vï¿½rifier si l'utilisateur connectï¿½ est bien un manager
+  // canActivate: [StatutEmployeService] ==> Permet de vï¿½rifier si l'utilisateur connectï¿½ est bien un employe
+  { path: 'tech', component: TechComponent, canActivate: [StatutConnecteService]}, //  tech accessible uniquement si connectï¿½
   { path: 'auth', component: AuthComponent},
   { path: 'listerJourFerie', component: ListerJourFerieComponent,  canActivate: [StatutConnecteService]},
   { path: 'creationJourFerie', component: CreationJourFerieComponent,  canActivate: [StatutConnecteService, StatutAdministrateurService]},
   { path: 'accesRefuse', component: AccesRefuseComponent},
+  { path: 'demandeAbsence', component: DemandeAbsenceComponent},
+
   { path: '', redirectTo: '/tech', pathMatch: 'full'},
   // Cas url inexistant
   { path: 'not-found', component: FourOhFourComponent},
