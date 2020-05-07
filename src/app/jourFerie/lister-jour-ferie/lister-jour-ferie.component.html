@@ -1,6 +1,7 @@
-<a routerLink="../creationJourFerie"><button class="btn btn-success">[bouton temporaire] formulaire ajouter jour ferie</button></a>
 <h1>AFFICHAGE LISTE DES JOURS FERIES</h1>
-
+<select>
+    <option *ngFor="let year of listYears" (click)="filterYear(year)" ng-model="year">{{year}}</option>
+</select>
 <table class="table">
     <thead class="thead-light">
         <tr>
@@ -12,26 +13,13 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+        <tr *ngFor="let jour of listeJourFerme">
+            <td>{{jour.date}}</td>
+            <td>{{jour.typeJourFerme}}</td>
+            <td>{{jour.date | date:'EEEE'}}</td>
+            <td>{{jour.commentaire}}</td>
         </tr>
     </tbody>
 </table>
 
-
-
-
-
-
-
-
-
-
-<a href="creationJourFerie"><button class="btn btn-success">[bouton temporaire] formulaire ajouter jour ferie</button></a>
-
-<p *ngFor="let jourFerme of listeJourFerme">
-    <b>DATE</b> : {{jourFerme.date}} <b>TYPE JOUR</b> : {{jourFerme.typeJour}} <b>COMMENTAIRE</b> : {{jourFerme.commentaire}}
-</p>
+<a href="creationJourFerie"><button class="btn btn-success">Ajouter jour ferie</button></a>

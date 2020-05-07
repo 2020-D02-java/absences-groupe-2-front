@@ -1,5 +1,6 @@
-export class TypeJourFerme {
-	constructor(public libelle: string) {
-		libelle = libelle;
-	}
+export enum TypeJourFerme {
+
+	RttEmployeur = "RTT_EMPLOYEUR",
+	JourFeries = "JOURS_FERIES"
+
 }
