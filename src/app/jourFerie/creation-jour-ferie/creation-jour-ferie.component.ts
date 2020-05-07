@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { JourFermeService } from 'src/app/service/jour-ferme.service';
 
 @Component({
   selector: 'app-creation-jour-ferie',
@@ -9,42 +10,41 @@ import { Router } from '@angular/router';
 })
 export class CreationJourFerieComponent implements OnInit {
 
-  formCreationJourFerie: FormGroup;
+  formCreationJourFerme: FormGroup;
   messageErreur = '';
   messageValidation = '';
-  constructor(private router: Router, private formBuilder: FormBuilder) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private jourFermeService : JourFermeService) { }
 
   ngOnInit(): void {
     this.initialiserFormulaire();
   }
 
   initialiserFormulaire() {
-    this.formCreationJourFerie = this.formBuilder.group({
-      dateJourFerie: ['', Validators.required],
-      typeJourFerie: ['', Validators.required],
-      commentaireJourFerie: ['', Validators.required]
+    this.formCreationJourFerme = this.formBuilder.group({
+      dateJourFerme: ['', Validators.required],
+      typeJourFerme: ['', Validators.required],
+      commentaireJourFerme: ['', Validators.required]
     });
   }
   validerFormulaire() {
 
     // Récupération des données du formulaire
-    const dateJourFerie = this.formCreationJourFerie.get('dateJourFerie').value;
-    const typeJourFerie = this.formCreationJourFerie.get('typeJourFerie').value;
-    const commentaireJourFerie = this.formCreationJourFerie.get('commentaireJourFerie').value;
+    const dateJourFerme = this.formCreationJourFerme.get('dateJourFerme').value;
+    const typeJourFerme = this.formCreationJourFerme.get('typeJourFerme').value;
+    const commentaireJourFerme = this.formCreationJourFerme.get('commentaireJourFerme').value;
 
     // Mise à jour message de validation
     this.messageValidation = 'Fomulaire validé';
 
     // Affichage des données récupérées
-    console.log(dateJourFerie + typeJourFerie + commentaireJourFerie);
+    console.log(dateJourFerme + typeJourFerme + commentaireJourFerme);
 
     // Redirection vers la liste des jours feriés en cas de réussite
     //this.router.navigate(['listerJourFerie']);
 
-    /*
-    A FAIRE --- REMPLACER CODE DU DESSUS POUR ACCES API --
+    
 
-    this.leService.leFonction(dateJourFerie, typeJourFerie, commentaireJourFerie).subscribe(
+    this.jourFermeService.ajouterJourFerme(dateJourFerme, typeJourFerme, commentaireJourFerme).subscribe(
     () => { },
       (error) => {
         this.messageErreur = ' Oulah, il y a un probleme mec';
@@ -56,6 +56,5 @@ export class CreationJourFerieComponent implements OnInit {
         }, 2000);
       }
     );
-    */
   }
 }

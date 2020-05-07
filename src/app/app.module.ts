@@ -16,6 +16,7 @@ import { ListerJourFerieComponent } from './jourFerie/lister-jour-ferie/lister-j
 import { AccesRefuseComponent } from './erreurNavigation/acces-refuse/acces-refuse.component';
 import { FourOhFourComponent } from './erreurNavigation/four-oh-four/four-oh-four.component';
 import { DemandeAbsenceComponent } from './absence/demande-absence/demande-absence.component';
+import { JourFermeService } from './service/jour-ferme.service';
 
 
 @NgModule({
@@ -38,7 +39,9 @@ import { DemandeAbsenceComponent } from './absence/demande-absence/demande-absen
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [{
+  providers: [
+    JourFermeService,
+    {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorService,
     multi: true
