@@ -9,8 +9,8 @@ import { TypeJourFerme } from '../models/typeJourFerme';
 })
 export class JourFermeService {
 
-  // Le subject est privé, on le rend "public" avec "abonnementCollegueEnCours()"
-  private jourFermeSubject = new Subject<JourFerme>();
+  // Le subject est privï¿½, on le rend "public" avec "abonnementCollegueEnCours()"
+ // private jourFermeSubject = new Subject<JourFerme>();
 
   constructor(private http: HttpClient) { }
 

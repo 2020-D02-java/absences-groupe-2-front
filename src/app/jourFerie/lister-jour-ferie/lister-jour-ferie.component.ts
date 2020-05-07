@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { JourFermeService } from 'src/app/service/jour-ferme.service';
 import { JourFerme } from 'src/app/models/jourferme';
 
+
 @Component({
   selector: 'app-lister-jour-ferie',
   templateUrl: './lister-jour-ferie.component.html',
@@ -14,10 +15,10 @@ export class ListerJourFerieComponent implements OnInit {
 
   ngOnInit(): void {
     this.jourFermeService.listerJourFerme().subscribe(
-      (listeJours) => { 
+      (listeJours) => {
         this.listeJourFerme = listeJours;
       }, (error) => {
-        console.log('Erreur '+error);
+        console.log('Erreur '+ error);
       }
     )
   }

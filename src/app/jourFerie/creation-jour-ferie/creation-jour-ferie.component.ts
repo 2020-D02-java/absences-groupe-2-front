@@ -28,28 +28,27 @@ export class CreationJourFerieComponent implements OnInit {
   }
   validerFormulaire() {
 
-    // Récupération des données du formulaire
+    // Rï¿½cupï¿½ration des donnï¿½es du formulaire
     const dateJourFerme = this.formCreationJourFerme.get('dateJourFerme').value;
     const typeJourFerme = this.formCreationJourFerme.get('typeJourFerme').value;
     const commentaireJourFerme = this.formCreationJourFerme.get('commentaireJourFerme').value;
 
-    // Mise à jour message de validation
-    this.messageValidation = 'Fomulaire validé';
+    // Mise ï¿½ jour message de validation
+    this.messageValidation = 'Fomulaire validï¿½';
 
-    // Affichage des données récupérées
+    // Affichage des donnï¿½es rï¿½cupï¿½rï¿½es
     console.log(dateJourFerme + typeJourFerme + commentaireJourFerme);
 
-    // Redirection vers la liste des jours feriés en cas de réussite
+    // Redirection vers la liste des jours feriï¿½s en cas de rï¿½ussite
     //this.router.navigate(['listerJourFerie']);
 
-    
 
     this.jourFermeService.ajouterJourFerme(dateJourFerme, typeJourFerme, commentaireJourFerme).subscribe(
     () => { },
       (error) => {
         this.messageErreur = ' Oulah, il y a un probleme mec';
       }, () => {
-        this.messageValidation = ' Formulaire validé !';
+        this.messageValidation = ' Formulaire validï¿½ !';
         setTimeout(() => {
           window.location.reload();
           this.router.navigate(['listerJourFerie']);
