@@ -13,7 +13,9 @@ export class CreationJourFerieComponent implements OnInit {
   formCreationJourFerme: FormGroup;
   messageErreur = '';
   messageValidation = '';
-  constructor(private router: Router, private formBuilder: FormBuilder, private jourFermeService : JourFermeService) { }
+  constructor(private router: Router, 
+    private formBuilder: FormBuilder,
+    private jourFermeService : JourFermeService) { }
 
   ngOnInit(): void {
     this.initialiserFormulaire();
@@ -33,6 +35,10 @@ export class CreationJourFerieComponent implements OnInit {
     const typeJourFerme = this.formCreationJourFerme.get('typeJourFerme').value;
     const commentaireJourFerme = this.formCreationJourFerme.get('commentaireJourFerme').value;
 
+    // if (typeJourFerme < Date.now()) {
+    //   console.log('Date dans le passé, erreur');
+    // }
+
     // Mise à jour message de validation
     this.messageValidation = 'Fomulaire validé';
 
@@ -42,16 +48,13 @@ export class CreationJourFerieComponent implements OnInit {
     // Redirection vers la liste des jours feriés en cas de réussite
     //this.router.navigate(['listerJourFerie']);
 
-    
-
     this.jourFermeService.ajouterJourFerme(dateJourFerme, typeJourFerme, commentaireJourFerme).subscribe(
     () => { },
       (error) => {
         this.messageErreur = ' Oulah, il y a un probleme mec';
       }, () => {
-        this.messageValidation = ' Formulaire validé !';
+        this.messageValidation = 'Formulaire validé !';
         setTimeout(() => {
-          window.location.reload();
           this.router.navigate(['listerJourFerie']);
         }, 2000);
       }
