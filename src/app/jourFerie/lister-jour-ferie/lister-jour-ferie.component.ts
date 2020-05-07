@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { JourFermeService } from 'src/app/service/jour-ferme.service';
-import { JourFerme } from 'src/app/models/jourferme';
+import { JourFerme } from 'src/app/models/jour-ferme';
 
 
 @Component({
