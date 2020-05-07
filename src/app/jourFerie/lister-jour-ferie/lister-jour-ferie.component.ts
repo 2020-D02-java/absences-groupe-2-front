@@ -18,7 +18,7 @@ export class ListerJourFerieComponent implements OnInit {
       (listeJours) => {
         this.listeJourFerme = listeJours;
       }, (error) => {
-        console.log('Erreur '+ error);
+        console.log('Erreur ' + error);
       }
     )
   }
