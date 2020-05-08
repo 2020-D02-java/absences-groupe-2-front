@@ -1,5 +1,5 @@
 import { Collegue } from '../auth/auth.domains';
-import { Role } from './Role';
+import { Role } from './role';
 
 export class RoleCollegue {
 
