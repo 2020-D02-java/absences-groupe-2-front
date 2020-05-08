@@ -18,6 +18,10 @@ export class JourFermeService {
     return this.http.get<JourFerme[]>(`http://localhost:8080/jourFerme`);
   }
 
+  listerJourFermeParAnnee(annee: number) {
+    return this.http.get<JourFerme[]>(`http://localhost:8080/jourFerme?annee=` +annee);
+  }
+
   ajouterJourFerme(date: Date, typeJourFerme: TypeJourFerme, commentaire: string): Observable<JourFerme> {
     return this.http.post<JourFerme>(`http://localhost:8080/jourFerme`,
       {

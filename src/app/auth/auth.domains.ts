@@ -1,3 +1,6 @@
+import { Solde } from '../models/Solde';
+import { Role } from '../models/Role';
+
 /**
  * Collègue utilisateur de l'application.
  */
@@ -6,7 +9,8 @@ export class Collegue {
   prenom: string;
   email: string;
   motDePasse: string;
-  roles: string[];
+  roles: Role[];
+  solde: Solde[];
 
   constructor(params: any) {
     Object.assign(this, params);

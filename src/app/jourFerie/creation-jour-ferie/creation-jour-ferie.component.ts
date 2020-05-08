@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { JourFermeService } from 'src/app/service/jour-ferme.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-creation-jour-ferie',
@@ -15,7 +16,7 @@ export class CreationJourFerieComponent implements OnInit {
   messageValidation = '';
   constructor(private router: Router,
     private formBuilder: FormBuilder,
-    private jourFermeService : JourFermeService) { }
+    private jourFermeService: JourFermeService) { }
 
   ngOnInit(): void {
     this.initialiserFormulaire();
@@ -25,7 +26,7 @@ export class CreationJourFerieComponent implements OnInit {
     this.formCreationJourFerme = this.formBuilder.group({
       dateJourFerme: ['', Validators.required],
       typeJourFerme: ['', Validators.required],
-      commentaireJourFerme: ['', Validators.required]
+      commentaireJourFerme: ['']
     });
   }
   validerFormulaire() {
@@ -35,31 +36,45 @@ export class CreationJourFerieComponent implements OnInit {
     const typeJourFerme = this.formCreationJourFerme.get('typeJourFerme').value;
     const commentaireJourFerme = this.formCreationJourFerme.get('commentaireJourFerme').value;
 
-    // if (typeJourFerme < Date.now()) {
-    //   console.log('Date dans le pass�, erreur');
-    // }
+    // on formate la date du jour au format 'yyyy-MM-dd'
+    const dateAujourdhui = formatDate(Date.now(), 'yyyy-MM-dd', 'en-US');
 
-    // Mise � jour message de validation
-    this.messageValidation = 'Fomulaire valid�';
+    // Verifier jour de la semaine
+    const jourSaisie = formatDate(dateJourFerme, 'E', 'en-US');
 
+    // V�rification du jour saisi
+    // Cas 1 , jour saisi est dans le pass�, erreur
+    // Cas 2 , saisie RTT le WE, erreur
+    // Cas 3 , cas JOUR FERIE et commentaire manquant
+    // Cas 4 , jour saisi est dans le futur, ok
 
-    // Affichage des donn�es r�cup�r�es
-    console.log(dateJourFerme + typeJourFerme + commentaireJourFerme);
-
-    // Redirection vers la liste des jours feri�s en cas de r�ussite
-    //this.router.navigate(['listerJourFerie']);
-
-
-    this.jourFermeService.ajouterJourFerme(dateJourFerme, typeJourFerme, commentaireJourFerme).subscribe(
-    () => { },
-      (error) => {
-        this.messageErreur = ' Oulah, il y a un probleme mec';
-      }, () => {
-        this.messageValidation = 'Formulaire valid� !';
-        setTimeout(() => {
-          this.router.navigate(['listerJourFerie']);
-        }, 2000);
-      }
-    );
+    if (dateJourFerme < dateAujourdhui)
+    {
+      this.messageErreur = 'ERREUR. SAISIE DANS LE PASSE IMPOSSIBLE.';
+    }
+    else if (typeJourFerme === 'RTT_EMPLOYEUR' && (jourSaisie === 'Sat' || jourSaisie === 'Sun'))
+    {
+      this.messageErreur = 'ERREUR. IMPOSSIBLE DE SAISIE UN RTT LE WEEK-END.';
+    }
+    else if (typeJourFerme === 'JOURS_FERIES' && commentaireJourFerme === '')
+    {
+      this.messageErreur = 'ERREUR. LE COMMENTAIRE EST OBLIGATOIRE POUR LES JOURS FERIES.';
+    }
+    else
+    {
+      this.jourFermeService.ajouterJourFerme(dateJourFerme, typeJourFerme, commentaireJourFerme).subscribe(
+        () => { },
+        (error) => {
+          this.messageErreur = 'ERREUR';
+        }, () => {
+          this.messageValidation = 'FORMULAIRE VALIDE !';
+          this.messageErreur = '';
+          setTimeout(() => {
+            // Redirection au bout de 2 secondes
+            this.router.navigate(['listerJourFerie']);
+          }, 2000);
+        }
+      );
+    }
   }
 }
