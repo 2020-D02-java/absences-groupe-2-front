@@ -1,12 +1,8 @@
-import { TypeAbsence } from './TypeAbsence';
-import { Statut } from './Statut';
+import { TypeAbsence } from './type-absence';
+import { Statut } from './statut';
 
 export class Absence {
-
-    dateDebut: Date;
-    dateFin: Date;
-    typeAbsence: TypeAbsence;
-    motif: string;
-    statut : Statut;
+  constructor(public dateDebut: Date, public dateFin: Date, public type: TypeAbsence, public statut: Statut){
+  }
 
 }

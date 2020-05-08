@@ -12,7 +12,7 @@
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 				<li routerLinkActive="active" class="nav-item"
 					*ngIf="col.roles[0] == 'ROLE_MANAGER' || col.roles[0] == 'ROLE_ADMINISTRATEUR' || col.roles[0] == 'ROLE_EMPLOYE'">
-					<a class="nav-link" routerLink="#">Gestion des absences</a>
+					<a class="nav-link" routerLink="visualisationAbsence">Gestion des absences</a>
 				</li>
 				<li routerLinkActive="active" class="nav-item"
 					*ngIf="col.roles[0] == 'ROLE_MANAGER' || col.roles[0] == 'ROLE_ADMINISTRATEUR' || col.roles[0] == 'ROLE_EMPLOYE'">
@@ -30,7 +30,7 @@
 				</li>
 			</ul>
 			<div class="mx-2 pt-1 pr-1 pl-1 pb-1" style="border: 1px solid #ced4da;background-color: #e9ecef; border-radius: 5%; ">
-				<fa-icon [icon]="iconeStopWatch"></fa-icon> En ligne depuis <b>{{secondes}}</b> secondes. 
+				<fa-icon [icon]="iconeStopWatch"></fa-icon> En ligne depuis <b>{{secondes}}</b> secondes.
 			</div>
 			<input class="form-control mr-sm-2 text-center" style="width: 200px;" disabled type="text"
 				placeholder="Bonjour {{col.nom | uppercase}} {{col.prenom }}">

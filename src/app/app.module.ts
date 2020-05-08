@@ -21,6 +21,7 @@ import { AccesRefuseComponent } from './erreurNavigation/acces-refuse/acces-refu
 import { FourOhFourComponent } from './erreurNavigation/four-oh-four/four-oh-four.component';
 import { DemandeAbsenceComponent } from './absence/demande-absence/demande-absence.component';
 import { JourFermeService } from './service/jour-ferme.service';
+import { VisualisationAbsenceComponent } from './absence/visualisation-absence/visualisation-absence.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
@@ -35,7 +36,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ListerJourFerieComponent,
     AccesRefuseComponent,
     FourOhFourComponent,
-    DemandeAbsenceComponent
+    DemandeAbsenceComponent,
+    VisualisationAbsenceComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +49,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   ],
   providers: [
     JourFermeService,
+    VisualisationAbsenceComponent,
     {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorService,

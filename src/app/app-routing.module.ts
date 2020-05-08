@@ -9,6 +9,8 @@ import { StatutAdministrateurService } from './service/statut-administrateur.ser
 import { FourOhFourComponent } from './erreurNavigation/four-oh-four/four-oh-four.component';
 import { AccesRefuseComponent } from './erreurNavigation/acces-refuse/acces-refuse.component';
 import { DemandeAbsenceComponent} from './absence/demande-absence/demande-absence.component';
+import { VisualisationAbsenceComponent} from './absence/visualisation-absence/visualisation-absence.component';
+import { VisualisationAbsenceService } from './service/visualisation-absence.service';
 
 const routes: Routes =  [
   // canActivate: [StatutConnecteService] ==> Permet de v�rifier si l'utilisateur est connect�
@@ -21,6 +23,7 @@ const routes: Routes =  [
   { path: 'creationJourFerie', component: CreationJourFerieComponent,  canActivate: [StatutConnecteService, StatutAdministrateurService]},
   { path: 'accesRefuse', component: AccesRefuseComponent},
   { path: 'demandeAbsence', component: DemandeAbsenceComponent},
+  { path: 'visualisationAbsence', component: VisualisationAbsenceComponent, canActivate: [StatutConnecteService]},
 
   { path: '', redirectTo: '/tech', pathMatch: 'full'},
   // Cas url inexistant

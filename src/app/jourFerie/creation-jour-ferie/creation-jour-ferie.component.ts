@@ -31,7 +31,7 @@ export class CreationJourFerieComponent implements OnInit {
   }
   validerFormulaire() {
 
-    // Récupération des données du formulaire
+    // Rï¿½cupï¿½ration des donnï¿½es du formulaire
     const dateJourFerme = this.formCreationJourFerme.get('dateJourFerme').value;
     const typeJourFerme = this.formCreationJourFerme.get('typeJourFerme').value;
     const commentaireJourFerme = this.formCreationJourFerme.get('commentaireJourFerme').value;
@@ -42,8 +42,8 @@ export class CreationJourFerieComponent implements OnInit {
     // Verifier jour de la semaine
     const jourSaisie = formatDate(dateJourFerme, 'E', 'en-US');
 
-    // Vérification du jour saisi
-    // Cas 1 , jour saisi est dans le passé, erreur
+    // Vï¿½rification du jour saisi
+    // Cas 1 , jour saisi est dans le passï¿½, erreur
     // Cas 2 , saisie RTT le WE, erreur
     // Cas 3 , cas JOUR FERIE et commentaire manquant
     // Cas 4 , jour saisi est dans le futur, ok
@@ -56,7 +56,7 @@ export class CreationJourFerieComponent implements OnInit {
     {
       this.messageErreur = 'ERREUR. IMPOSSIBLE DE SAISIE UN RTT LE WEEK-END.';
     }
-    else if (typeJourFerme === 'JOURS_FERIES' && commentaireJourFerme === '') 
+    else if (typeJourFerme === 'JOURS_FERIES' && commentaireJourFerme === '')
     {
       this.messageErreur = 'ERREUR. LE COMMENTAIRE EST OBLIGATOIRE POUR LES JOURS FERIES.';
     }
@@ -76,7 +76,5 @@ export class CreationJourFerieComponent implements OnInit {
         }
       );
     }
-
-
   }
 }

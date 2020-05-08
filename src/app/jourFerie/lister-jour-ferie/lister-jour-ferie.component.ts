@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/service/auth.service';
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
+
 @Component({
   selector: 'app-lister-jour-ferie',
   templateUrl: './lister-jour-ferie.component.html',
@@ -26,11 +27,12 @@ export class ListerJourFerieComponent implements OnInit {
   constructor(private jourFermeService: JourFermeService, private authSrv: AuthService) { }
 
   ngOnInit(): void {
+
     this.jourFermeService.listerJourFermeParAnnee(new Date().getFullYear()).subscribe(
-      (listeJours) => { 
+      (listeJours) => {
         this.listeJourFerme = listeJours;
       }, (error) => {
-        console.log('Erreur '+error);
+        console.log('Erreur ' + error);
       }
     )
     this.getAllYear();
@@ -39,7 +41,7 @@ export class ListerJourFerieComponent implements OnInit {
 
     // On v�rifie si l'utilisateur est bien connect�
     this.authSrv.verifierAuthentification().subscribe(
-      (etatConnexion) => { 
+      (etatConnexion) => {
         this.utilisateurConnecte = etatConnexion;
       }, (error) => {
         console.log('Error , error, fuyez ! ' + error);
@@ -58,10 +60,10 @@ export class ListerJourFerieComponent implements OnInit {
 
   filterYear(year) {
     this.jourFermeService.listerJourFermeParAnnee(year).subscribe(
-    (listeJours) => { 
+    (listeJours) => {
       this.listeJourFerme = listeJours;
     }, (error) => {
-      console.log('Erreur '+error);
+      console.log('Erreur '+ error);
     }
   )
   }

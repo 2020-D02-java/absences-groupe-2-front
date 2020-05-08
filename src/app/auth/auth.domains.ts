@@ -1,5 +1,5 @@
-import { Solde } from '../models/Solde';
-import { Role } from '../models/Role';
+import { Solde } from '../models/solde';
+import { Role } from '../models/role';
 
 /**
  * Collègue utilisateur de l'application.
