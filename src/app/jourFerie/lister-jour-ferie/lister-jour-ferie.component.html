@@ -2,24 +2,25 @@
 <select>
     <option *ngFor="let year of listYears" (click)="filterYear(year)" ng-model="year">{{year}}</option>
 </select>
-<table class="table">
+<table class="table table-striped">
     <thead class="thead-light">
         <tr>
-            <th scope="col">Date</th>
-            <th scope="col">Type</th>
-            <th scope="col">Jour</th>
-            <th scope="col">Commentaires</th>
-            <th scope="col"></th>
+            <th scope="col" class="border border-dark">Date</th>
+            <th scope="col" class="border border-dark">Type</th>
+            <th scope="col" class="border border-dark">Jour</th>
+            <th scope="col" class="border border-dark">Commentaires</th>
+            <th scope="col" class="border border-dark"></th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let jour of listeJourFerme">
-            <td>{{jour.date}}</td>
-            <td>{{jour.typeJourFerme}}</td>
-            <td>{{jour.date | date:'EEEE'}}</td>
-            <td>{{jour.commentaire}}</td>
-            <td *ngIf="utilisateurConnecte.roles[0] == 'ROLE_ADMINISTRATEUR'">
-                <i class="fa fa-search"></i>
+            <td class="border border-dark">{{jour.date}}</td>
+            <td class="border border-dark">{{jour.typeJourFerme}}</td>
+            <td class="border border-dark">{{jour.date | date:'EEEE'}}</td>
+            <td class="border border-dark">{{jour.commentaire}}</td>
+            <td *ngIf="utilisateurConnecte.roles[0] == 'ROLE_ADMINISTRATEUR'" class="border border-dark w-10">
+                <button class="btn"><fa-icon [icon]="faPencil"></fa-icon></button>
+                <button class="btn"><fa-icon [icon]="faTrash"></fa-icon></button>
             </td>
         </tr>
     </tbody>

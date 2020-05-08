@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { Collegue } from 'src/app/auth/auth.domains';
 import { HeaderComponent } from '../../header/header.component';
 import { AuthService } from 'src/app/service/auth.service';
+import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-lister-jour-ferie',
@@ -13,6 +15,8 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class ListerJourFerieComponent implements OnInit {
 
+  faPencil = faPencilAlt;
+  faTrash = faTrash;
   listeJourFerme: JourFerme[] = new Array();
   currentListJourFerme: JourFerme[] = new Array();
   utilisateurConnecte: Collegue;
