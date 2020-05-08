@@ -1,10 +1,7 @@
-import { TypeAbsence } from './TypeAbsence';
-import { Collegue } from '../auth/auth.domains';
+import { TypeAbsence } from './type-absence';
 
 export class Solde {
-
-    nombreDeJours: number;
-    typeAbsence: TypeAbsence;
-    collegue: Collegue;
+  constructor(public nombreDeJours: number, public type: TypeAbsence){
+  };
 
 }
