@@ -17,6 +17,7 @@ import { AccesRefuseComponent } from './erreurNavigation/acces-refuse/acces-refu
 import { FourOhFourComponent } from './erreurNavigation/four-oh-four/four-oh-four.component';
 import { DemandeAbsenceComponent } from './absence/demande-absence/demande-absence.component';
 import { JourFermeService } from './service/jour-ferme.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { JourFermeService } from './service/jour-ferme.service';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule
   ],
   providers: [
     JourFermeService,
