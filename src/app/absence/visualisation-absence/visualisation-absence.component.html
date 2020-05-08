@@ -1,5 +1,8 @@
-<h1 class="text-center">GESTION DES ABSENCES</h1>
-
+<div class="row justify-content-md-center">
+    <div class="col-md-auto" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
+        <h2>Gestion des absences</h2>
+    </div>
+</div>
 <br/>
 <table class="table table-striped">
     <thead class="thead-light">
@@ -8,7 +11,7 @@
             <th scope="col" class="border border-dark">Date de fin</th>
             <th scope="col" class="border border-dark">Type</th>
             <th scope="col" class="border border-dark">Statut</th>
-            <th scope="col" class="border border-dark"></th>
+            <th *ngIf="collegue.roles[0] == 'ROLE_ADMINISTRATEUR'" scope="col" class="border border-dark">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -27,7 +30,7 @@
 
 <div class="row">
   <div class="offset-9 col-3">
-   <a href="demandeAbsence"><button class="float-right btn btn-success">Demander une absence</button></a>
+   <a routerLink="../demandeAbsence"><button class="float-right btn btn-success">Demander une absence</button></a>
   </div>
 </div>
 

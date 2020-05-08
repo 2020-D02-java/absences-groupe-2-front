@@ -4,9 +4,8 @@ import { JourFerme } from 'src/app/models/jour-ferme';
 import { Observable } from 'rxjs';
 import { Collegue } from 'src/app/auth/auth.domains';
 import { AuthService } from 'src/app/service/auth.service';
-import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
-
+import { faTrash, faPlus, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-lister-jour-ferie',
@@ -17,6 +16,7 @@ export class ListerJourFerieComponent implements OnInit {
 
   faPencil = faPencilAlt;
   faTrash = faTrash;
+  faPlus = faPlus;
   listeJourFerme: JourFerme[] = new Array();
   currentListJourFerme: JourFerme[] = new Array();
   utilisateurConnecte: Collegue;
@@ -24,7 +24,7 @@ export class ListerJourFerieComponent implements OnInit {
 
   listYears: number[] = new Array();
 
-  constructor(private jourFermeService: JourFermeService, private authSrv: AuthService) { }
+  constructor(private jourFermeService: JourFermeService, private authSrv: AuthService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
 
@@ -52,7 +52,7 @@ export class ListerJourFerieComponent implements OnInit {
   getAllYear() {
     let date: Date = new Date();
 
-    for(let i = 0; i < 10; i++) {
+    for (let i = 0; i < 10; i++) {
       this.listYears.push(date.getFullYear());
       date.setFullYear(date.getFullYear() - 1);
     }
@@ -60,12 +60,27 @@ export class ListerJourFerieComponent implements OnInit {
 
   filterYear(year) {
     this.jourFermeService.listerJourFermeParAnnee(year).subscribe(
-    (listeJours) => {
-      this.listeJourFerme = listeJours;
-    }, (error) => {
-      console.log('Erreur '+ error);
-    }
-  )
+      (listeJours) => {
+        this.listeJourFerme = listeJours;
+      }, (error) => {
+        console.log('Erreur ' + error);
+      }
+    )
   }
+
+  // [DEBUT] ***** GESTION DU MODAL DE SUPPRESSION ****** //
+
+  open(content) {
+    this.modalService.open(content).result.then((result) => {
+      // Cas ou l'utilisateur valide, en appuyant sur "Je suis sur !"
+      console.log('Utilisateur valide la suppression');
+    }, () => {
+      // Cas ou l'utilisateur annule, en appuyant sur la croix
+      console.log('Utilisateur annule suppression');
+    });
+  }
+
+  // [FIN] ***** GESTION DU MODAL DE SUPPRESSION ****** //
+
 
 }
