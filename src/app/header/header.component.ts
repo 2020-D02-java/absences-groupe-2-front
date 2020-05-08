@@ -27,14 +27,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   //** timer debut */
   iconeStopWatch = faStopwatch;
-  timerSubscription: Subscription;
+  counterSubscription: Subscription;
   secondes: number = 0;
   //** timer fin */
 
   ngOnInit() {
     //** timer debut ** */
     const compteur = Observable.interval(1000);
-    this.timerSubscription = compteur.subscribe(
+    this.counterSubscription = compteur.subscribe(
       (valeur: number) => {
         this.secondes = valeur;
       }
