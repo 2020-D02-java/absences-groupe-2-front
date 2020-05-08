@@ -1,4 +1,6 @@
 <h1 class="text-center">GESTION DES ABSENCES</h1>
+
+<br/>
 <table class="table table-striped">
     <thead class="thead-light">
         <tr>
@@ -23,11 +25,17 @@
     </tbody>
 </table>
 
+<div class="row">
+  <div class="offset-9 col-3">
+   <a href="demandeAbsence"><button class="float-right btn btn-success">Demander une absence</button></a>
+  </div>
+</div>
+
+
+
 <label><b>Solde des compteurs :</b></label>
 <ul *ngFor="let solde of listeSoldes">
-  <li *ngIf="solde.type.toString() == 'CONGES_PAYES'">Congés payés : {{solde.nombreDeJours}} </li>
+  <li *ngIf="solde.type.toString() == 'CONGES_PAYES'">Congés payés : {{solde.nombreDeJours}}</li>
   <li *ngIf="solde.type.toString() == 'RTT_EMPLOYE'">RTT : {{solde.nombreDeJours}}</li>
 </ul>
 
-
-<!--<a href="creationJourFerie"><button class="btn btn-success">Ajouter jour ferie</button></a>-->
