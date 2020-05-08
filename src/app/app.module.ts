@@ -15,7 +15,9 @@ import { CreationJourFerieComponent } from './jourFerie/creation-jour-ferie/crea
 import { ListerJourFerieComponent } from './jourFerie/lister-jour-ferie/lister-jour-ferie.component';
 import { AccesRefuseComponent } from './erreurNavigation/acces-refuse/acces-refuse.component';
 import { FourOhFourComponent } from './erreurNavigation/four-oh-four/four-oh-four.component';
+import { DemandeAbsenceComponent } from './absence/demande-absence/demande-absence.component';
 import { JourFermeService } from './service/jour-ferme.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -28,14 +30,16 @@ import { JourFermeService } from './service/jour-ferme.service';
     CreationJourFerieComponent,
     ListerJourFerieComponent,
     AccesRefuseComponent,
-    FourOhFourComponent
+    FourOhFourComponent,
+    DemandeAbsenceComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule
   ],
   providers: [
     JourFermeService,
