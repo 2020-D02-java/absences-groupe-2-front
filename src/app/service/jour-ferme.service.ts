@@ -9,13 +9,17 @@ import { TypeJourFerme } from '../models/type-jour-ferme';
 })
 export class JourFermeService {
 
-  // // Le subject est privé, on le rend "public" avec "abonnementCollegueEnCours()"
+  // // Le subject est privï¿½, on le rend "public" avec "abonnementCollegueEnCours()"
   // private jourFermeSubject = new Subject<JourFerme>();
 
   constructor(private http: HttpClient) { }
 
   listerJourFerme() {
     return this.http.get<JourFerme[]>(`http://localhost:8080/jourFerme`);
+  }
+
+  listerJourFermeParAnnee(annee: number) {
+    return this.http.get<JourFerme[]>(`http://localhost:8080/jourFerme?annee=` +annee);
   }
 
   ajouterJourFerme(date: Date, typeJourFerme: TypeJourFerme, commentaire: string): Observable<JourFerme> {
