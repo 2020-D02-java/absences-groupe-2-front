@@ -4,6 +4,8 @@ import { Absence } from 'src/app/models/absence';
 import { AuthService } from 'src/app/service/auth.service';
 import { Collegue } from 'src/app/auth/auth.domains';
 import { Solde } from 'src/app/models/solde';
+import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-visualisation-absence',
@@ -11,6 +13,8 @@ import { Solde } from 'src/app/models/solde';
 })
 export class VisualisationAbsenceComponent implements OnInit {
 
+  faPencil = faPencilAlt;
+  faTrash = faTrash;
   listeAbsences: Absence[];
   listeSoldes: Solde[];
   collegue: Collegue;

@@ -1,4 +1,4 @@
-<h1>GESTION DES ABSENCES</h1>
+<h1 class="text-center">GESTION DES ABSENCES</h1>
 <table class="table table-striped">
     <thead class="thead-light">
         <tr>
@@ -6,7 +6,7 @@
             <th scope="col" class="border border-dark">Date de fin</th>
             <th scope="col" class="border border-dark">Type</th>
             <th scope="col" class="border border-dark">Statut</th>
-            <th scope="col" class="border border-dark">Actions</th>
+            <th scope="col" class="border border-dark"></th>
         </tr>
     </thead>
     <tbody>
@@ -15,17 +15,15 @@
             <td class="border border-dark">{{absence.dateFin | date: 'dd/MM/yyyy'}}</td>
             <td class="border border-dark">{{absence.type | lowercase}}</td>
             <td class="border border-dark">{{absence.statut}}</td>
-            <!--<td *ngIf="utilisateurConnecte.roles[0] == 'ROLE_ADMINISTRATEUR'" class="border border-dark w-10">
-            <button class="btn"><fa-icon [icon]="faPencil"></fa-icon></button>
+            <td *ngIf="collegue.roles[0] == 'ROLE_ADMINISTRATEUR'" class="border border-dark ">
+                <button class="btn"><fa-icon [icon]="faPencil"></fa-icon></button>
                 <button class="btn"><fa-icon [icon]="faTrash"></fa-icon></button>
-            </td>-->
+            </td>
         </tr>
     </tbody>
 </table>
 
-<!-- <label>{{listeSoldes[1].type | lowercase}} : {{listeSoldes[1].nombreDeJours}} </label>
-<label>{{listeSoldes[0].type | lowercase}}: {{listeSoldes}}</label> -->
- <label><b>Solde des compteurs :</b></label>
+<label><b>Solde des compteurs :</b></label>
 <ul *ngFor="let solde of listeSoldes">
   <li *ngIf="solde.type.toString() == 'CONGES_PAYES'">Congés payés : {{solde.nombreDeJours}} </li>
   <li *ngIf="solde.type.toString() == 'RTT_EMPLOYE'">RTT : {{solde.nombreDeJours}}</li>
