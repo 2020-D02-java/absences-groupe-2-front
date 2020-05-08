@@ -18,6 +18,9 @@
             <td>{{jour.typeJourFerme}}</td>
             <td>{{jour.date | date:'EEEE'}}</td>
             <td>{{jour.commentaire}}</td>
+            <td *ngIf="utilisateurConnecte.roles[0] == 'ROLE_ADMINISTRATEUR'">
+                <i class="fa fa-search"></i>
+            </td>
         </tr>
     </tbody>
 </table>

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { JourFermeService } from 'src/app/service/jour-ferme.service';
 import { JourFerme } from 'src/app/models/jourferme';
+import { Observable } from 'rxjs';
+import { Collegue } from 'src/app/auth/auth.domains';
+import { HeaderComponent } from '../../header/header.component';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-lister-jour-ferie',
@@ -11,10 +15,12 @@ export class ListerJourFerieComponent implements OnInit {
 
   listeJourFerme: JourFerme[] = new Array();
   currentListJourFerme: JourFerme[] = new Array();
+  utilisateurConnecte: Collegue;
+  collegueConnecte: Observable<Collegue>;
 
   listYears: number[] = new Array();
 
-  constructor(private jourFermeService: JourFermeService) { }
+  constructor(private jourFermeService: JourFermeService, private authSrv: AuthService) { }
 
   ngOnInit(): void {
     this.jourFermeService.listerJourFermeParAnnee(new Date().getFullYear()).subscribe(
@@ -25,6 +31,17 @@ export class ListerJourFerieComponent implements OnInit {
       }
     )
     this.getAllYear();
+
+    this.collegueConnecte = this.authSrv.collegueConnecteObs;
+
+    // On v�rifie si l'utilisateur est bien connect�
+    this.authSrv.verifierAuthentification().subscribe(
+      (etatConnexion) => { 
+        this.utilisateurConnecte = etatConnexion;
+      }, (error) => {
+        console.log('Error , error, fuyez ! ' + error);
+      }
+    );
   }
 
   getDayToString(date: Date): string {
