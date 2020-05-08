@@ -3,6 +3,7 @@ import { VisualisationAbsenceService } from 'src/app/service/visualisation-absen
 import { Absence } from 'src/app/models/absence';
 import { AuthService } from 'src/app/service/auth.service';
 import { Collegue } from 'src/app/auth/auth.domains';
+import { Solde } from 'src/app/models/solde';
 
 @Component({
   selector: 'app-visualisation-absence',
@@ -10,8 +11,8 @@ import { Collegue } from 'src/app/auth/auth.domains';
 })
 export class VisualisationAbsenceComponent implements OnInit {
 
-  listeAbs: Absence[];
-
+  listeAbsences: Absence[];
+  listeSoldes: Solde[];
   collegue: Collegue;
 
   constructor(private absenceService: VisualisationAbsenceService,
@@ -23,9 +24,14 @@ export class VisualisationAbsenceComponent implements OnInit {
       .subscribe(col => this.collegue = col,
         err => console.log('oops'));
 
-    this.absenceService.listerAbsenceCollegue(this.collegue.email)
-      .subscribe(listeAbsences => this.listeAbs = listeAbsences,
+    this.absenceService.listerAbsencesCollegue(this.collegue.email)
+      .subscribe(absences => this.listeAbsences = absences,
         err => console.log('oops'));
+
+    this.absenceService.listerSoldesCollegue(this.collegue.email)
+    .subscribe(soldes => this.listeSoldes = soldes,
+      err => console.log('oops'));
+
   }
 
 }
