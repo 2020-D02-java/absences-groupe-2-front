@@ -23,6 +23,8 @@ import { DemandeAbsenceComponent } from './absence/demande-absence/demande-absen
 import { JourFermeService } from './service/jour-ferme.service';
 import { VisualisationAbsenceComponent } from './absence/visualisation-absence/visualisation-absence.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { VisualisationAbsenceService } from './service/visualisation-absence.service';
 
 
 @NgModule({
@@ -45,11 +47,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgbModule
   ],
   providers: [
     JourFermeService,
-    VisualisationAbsenceComponent,
+    VisualisationAbsenceService,
     {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorService,

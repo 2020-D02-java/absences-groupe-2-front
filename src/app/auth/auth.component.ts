@@ -9,7 +9,7 @@ import { AuthService } from '../service/auth.service';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styles: []
+  styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit {
 

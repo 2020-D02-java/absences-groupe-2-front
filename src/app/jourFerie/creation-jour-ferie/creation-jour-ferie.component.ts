@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { JourFermeService } from 'src/app/service/jour-ferme.service';
 import { formatDate } from '@angular/common';
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-creation-jour-ferie',
@@ -11,6 +12,8 @@ import { formatDate } from '@angular/common';
 })
 export class CreationJourFerieComponent implements OnInit {
 
+  faCheck = faCheck;
+  faTimes = faTimes;
   formCreationJourFerme: FormGroup;
   messageErreur = '';
   messageValidation = '';

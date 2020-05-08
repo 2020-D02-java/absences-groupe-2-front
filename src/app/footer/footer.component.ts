@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../service/auth.service';
+import { Collegue } from '../auth/auth.domains';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  collegue: Collegue;
+  
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+
+        this.authService.collegueConnecteObs
+      .subscribe(col => this.collegue = col,
+        err => console.log('oops'));
   }
 
 }

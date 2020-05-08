@@ -22,7 +22,7 @@ const routes: Routes =  [
   { path: 'listerJourFerie', component: ListerJourFerieComponent,  canActivate: [StatutConnecteService]},
   { path: 'creationJourFerie', component: CreationJourFerieComponent,  canActivate: [StatutConnecteService, StatutAdministrateurService]},
   { path: 'accesRefuse', component: AccesRefuseComponent},
-  { path: 'demandeAbsence', component: DemandeAbsenceComponent},
+  { path: 'demandeAbsence', component: DemandeAbsenceComponent,  canActivate: [StatutConnecteService]},
   { path: 'visualisationAbsence', component: VisualisationAbsenceComponent, canActivate: [StatutConnecteService]},
 
   { path: '', redirectTo: '/tech', pathMatch: 'full'},
