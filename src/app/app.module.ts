@@ -25,6 +25,7 @@ import { VisualisationAbsenceComponent } from './absence/visualisation-absence/v
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { VisualisationAbsenceService } from './service/visualisation-absence.service';
+import { ModificationAbsenceComponent } from './absence/modification-absence/modification-absence.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { VisualisationAbsenceService } from './service/visualisation-absence.ser
     AccesRefuseComponent,
     FourOhFourComponent,
     DemandeAbsenceComponent,
-    VisualisationAbsenceComponent
+    VisualisationAbsenceComponent,
+    ModificationAbsenceComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +60,7 @@ import { VisualisationAbsenceService } from './service/visualisation-absence.ser
     useClass: AuthInterceptorService,
     multi: true
   },
-  {provide: LOCALE_ID, useValue: "fr-CA" }
+  {provide: LOCALE_ID, useValue: 'fr-CA' }
 ],
   bootstrap: [AppComponent]
 })
