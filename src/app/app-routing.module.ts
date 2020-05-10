@@ -10,7 +10,7 @@ import { FourOhFourComponent } from './erreurNavigation/four-oh-four/four-oh-fou
 import { AccesRefuseComponent } from './erreurNavigation/acces-refuse/acces-refuse.component';
 import { DemandeAbsenceComponent} from './absence/demande-absence/demande-absence.component';
 import { VisualisationAbsenceComponent} from './absence/visualisation-absence/visualisation-absence.component';
-import { VisualisationAbsenceService } from './service/visualisation-absence.service';
+import { ModificationAbsenceComponent } from './absence/modification-absence/modification-absence.component';
 
 const routes: Routes =  [
   // canActivate: [StatutConnecteService] ==> Permet de v�rifier si l'utilisateur est connect�
@@ -24,6 +24,7 @@ const routes: Routes =  [
   { path: 'accesRefuse', component: AccesRefuseComponent},
   { path: 'demandeAbsence', component: DemandeAbsenceComponent,  canActivate: [StatutConnecteService]},
   { path: 'visualisationAbsence', component: VisualisationAbsenceComponent, canActivate: [StatutConnecteService]},
+  {path: 'modificationAbsence', component: ModificationAbsenceComponent, canActivate: [[StatutConnecteService]]},
 
   { path: '', redirectTo: '/tech', pathMatch: 'full'},
   // Cas url inexistant

@@ -20,7 +20,7 @@
     <tbody>
         <tr *ngFor="let jour of listeJourFerme">
             <td class="border border-dark">{{jour.date}}</td>
-            <td class="border border-dark">{{jour.typeJourFerme}}</td>
+            <td class="border border-dark">{{jour.type}}</td>
             <td class="border border-dark">{{jour.date | date:'EEEE'}}</td>
             <td class="border border-dark">{{jour.commentaire}}</td>
             <td *ngIf="utilisateurConnecte.roles[0] == 'ROLE_ADMINISTRATEUR'" class="border border-dark w-10">

@@ -1,8 +1,3 @@
 export enum Statut {
-
-    Initiale = "INITIALE",
-    EnAttente =  "EN_ATTENTE_VALIDATION",
-    Valide = "VALIDEE",
-    Rejete = "REJETEE"
-
+ INITIALE, EN_ATTENTE_VALIDATION, VALIDEE, REJETEE
 }
