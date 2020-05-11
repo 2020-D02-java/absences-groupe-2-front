@@ -6,6 +6,9 @@ import { Collegue } from 'src/app/auth/auth.domains';
 import { AuthService } from 'src/app/service/auth.service';
 import { faTrash, faPlus, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
+import { Type } from '@angular/compiler';
+import { TypeJourFerme } from 'src/app/models/type-jour-ferme';
 
 @Component({
   selector: 'app-lister-jour-ferie',
@@ -22,9 +25,12 @@ export class ListerJourFerieComponent implements OnInit {
   utilisateurConnecte: Collegue;
   collegueConnecte: Observable<Collegue>;
 
+  // Message validation modale
+  message: string;
+
   listYears: number[] = new Array();
 
-  constructor(private jourFermeService: JourFermeService, private authSrv: AuthService, private modalService: NgbModal) { }
+  constructor(private jourFermeService: JourFermeService, private authSrv: AuthService, private modalService: NgbModal, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -70,17 +76,31 @@ export class ListerJourFerieComponent implements OnInit {
 
   // [DEBUT] ***** GESTION DU MODAL DE SUPPRESSION ****** //
 
-  open(content) {
-    this.modalService.open(content).result.then((result) => {
-      // Cas ou l'utilisateur valide, en appuyant sur "Je suis sur !"
-      console.log('Utilisateur valide la suppression');
-    }, () => {
-      // Cas ou l'utilisateur annule, en appuyant sur la croix
-      console.log('Utilisateur annule suppression');
+  onDelete(id: number) {
+    console.log(id);
+    this.message = 'SUPPRESSION CONFIRMEE ! REDIRECTION ... ';
+    this.router.navigate(['/listerJourFerie']);
+    this.jourFermeService.suppressionJourFerme(id).subscribe(
+        data => this.refresh(data));
+    }
+  // [FIN] ***** GESTION DU MODAL DE SUPPRESSION ****** //
+
+  open(content, id) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      this.onDelete(id);
     });
   }
 
-  // [FIN] ***** GESTION DU MODAL DE SUPPRESSION ****** //
+  refresh(data) {
+    this.jourFermeService.listerJourFermeParAnnee(new Date().getFullYear()).subscribe(
+      (listeJours) => {
+        this.listeJourFerme = listeJours;
+      }, (error) => {
+        console.log('Erreur ' + error);
+      }
+    )
+  }
+
 
 
 }
