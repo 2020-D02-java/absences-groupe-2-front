@@ -29,6 +29,7 @@ import { ModificationAbsenceComponent } from './absence/modification-absence/mod
 import { VueSynthetiquesComponent } from './vue-synthetiques/vue-synthetiques.component';
 import { VueParDepartementParJourParCollaborteurComponent } from './vue-synthetiques/vue-par-departement-par-jour-par-collaborteur/vue-par-departement-par-jour-par-collaborteur.component';
 import { HistogrammeParDepartementParJourComponent } from './vue-synthetiques/histogramme-par-departement-par-jour/histogramme-par-departement-par-jour.component';
+import { CollegueService } from './service/collegue.service';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { HistogrammeParDepartementParJourComponent } from './vue-synthetiques/hi
   providers: [
     JourFermeService,
     VisualisationAbsenceService,
+    CollegueService,
     {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorService,

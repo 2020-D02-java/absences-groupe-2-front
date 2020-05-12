@@ -69,42 +69,8 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-        </tr>
-        <tr>
-			<td scope="col" class="border border-dark">-</td>
+        <tr *ngFor="let collegues of listeCollegues">
+			<td scope="col" class="border border-dark">{{collegues.nom}}</td>
 			<td scope="col" class="border border-dark">-</td>
 			<td scope="col" class="border border-dark">-</td>
 			<td scope="col" class="border border-dark">-</td>
