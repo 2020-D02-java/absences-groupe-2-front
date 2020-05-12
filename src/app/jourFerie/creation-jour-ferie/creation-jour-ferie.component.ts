@@ -67,7 +67,7 @@ export class CreationJourFerieComponent implements OnInit {
     {
       this.jourFermeService.ajouterJourFerme(dateJourFerme, typeJourFerme, commentaireJourFerme).subscribe(
         () => { },
-        (error) => {
+        () => {
           this.messageErreur = 'ERREUR';
         }, () => {
           this.messageValidation = 'FORMULAIRE VALIDE !';

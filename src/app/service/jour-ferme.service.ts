@@ -31,4 +31,8 @@ export class JourFermeService {
       });
   }
 
+  suppressionJourFerme(id: number): Observable<JourFerme>{
+    return this.http.delete<JourFerme>(`http://localhost:8080/jourFerme/delete?id=${id}`);
+  }
+
 }

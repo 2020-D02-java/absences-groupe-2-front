@@ -3,9 +3,15 @@
         <h2>Jours feri&eacute;s et RTT employeurs</h2>
     </div>
 </div>
-<select>
-    <option *ngFor="let year of listYears" (click)="filterYear(year)" ng-model="year">{{year}}</option>
-</select>
+<div class="row m-3">
+    <label class="col-lg-3">
+        <h4>Selection par ann&eacute;e : </h4>
+    </label>
+    <select class="form-control col-lg-2">
+        <option *ngFor="let year of listYears" (click)="filterYear(year)" ng-model="year">{{year}}</option>
+    </select>
+</div>
+
 <table class="table table-striped">
     <thead class="bg-secondary">
         <tr>
@@ -18,7 +24,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let jour of listeJourFerme">
+        <tr *ngFor="let jour of listeJourFerme;">
             <td class="border border-dark">{{jour.date}}</td>
             <td class="border border-dark">{{jour.type}}</td>
             <td class="border border-dark">{{jour.date | date:'EEEE'}}</td>
@@ -27,10 +33,36 @@
                 <button class="btn">
                     <fa-icon [icon]="faPencil"></fa-icon>
                 </button>
-                <button class="btn" (click)="open(mymodal)">
+                <button class="btn" (click)="open(mymodal, jour.id)">
                     <fa-icon [icon]="faTrash"></fa-icon>
                 </button>
             </td>
+            <!-- moddal choix suppression -->
+            <ng-template #mymodal let-modal>
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title">Suppression jour feri&eacute; / RTT </h4>
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                        <span aria-hidden="true">X</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5>&Ecirc;tes vous s&ucirc;r de vouloir supprimer : <br></h5>
+                    <ul>
+                        <li><b>Id : </b>{{jour.id}}</li>
+                        <li><b>Date : </b>{{jour.date}}</li>
+                        <li><b>Type : </b>{{jour.type}}</li>
+                        <li><b>Jour : </b>{{jour.date | date:'EEEE'}}</li>
+                        <li><b>Commentaire : </b>{{jour.commentaire}}</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <div class="alert alert-success" role="success" *ngIf="message">
+                        <b>{{message}}</b>
+                    </div>
+                    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Je suis sur
+                        !</button>
+                </div>
+            </ng-template>
         </tr>
     </tbody>
 </table>
@@ -38,25 +70,7 @@
     <div class="col-md-auto">
         <a routerLink="../creationJourFerie" [hidden]="utilisateurConnecte.roles[0]!='ROLE_ADMINISTRATEUR'"><button
                 class="btn btn-success">
-                <fa-icon [icon]="faPlus"></fa-icon> Ajouter jour feri&eacute;
+                <fa-icon [icon]="faPlus"></fa-icon> Ajouter jour ferm&eacute;
             </button></a>
     </div>
 </div>
-
-
-
-<!-- moddal choix suppression -->
-<ng-template #mymodal let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Suppression jour feri&eacute; / RTT </h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">X</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        &Ecirc;tes vous s&ucirc;r de vouloir supprimer [AFFICHAGE INFORMATIONS JOUR FERIE] ?
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Je suis sur !</button>
-    </div>
-</ng-template>
