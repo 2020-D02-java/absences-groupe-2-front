@@ -6,18 +6,15 @@ import { AuthService } from 'src/app/service/auth.service';
 import { faTrash, faPlus, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
-import { Type } from '@angular/compiler';
-import { TypeJourFerme } from 'src/app/models/type-jour-ferme';
-import { ModificationJourFerieComponent } from '../modification-jour-ferie/modification-jour-ferie.component';
 import { Role } from 'src/app/models/role';
 import { JourFermeVisualisation } from 'src/app/models/jour-ferme-visualisation';
 
 @Component({
-  selector: 'app-lister-jour-ferie',
-  templateUrl: './lister-jour-ferie.component.html',
-  styleUrls: ['./lister-jour-ferie.component.scss']
+  selector: 'app-lister-jour-ferme',
+  templateUrl: './lister-jour-ferme.component.html',
+  styleUrls: ['./lister-jour-ferme.component.scss']
 })
-export class ListerJourFerieComponent implements OnInit {
+export class ListerJourFermeComponent implements OnInit {
 
   // Enumerations
   roleEnum = Role;

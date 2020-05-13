@@ -16,7 +16,7 @@
 				</li>
 				<li routerLinkActive="active" class="nav-item"
 					*ngIf="col.roles[0] == roleEnum.RoleManager || col.roles[0] == roleEnum.RoleAdmin || col.roles[0] == roleEnum.RoleEmploye">
-					<a class="nav-link" routerLink="#">Planning des absences</a>
+					<a class="nav-link" routerLink="planningAbsence">Planning des absences</a>
 				</li>
 				<li routerLinkActive="active" class="nav-item" *ngIf="col.roles[0] == roleEnum.RoleManager">
 					<a class="nav-link" routerLink="#">Validation demandes</a>
@@ -26,7 +26,7 @@
 				</li>
 				<li routerLinkActive="active" class="nav-item"
 					*ngIf="col.roles[0] == roleEnum.RoleManager || col.roles[0] == roleEnum.RoleAdmin || col.roles[0] == roleEnum.RoleEmploye">
-					<a class="nav-link" routerLink="listerJourFerie">Jours feriés</a>
+					<a class="nav-link" routerLink="listerJourFerme">Jours ferm&eacute;s</a>
 				</li>
 			</ul>
 			<div class="mx-2 p-1 col-sm-4 col-4  col-md-auto"

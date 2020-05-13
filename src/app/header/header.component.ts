@@ -52,7 +52,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       (etatConnexion) => {
         this.utilisateurConnecte = etatConnexion;
       }, (error) => {
-        console.log('Error , error, fuyez ! ' + error);
+        console.log('Erreur ' + error);
       }
     );
   }

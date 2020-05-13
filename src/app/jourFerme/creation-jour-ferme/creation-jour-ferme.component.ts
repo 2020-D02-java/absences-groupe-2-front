@@ -1,65 +1,47 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { JourFermeService } from 'src/app/service/jour-ferme.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { formatDate } from '@angular/common';
-import { JourFermeVisualisation } from 'src/app/models/jour-ferme-visualisation';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'app-modification-jour-ferie',
-  templateUrl: './modification-jour-ferie.component.html',
-  styleUrls: ['./modification-jour-ferie.component.scss']
+  selector: 'app-creation-jour-ferme',
+  templateUrl: './creation-jour-ferme.component.html',
+  styleUrls: ['./creation-jour-ferme.component.scss']
 })
-export class ModificationJourFerieComponent implements OnInit {
+export class CreationJourFermeComponent implements OnInit {
 
   // Icones
   faCheck = faCheck;
   faTimes = faTimes;
 
   // Initialisations
-  formModificationJourFerme: FormGroup;
+  formCreationJourFerme: FormGroup;
   messageErreur = '';
   messageValidation = '';
-  id: number;
-  jourFerme: JourFermeVisualisation;
 
   // Constructeur
-  constructor(private router: Router,
-    private formBuilder: FormBuilder,
-    private jourFermeService: JourFermeService,
-    private routerLinkActive: ActivatedRoute) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private jourFermeService: JourFermeService) { }
 
   ngOnInit(): void {
-    // Snapshot pour récupérer l'id passé via l'url
-    this.id = this.routerLinkActive.snapshot.params['id'];
-
-    // Subscription à l'observable
-    this.jourFermeService.getJourFermeParId(this.id).subscribe(
-      (jour) => {
-        this.jourFerme = jour;
-        this.initialiserFormulaire();
-      }, (error) => {
-        console.log('Erreur ' + error);
-      }
-    )
-
+    this.initialiserFormulaire();
   }
 
   initialiserFormulaire() {
-    this.formModificationJourFerme = this.formBuilder.group({
-      dateJourFerme: [this.jourFerme.date, Validators.required],
-      typeJourFerme: [this.jourFerme.type, Validators.required],
-      commentaireJourFerme: [this.jourFerme.commentaire]
+    this.formCreationJourFerme = this.formBuilder.group({
+      dateJourFerme: ['', Validators.required],
+      typeJourFerme: ['', Validators.required],
+      commentaireJourFerme: ['']
     });
   }
 
   validerFormulaire() {
 
     // Rï¿½cupï¿½ration des donnï¿½es du formulaire
-    const dateJourFerme = this.formModificationJourFerme.get('dateJourFerme').value;
-    const typeJourFerme = this.formModificationJourFerme.get('typeJourFerme').value;
-    const commentaireJourFerme = this.formModificationJourFerme.get('commentaireJourFerme').value;
+    const dateJourFerme = this.formCreationJourFerme.get('dateJourFerme').value;
+    const typeJourFerme = this.formCreationJourFerme.get('typeJourFerme').value;
+    const commentaireJourFerme = this.formCreationJourFerme.get('commentaireJourFerme').value;
 
     // on formate la date du jour au format 'yyyy-MM-dd'
     const dateAujourdhui = formatDate(Date.now(), 'yyyy-MM-dd', 'en-US');
@@ -83,7 +65,7 @@ export class ModificationJourFerieComponent implements OnInit {
       this.messageErreur = 'ERREUR. LE COMMENTAIRE EST OBLIGATOIRE POUR LES JOURS FERIES.';
     }
     else {
-      this.jourFermeService.modifierJourFerme(this.id, dateJourFerme, typeJourFerme, commentaireJourFerme).subscribe(
+      this.jourFermeService.ajouterJourFerme(dateJourFerme, typeJourFerme, commentaireJourFerme).subscribe(
         () => { },
         () => {
           this.messageErreur = 'ERREUR';
@@ -92,11 +74,10 @@ export class ModificationJourFerieComponent implements OnInit {
           this.messageErreur = '';
           setTimeout(() => {
             // Redirection au bout de 2 secondes
-            this.router.navigate(['listerJourFerie']);
+            this.router.navigate(['listerJourFerme']);
           }, 2000);
         }
       );
     }
   }
-
 }
