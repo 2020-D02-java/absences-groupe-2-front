@@ -1,25 +1,64 @@
-<h1 class="text-center">DEMANDE D'ABSENCE</h1>
-<h5>Coucou anais, je suis pass&eacute; par ici pour securiser la route, pour que le header en haut de page soit affiche correctement ... bon boulot ! :3</h5>
-<h6>Tu veux une devinette ?!</h6>
-<h6>...</h6>
-<h6>...</h6>
-<h4>Qu'est-ce qu'un lepreux dans un bain ??</h4>
-<h6>...</h6>
-<h6>...</h6>
-<h6>...</h6>
-<h6>...</h6>
-<h6>...</h6>
-<h6>...</h6>
-<h6>...</h6>
-<h6>...</h6>
-<h6>...</h6>
-<h6>...</h6>
-<h6>...</h6>
-<h6>...</h6>
-<h6>...</h6>
-<h4>Un cachet effervescent !!</h4>
-<h6>...</h6>
-<h6>...</h6>
-<h6>...</h6>
-<h1>HI-HI-HIIIIIIIIII o_o'</h1>
+<div class="card">
 
+    <h2 class="card-header text-center py-3" style="background-color: #e3f2fd;">
+     Demande d'absence
+    </h2>
+  
+    <div class="card-body ">
+      <form [formGroup]="formDemandeAbsence" (ngSubmit)="validerFormulaire()">
+          <div class="form-group row">
+              <label for="dateDebut" class="col-sm-2 col-form-label">Date de début</label>
+              <div class="col-sm-10">
+                  <input type="date" class="form-control" id="dateDebut" formControlName="dateDebut" required>
+              </div>
+          </div>
+          <div class="form-group row">
+            <label for="dateFin" class="col-sm-2 col-form-label">Date de fin</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" id="dateFin" formControlName="dateFin" required>
+            </div>
+        </div>
+          <div class="form-group row">
+              <label for="typeAbsence" class="col-sm-2 col-form-label">Type de congés</label>
+              <div class="col-sm-10">
+                  <select class="custom-select" formControlName="typeAbsence" required>
+                      <option selected>(Type de congés)</option>
+                      <option value="RTT">RTT</option>
+                      <option value="CONGES_PAYES">Congé payé</option>
+                      <option value=" CONGES_SANS_SOLDE">Congé sans solde</option>
+                  </select>
+              </div>
+          </div>
+          <div class="form-group row">
+              <label for="motifAbsence" class="col-sm-2 col-form-label">Motif</label>
+              <div class="col-sm-10">
+                  <textarea class="form-control" id="motifAbsence" rows="3"
+                      formControlName="motifAbsence"></textarea>
+              </div>
+          </div>
+  
+          <div class="alert alert-danger" role="danger" *ngIf="messageErreur">
+              <b>{{messageErreur}}</b>
+          </div>
+          <div class="alert alert-success" role="success" *ngIf="messageValidation">
+              {{messageValidation}}
+          </div>
+  
+          <div class="row justify-content-md-center">
+              <div class="col-md-auto">
+                  <!-- bouton valider formulaire -->
+                  <button class="btn btn-success mr-2" [disabled]="formDemandeAbsence.invalid">
+                      <fa-icon [icon]="faCheck"></fa-icon> Valider
+                  </button>
+  
+                  <!-- bouton annuler formulaire -->
+                  <a routerLink="../visualisationAbsence"><button class="btn btn-danger">
+                          <fa-icon [icon]="faTimes"></fa-icon> Annuler
+                      </button>
+                  </a>
+              </div>
+          </div>
+      </form>
+    </div>
+  </div>
+  
