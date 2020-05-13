@@ -42,11 +42,11 @@ export class VisualisationAbsenceComponent implements OnInit {
       .subscribe(col => this.collegue = col,
         err => console.log('oops'));
 
-    this.absenceService.listerAbsencesCollegue(this.collegue.email)
+    this.absenceService.listerAbsencesCollegue()
       .subscribe(absences => this.listeAbsences = absences,
         err => console.log('oops'));
 
-    this.absenceService.listerSoldesCollegue(this.collegue.email)
+    this.absenceService.listerSoldesCollegue()
     .subscribe(soldes => this.listeSoldes = soldes,
       err => console.log('oops'));
 
@@ -68,11 +68,11 @@ export class VisualisationAbsenceComponent implements OnInit {
   }
 
   refresh(data) {
-    this.absenceService.listerAbsencesCollegue(this.collegue.email)
+    this.absenceService.listerAbsencesCollegue()
       .subscribe(absences => this.listeAbsences = absences,
         err => console.log('oops'));
 
-    this.absenceService.listerSoldesCollegue(this.collegue.email)
+    this.absenceService.listerSoldesCollegue()
     .subscribe(soldes => this.listeSoldes = soldes,
       err => console.log('oops'));
   }
