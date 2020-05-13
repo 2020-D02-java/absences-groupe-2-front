@@ -77,9 +77,6 @@ export class ListerJourFerieComponent implements OnInit {
   // [DEBUT] ***** GESTION DU MODAL DE SUPPRESSION ****** //
 
   onDelete(id: number) {
-    console.log(id);
-    this.message = 'SUPPRESSION CONFIRMEE ! REDIRECTION ... ';
-    this.router.navigate(['/listerJourFerie']);
     this.jourFermeService.suppressionJourFerme(id).subscribe(
         data => this.refresh(data));
     }

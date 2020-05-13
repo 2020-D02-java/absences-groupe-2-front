@@ -5,7 +5,7 @@
 </div>
 <br/>
 <table class="table table-striped">
-    <thead class="thead-light">
+    <thead class="bg-secondary">
         <tr>
             <th scope="col" class="border border-dark">Date de début</th>
             <th scope="col" class="border border-dark">Date de fin</th>
@@ -24,8 +24,37 @@
               <a routerLink="../modificationAbsence">
                 <button *ngIf="absence.statut == statut.INITIALE || absence.statut == statut.REJETEE" class="btn"><fa-icon [icon]="faPencil"></fa-icon></button>
               </a>
-                <button class="btn"><fa-icon [icon]="faTrash"></fa-icon></button>
+                <button class="btn" (click)="open(mymodal, absence.id)">
+                    <fa-icon [icon]="faTrash"></fa-icon>
+                </button>
             </td>
+            <!-- moddal choix suppression -->
+            <ng-template #mymodal let-modal>
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title">Suppression d'une absence</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                        <span aria-hidden="true">X</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5>&Ecirc;tes vous s&ucirc;r de vouloir supprimer : <br></h5>
+                    <ul>
+                        <li><b>Id : </b>{{absence.id}}</li>
+                        <li><b>Date de d&eacute;but : </b>{{absence.dateDebut}}</li>
+                        <li><b>Date de fin : </b>{{absence.dateFin}}</li>
+                        <li><b>Type : </b>{{absence.type | lowercase}}</li>
+                        <li><b>Statut : </b>{{absence.statut}}</li>
+                        <li><b>Motif : </b>{{absence.motif}}</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <div class="alert alert-success" role="success" *ngIf="message">
+                        <b>{{message}}</b>
+                    </div>
+                    <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Je suis sur
+                        !</button>
+                </div>
+            </ng-template>
         </tr>
     </tbody>
 </table>
