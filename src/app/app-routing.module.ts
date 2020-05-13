@@ -18,31 +18,22 @@ import { VueParDepartementParJourParCollaborteurComponent } from './vue-syntheti
 import { HistogrammeParDepartementParJourComponent } from './vue-synthetiques/histogramme-par-departement-par-jour/histogramme-par-departement-par-jour.component';
 
 const routes: Routes = [
-  // canActivate: [StatutConnecteService] ==> Permet de v�rifier si l'utilisateur est connect�
-  // canActivate: [StatutAdministrateurService] ==> Permet de v�rifier si l'utilisateur connect� est bien un administrateur
-  // canActivate: [StatutManagerService] ==> Permet de v�rifier si l'utilisateur connect� est bien un manager
-  // canActivate: [StatutEmployeService] ==> Permet de v�rifier si l'utilisateur connect� est bien un employe
-  { path: 'tech', component: TechComponent, canActivate: [StatutConnecteService]}, //  tech accessible uniquement si connect�
-  { path: 'auth', component: AuthComponent},
-  { path: 'listerJourFerie', component: ListerJourFerieComponent,  canActivate: [StatutConnecteService]},
-  { path: 'creationJourFerie', component: CreationJourFerieComponent,  canActivate: [StatutConnecteService, StatutAdministrateurService]},
-  { path: 'accesRefuse', component: AccesRefuseComponent},
-  { path: 'demandeAbsence', component: DemandeAbsenceComponent,  canActivate: [StatutConnecteService]},
-  { path: 'visualisationAbsence', component: VisualisationAbsenceComponent, canActivate: [StatutConnecteService]},
-  { path: 'modificationAbsence', component: ModificationAbsenceComponent, canActivate: [StatutConnecteService]},
-  { path: 'modificationJourFerie/:id', component: ModificationJourFerieComponent, canActivate: [StatutConnecteService]},
-  { path: 'tech', component: TechComponent, canActivate: [StatutConnecteService] }, //  tech accessible uniquement si connect�
+  // canActivate: [StatutConnecteService] ==> Permet de verifier si l'utilisateur est connecte
+  // canActivate: [StatutAdministrateurService] ==> Permet de verifier si l'utilisateur connecte est bien un administrateur
+  // canActivate: [StatutManagerService] ==> Permet de verifier si l'utilisateur connecte est bien un manager
+  // canActivate: [StatutEmployeService] ==> Permet de verifier si l'utilisateur connecte est bien un employe
+  { path: 'tech', component: TechComponent, canActivate: [StatutConnecteService] }, //  tech accessible uniquement si connecte
   { path: 'auth', component: AuthComponent },
   { path: 'listerJourFerie', component: ListerJourFerieComponent, canActivate: [StatutConnecteService] },
   { path: 'creationJourFerie', component: CreationJourFerieComponent, canActivate: [StatutConnecteService, StatutAdministrateurService] },
   { path: 'accesRefuse', component: AccesRefuseComponent },
   { path: 'demandeAbsence', component: DemandeAbsenceComponent, canActivate: [StatutConnecteService] },
   { path: 'visualisationAbsence', component: VisualisationAbsenceComponent, canActivate: [StatutConnecteService] },
-  { path: 'modificationAbsence', component: ModificationAbsenceComponent, canActivate: [StatutConnecteService] },
+  { path: 'modificationAbsence/:id', component: ModificationAbsenceComponent, canActivate: [StatutConnecteService, StatutAdministrateurService] },
+  { path: 'modificationJourFerie/:id', component: ModificationJourFerieComponent, canActivate: [StatutConnecteService, StatutAdministrateurService] },
   { path: 'vueSynthetiques', component: VueSynthetiquesComponent, canActivate: [StatutConnecteService, StatutManagerService] },
   { path: 'vueParDepartementParJourParCollaborateur', component: VueParDepartementParJourParCollaborteurComponent, canActivate: [StatutConnecteService, StatutManagerService] },
   { path: 'histogrammeParDepartementParJour', component: HistogrammeParDepartementParJourComponent, canActivate: [StatutConnecteService, StatutManagerService] },
-
   { path: '', redirectTo: '/tech', pathMatch: 'full' },
   // Cas url inexistant
   { path: 'not-found', component: FourOhFourComponent },

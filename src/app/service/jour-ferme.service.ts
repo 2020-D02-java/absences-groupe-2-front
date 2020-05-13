@@ -10,23 +10,25 @@ import { JourFermeAjout } from '../models/jour-ferme-ajout';
 })
 export class JourFermeService {
 
-  // // Le subject est privï¿½, on le rend "public" avec "abonnementCollegueEnCours()"
-  // private jourFermeSubject = new Subject<JourFerme>();
-
+  // Constructeur
   constructor(private http: HttpClient) { }
 
+  // Lister tous les jours fermes
   listerJourFerme() {
     return this.http.get<JourFermeVisualisation[]>(`http://localhost:8080/jourFerme`);
   }
 
+  // Lister tous les jours fermes, filtre par années
   listerJourFermeParAnnee(annee: number) {
-    return this.http.get<JourFermeVisualisation[]>(`http://localhost:8080/jourFerme/date?annee=` +annee);
+    return this.http.get<JourFermeVisualisation[]>(`http://localhost:8080/jourFerme/date?annee=` + annee);
   }
 
+  // Récupérer données d'un jour fermé, VIA ID
   getJourFermeParId(id: number) {
-    return this.http.get<JourFermeVisualisation>(`http://localhost:8080/jourFerme/id?id=`+id);
+    return this.http.get<JourFermeVisualisation>(`http://localhost:8080/jourFerme/id?id=` + id);
   }
 
+  // Ajouter un jour fermé
   ajouterJourFerme(date: Date, type: TypeJourFerme, commentaire: string): Observable<JourFermeAjout> {
     return this.http.post<JourFermeAjout>(`http://localhost:8080/jourFerme`,
       {
@@ -36,8 +38,9 @@ export class JourFermeService {
       });
   }
 
+  // Modifier un jour fermé
   modifierJourFerme(id: number, date: Date, type: TypeJourFerme, commentaire: string): Observable<JourFermeVisualisation> {
-    return this.http.put<JourFermeVisualisation>(`http://localhost:8080/jourFerme/modification?id=` +id,
+    return this.http.put<JourFermeVisualisation>(`http://localhost:8080/jourFerme/modification?id=` + id,
       {
         date: `${date}`,
         type: `${type}`,
@@ -45,7 +48,8 @@ export class JourFermeService {
       });
   }
 
-  suppressionJourFerme(id: number): Observable<JourFermeVisualisation>{
+  // Supprimer un jour fermé
+  suppressionJourFerme(id: number): Observable<JourFermeVisualisation> {
     return this.http.delete<JourFermeVisualisation>(`http://localhost:8080/jourFerme/delete?id=${id}`);
   }
 

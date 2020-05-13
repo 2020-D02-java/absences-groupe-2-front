@@ -93,8 +93,8 @@ export class ListerJourFerieComponent implements OnInit {
 
   onDelete(id: number) {
     this.jourFermeService.suppressionJourFerme(id).subscribe(
-        data => this.refresh(data));
-    }
+      data => this.refresh(data));
+  }
   // [FIN] ***** GESTION DU MODAL DE SUPPRESSION ****** //
 
   open(content, id) {
@@ -112,7 +112,5 @@ export class ListerJourFerieComponent implements OnInit {
       }
     )
   }
-
-
 
 }

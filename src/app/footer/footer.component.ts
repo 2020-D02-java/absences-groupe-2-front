@@ -9,13 +9,15 @@ import { Collegue } from '../auth/auth.domains';
 })
 export class FooterComponent implements OnInit {
 
+  // Initialisation
   collegue: Collegue;
-  
+
+  // Constructeur
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
 
-        this.authService.collegueConnecteObs
+    this.authService.collegueConnecteObs
       .subscribe(col => this.collegue = col,
         err => console.log('oops'));
   }

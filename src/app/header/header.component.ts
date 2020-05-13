@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { Collegue } from '../auth/auth.domains';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../service/auth.service';
@@ -23,17 +23,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   // Icones
   faUser = faUser;
+  iconeStopWatch = faStopwatch;
+
+  // Initialisations
+  counterSubscription: Subscription;
+  secondes = 0;
+  utilisateurConnecte: Collegue;
 
   // Mise en place de l'observable pour récupérer le role du collègue, pour l'affichage des onglets de navigation appropriés
   collegueConnecte: Observable<Collegue>;
-  utilisateurConnecte: Collegue;
-  constructor(private authSrv: AuthService, private router: Router) { }
 
-  // ** timer debut */
-  iconeStopWatch = faStopwatch;
-  counterSubscription: Subscription;
-  secondes = 0;
-  // ** timer fin */
+  constructor(private authSrv: AuthService, private router: Router) { }
 
   ngOnInit() {
     // ** timer debut ** */
@@ -49,7 +49,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     // On vérifie si l'utilisateur est bien connecté
     this.authSrv.verifierAuthentification().subscribe(
-      (etatConnexion) => { this.utilisateurConnecte = etatConnexion;
+      (etatConnexion) => {
+        this.utilisateurConnecte = etatConnexion;
       }, (error) => {
         console.log('Error , error, fuyez ! ' + error);
       }
