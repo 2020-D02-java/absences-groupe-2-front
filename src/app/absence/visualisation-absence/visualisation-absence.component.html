@@ -11,7 +11,7 @@
             <th scope="col" class="border border-dark">Date de fin</th>
             <th scope="col" class="border border-dark">Type</th>
             <th scope="col" class="border border-dark">Statut</th>
-            <th *ngIf="collegue.roles[0] == 'ROLE_ADMINISTRATEUR'" scope="col" class="border border-dark">Action</th>
+            <th *ngIf="collegue.roles[0] == roleEnum.RoleAdmin" scope="col" class="border border-dark">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -22,9 +22,9 @@
             <td class="border border-dark">{{absence.statut}}</td>
             <td class="border border-dark">
               <a routerLink="../modificationAbsence">
-                <button *ngIf="absence.statut == statut.INITIALE || absence.statut == statut.REJETEE" class="btn"><fa-icon [icon]="faPencil"></fa-icon></button>
+                <button *ngIf="absence.statut == statutEnum.INITIALE || absence.statut == statutEnum.REJETEE" class="btn"><fa-icon [icon]="faPencil"></fa-icon></button>
               </a>
-                <button class="btn" (click)="open(mymodal, absence.id)">
+                <button *ngIf="absence.statut == statutEnum.INITIALE" class="btn" (click)="open(mymodal, absence.id)">
                     <fa-icon [icon]="faTrash"></fa-icon>
                 </button>
             </td>
@@ -79,8 +79,8 @@
 
 <label><b>Solde des compteurs :</b></label>
 <ul *ngFor="let solde of listeSoldes">
-  <li *ngIf="solde.type.toString() == 'CONGES_PAYES'">Congés payés : {{solde.nombreDeJours}}</li>
-  <li *ngIf="solde.type.toString() == 'RTT_EMPLOYE'">RTT : {{solde.nombreDeJours}}</li>
+  <li *ngIf="solde.type.toString() == soldeEnum.CONGES_PAYES">Congés payés : {{solde.nombreDeJours}}</li>
+  <li *ngIf="solde.type.toString() == soldeEnum.RTT_EMPLOYE">RTT : {{solde.nombreDeJours}}</li>
 </ul>
 <br/>
 

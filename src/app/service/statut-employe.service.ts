@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { map, tap } from 'rxjs/operators';
+import { Role } from 'src/app/models/role';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class StatutEmployeService {
       .pipe(
         map(col => {
           for (const role of col.roles){
-            if (role.match('ROLE_EMPLOYE'))
+            if (role.match(Role.RoleEmploye))
             {
               // Le role employe est bien trouvé, on retourne true
               return true;

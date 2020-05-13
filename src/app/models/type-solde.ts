@@ -1,4 +1,5 @@
 export enum TypeSolde {
-  RTT_EMPLOYE, CONGES_PAYES
+  RTT_EMPLOYE = 'RTT_EMPLOYE',
+  CONGES_PAYES = 'CONGES_PAYES'
 }
 

@@ -7,7 +7,10 @@ import { faEye } from '@fortawesome/free-solid-svg-icons';
 })
 export class VueSynthetiquesComponent implements OnInit {
 
+  // Icones
   faEye = faEye;
+
+  // Constructeur
   constructor() { }
 
   ngOnInit(): void {
