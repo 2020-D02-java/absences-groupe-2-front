@@ -5,10 +5,9 @@ import { Observable } from 'rxjs';
 import { Collegue } from 'src/app/auth/auth.domains';
 import { AuthService } from 'src/app/service/auth.service';
 import { faTrash, faPlus, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
-import { Type } from '@angular/compiler';
-import { TypeJourFerme } from 'src/app/models/type-jour-ferme';
+import { Role } from 'src/app/models/role';
 
 @Component({
   selector: 'app-lister-jour-ferie',
@@ -17,19 +16,23 @@ import { TypeJourFerme } from 'src/app/models/type-jour-ferme';
 })
 export class ListerJourFerieComponent implements OnInit {
 
+  // Enumerations
+  roleEnum = Role;
+
+  // Icones
   faPencil = faPencilAlt;
   faTrash = faTrash;
   faPlus = faPlus;
+
+  // Initialisations
   listeJourFerme: JourFerme[] = new Array();
   currentListJourFerme: JourFerme[] = new Array();
   utilisateurConnecte: Collegue;
   collegueConnecte: Observable<Collegue>;
-
-  // Message validation modale
   message: string;
-
   listYears: number[] = new Array();
 
+  // Constructeur
   constructor(private jourFermeService: JourFermeService, private authSrv: AuthService, private modalService: NgbModal, private router: Router) { }
 
   ngOnInit(): void {

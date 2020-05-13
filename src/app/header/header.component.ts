@@ -4,6 +4,7 @@ import { Collegue } from '../auth/auth.domains';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../service/auth.service';
 import { faUser, faStopwatch } from '@fortawesome/free-solid-svg-icons';
+import { Role } from 'src/app/models/role';
 import 'rxjs/Rx';
 
 
@@ -17,28 +18,32 @@ import { Observable } from 'rxjs/Observable';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
-  
+  // Enumerations
+  roleEnum = Role;
+
+  // Icones
   faUser = faUser;
+
   // Mise en place de l'observable pour récupérer le role du collègue, pour l'affichage des onglets de navigation appropriés
   collegueConnecte: Observable<Collegue>;
   utilisateurConnecte: Collegue;
   constructor(private authSrv: AuthService, private router: Router) { }
 
-  //** timer debut */
+  // ** timer debut */
   iconeStopWatch = faStopwatch;
   counterSubscription: Subscription;
-  secondes: number = 0;
-  //** timer fin */
+  secondes = 0;
+  // ** timer fin */
 
   ngOnInit() {
-    //** timer debut ** */
+    // ** timer debut ** */
     const compteur = Observable.interval(1000);
     this.counterSubscription = compteur.subscribe(
       (valeur: number) => {
         this.secondes = valeur;
       }
     );
-    //** timer fin ** */
+    // ** timer fin ** */
 
     this.collegueConnecte = this.authSrv.collegueConnecteObs;
 

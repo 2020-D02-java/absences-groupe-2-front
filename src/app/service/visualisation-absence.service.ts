@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Absence } from '../models/absence';
 import { Observable } from 'rxjs';
-import { Collegue } from '../auth/auth.domains';
 import { AuthService } from './auth.service';
 import { Solde } from '../models/solde';
 
