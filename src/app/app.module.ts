@@ -26,6 +26,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { VisualisationAbsenceService } from './service/visualisation-absence.service';
 import { ModificationAbsenceComponent } from './absence/modification-absence/modification-absence.component';
+import { ModificationJourFerieComponent } from './jourFerie/modification-jour-ferie/modification-jour-ferie.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { ModificationAbsenceComponent } from './absence/modification-absence/mod
     FourOhFourComponent,
     DemandeAbsenceComponent,
     VisualisationAbsenceComponent,
-    ModificationAbsenceComponent
+    ModificationAbsenceComponent,
+    ModificationJourFerieComponent
   ],
   imports: [
     BrowserModule,

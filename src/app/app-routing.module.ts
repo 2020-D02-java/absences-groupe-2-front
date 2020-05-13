@@ -11,6 +11,7 @@ import { AccesRefuseComponent } from './erreurNavigation/acces-refuse/acces-refu
 import { DemandeAbsenceComponent} from './absence/demande-absence/demande-absence.component';
 import { VisualisationAbsenceComponent} from './absence/visualisation-absence/visualisation-absence.component';
 import { ModificationAbsenceComponent } from './absence/modification-absence/modification-absence.component';
+import { ModificationJourFerieComponent } from './jourFerie/modification-jour-ferie/modification-jour-ferie.component';
 
 const routes: Routes =  [
   // canActivate: [StatutConnecteService] ==> Permet de v�rifier si l'utilisateur est connect�
@@ -24,7 +25,8 @@ const routes: Routes =  [
   { path: 'accesRefuse', component: AccesRefuseComponent},
   { path: 'demandeAbsence', component: DemandeAbsenceComponent,  canActivate: [StatutConnecteService]},
   { path: 'visualisationAbsence', component: VisualisationAbsenceComponent, canActivate: [StatutConnecteService]},
-  {path: 'modificationAbsence', component: ModificationAbsenceComponent, canActivate: [[StatutConnecteService]]},
+  { path: 'modificationAbsence', component: ModificationAbsenceComponent, canActivate: [StatutConnecteService]},
+  { path: 'modificationJourFerie/:id', component: ModificationJourFerieComponent, canActivate: [StatutConnecteService]},
 
   { path: '', redirectTo: '/tech', pathMatch: 'full'},
   // Cas url inexistant

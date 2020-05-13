@@ -9,6 +9,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { Type } from '@angular/compiler';
 import { TypeJourFerme } from 'src/app/models/type-jour-ferme';
+import { ModificationJourFerieComponent } from '../modification-jour-ferie/modification-jour-ferie.component';
 
 @Component({
   selector: 'app-lister-jour-ferie',
@@ -24,6 +25,7 @@ export class ListerJourFerieComponent implements OnInit {
   currentListJourFerme: JourFerme[] = new Array();
   utilisateurConnecte: Collegue;
   collegueConnecte: Observable<Collegue>;
+  yearSelect;
 
   // Message validation modale
   message: string;
@@ -57,8 +59,10 @@ export class ListerJourFerieComponent implements OnInit {
 
   getAllYear() {
     let date: Date = new Date();
+    this.yearSelect = date.getFullYear();
+    date.setFullYear(date.getFullYear() + 10);
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 20; i++) {
       this.listYears.push(date.getFullYear());
       date.setFullYear(date.getFullYear() - 1);
     }
@@ -72,6 +76,10 @@ export class ListerJourFerieComponent implements OnInit {
         console.log('Erreur ' + error);
       }
     )
+  }
+
+  onUpdate(id: number) {
+    this.router.navigate(['/modificationJourFerie']);
   }
 
   // [DEBUT] ***** GESTION DU MODAL DE SUPPRESSION ****** //
