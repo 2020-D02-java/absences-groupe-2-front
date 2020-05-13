@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
-import { Absence } from '../models/absence';
+import { AbsenceDemande } from '../models/absence-demande';
 import { TypeAbsence } from '../models/type-absence';
 
 @Injectable({
@@ -13,8 +13,8 @@ export class DemandeAbsenceService {
   constructor(private http: HttpClient) { }
 
 
-  ajouterAbsence(dateDebut: Date, dateFin: Date, type: TypeAbsence, motif: string, statut: string): Observable<Absence> {
-    return this.http.post<Absence>(`http://localhost:8080/demandeAbsence`,
+  ajouterAbsence(dateDebut: Date, dateFin: Date, type: TypeAbsence, motif: string, statut: string): Observable<AbsenceDemande> {
+    return this.http.post<AbsenceDemande>(`http://localhost:8080/demandeAbsence`,
       {
         dateDebut: `${dateDebut}`,
         dateFin: `${dateFin}`,
