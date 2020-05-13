@@ -14,11 +14,11 @@ export class DemandeAbsenceService {
 
 
   ajouterAbsence(dateDebut: Date, dateFin: Date, type: TypeAbsence, motif: string, statut: string): Observable<AbsenceDemande> {
-    return this.http.post<AbsenceDemande>(`http://localhost:8080/demandeAbsence`,
+    return this.http.post<AbsenceDemande>(`http://localhost:8080/absences`,
       {
         dateDebut: `${dateDebut}`,
         dateFin: `${dateFin}`,
-        type: `${TypeAbsence}`,
+        type: `${type}`,
         motif: `${motif}`,
         statut: `${statut}`
       });

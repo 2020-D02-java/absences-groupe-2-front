@@ -7,13 +7,14 @@ import { DemandeAbsenceService } from 'src/app/service/demande-absence.service';
 import { Statut } from 'src/app/models/statut';
 
 
+
 @Component({
   selector: 'app-demande-absence',
   templateUrl: './demande-absence.component.html',
   styleUrls: ['./demande-absence.component.scss']
 })
 export class DemandeAbsenceComponent implements OnInit {
-
+ 
   faCheck = faCheck;
   faTimes = faTimes;
   formDemandeAbsence: FormGroup;
@@ -31,8 +32,8 @@ export class DemandeAbsenceComponent implements OnInit {
     this.formDemandeAbsence = this.formBuilder.group({
       dateDebut: ['', Validators.required],
       dateFin: ['', Validators.required],
-      type: ['', Validators.required],
-      motif: ['']
+      typeAbsence: ['', Validators.required],
+      motifAbsence: ['']
     });
   }
   validerFormulaire() {
@@ -65,8 +66,10 @@ export class DemandeAbsenceComponent implements OnInit {
       this.messageErreur = 'ERREUR. LE MOTIF EST OBLIGATOIRE POUR UNE DEMANDE DE CONGES SANS SOLDE.';
     }  
     else
+
     {
-      this.demandeAbsenceService.ajouterAbsence(dateDebut, dateFin, type, motif, 'INITIALE').subscribe(
+      console.log(dateDebut, dateFin, motif, type);
+      this.demandeAbsenceService.ajouterAbsence(dateDebut, dateFin, type, motif, Statut.INITIALE).subscribe(
         () => { },
         () => {
           this.messageErreur = 'ERREUR';
