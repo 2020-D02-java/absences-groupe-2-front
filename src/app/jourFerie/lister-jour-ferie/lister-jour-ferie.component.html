@@ -19,7 +19,7 @@
             <th scope="col" class="border border-dark">Type</th>
             <th scope="col" class="border border-dark">Jour</th>
             <th scope="col" class="border border-dark">Commentaires</th>
-            <th *ngIf="utilisateurConnecte.roles[0] == 'ROLE_ADMINISTRATEUR'" scope="col" class="border border-dark">
+            <th *ngIf="utilisateurConnecte.roles[0] == roleEnum.RoleAdmin" scope="col" class="border border-dark">
                 Action</th>
         </tr>
     </thead>
@@ -29,7 +29,7 @@
             <td class="border border-dark">{{jour.type}}</td>
             <td class="border border-dark">{{jour.date | date:'EEEE'}}</td>
             <td class="border border-dark">{{jour.commentaire}}</td>
-            <td *ngIf="utilisateurConnecte.roles[0] == 'ROLE_ADMINISTRATEUR'" class="border border-dark w-10">
+            <td *ngIf="utilisateurConnecte.roles[0] == roleEnum.RoleAdmin" class="border border-dark w-10">
                 <button class="btn">
                     <fa-icon [icon]="faPencil"></fa-icon>
                 </button>
@@ -68,7 +68,7 @@
 </table>
 <div class="row justify-content-md-center">
     <div class="col-md-auto">
-        <a routerLink="../creationJourFerie" [hidden]="utilisateurConnecte.roles[0]!='ROLE_ADMINISTRATEUR'"><button
+        <a routerLink="../creationJourFerie" [hidden]="utilisateurConnecte.roles[0]!=roleEnum.RoleAdmin"><button
                 class="btn btn-success">
                 <fa-icon [icon]="faPlus"></fa-icon> Ajouter jour ferm&eacute;
             </button></a>
