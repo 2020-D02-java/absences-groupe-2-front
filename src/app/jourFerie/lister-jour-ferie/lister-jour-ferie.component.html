@@ -7,7 +7,7 @@
     <label class="col-lg-3">
         <h4>Selection par ann&eacute;e : </h4>
     </label>
-    <select class="form-control col-lg-2">
+    <select class="form-control col-lg-2" [(ngModel)]='yearSelect'>
         <option *ngFor="let year of listYears" (click)="filterYear(year)" ng-model="year">{{year}}</option>
     </select>
 </div>
@@ -25,12 +25,12 @@
     </thead>
     <tbody>
         <tr *ngFor="let jour of listeJourFerme;">
-            <td class="border border-dark">{{jour.date}}</td>
+            <td class="border border-dark">{{jour.date | date:'dd-MM-yyyy'}}</td>
             <td class="border border-dark">{{jour.type}}</td>
             <td class="border border-dark">{{jour.date | date:'EEEE'}}</td>
             <td class="border border-dark">{{jour.commentaire}}</td>
             <td *ngIf="utilisateurConnecte.roles[0] == roleEnum.RoleAdmin" class="border border-dark w-10">
-                <button class="btn">
+                <button class="btn" routerLink="../modificationJourFerie/{{jour.id}}">
                     <fa-icon [icon]="faPencil"></fa-icon>
                 </button>
                 <button class="btn" (click)="open(mymodal, jour.id)">

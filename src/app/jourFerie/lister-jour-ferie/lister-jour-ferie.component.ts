@@ -6,6 +6,9 @@ import { AuthService } from 'src/app/service/auth.service';
 import { faTrash, faPlus, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { Type } from '@angular/compiler';
+import { TypeJourFerme } from 'src/app/models/type-jour-ferme';
+import { ModificationJourFerieComponent } from '../modification-jour-ferie/modification-jour-ferie.component';
 import { Role } from 'src/app/models/role';
 import { JourFermeVisualisation } from 'src/app/models/jour-ferme-visualisation';
 
@@ -29,6 +32,9 @@ export class ListerJourFerieComponent implements OnInit {
   currentListJourFerme: JourFermeVisualisation[] = new Array();
   utilisateurConnecte: Collegue;
   collegueConnecte: Observable<Collegue>;
+  yearSelect;
+
+  // Message validation modale
   message: string;
   listYears: number[] = new Array();
 
@@ -60,8 +66,10 @@ export class ListerJourFerieComponent implements OnInit {
 
   getAllYear() {
     let date: Date = new Date();
+    this.yearSelect = date.getFullYear();
+    date.setFullYear(date.getFullYear() + 10);
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 20; i++) {
       this.listYears.push(date.getFullYear());
       date.setFullYear(date.getFullYear() - 1);
     }
@@ -75,6 +83,10 @@ export class ListerJourFerieComponent implements OnInit {
         console.log('Erreur ' + error);
       }
     )
+  }
+
+  onUpdate(id: number) {
+    this.router.navigate(['/modificationJourFerie']);
   }
 
   // [DEBUT] ***** GESTION DU MODAL DE SUPPRESSION ****** //

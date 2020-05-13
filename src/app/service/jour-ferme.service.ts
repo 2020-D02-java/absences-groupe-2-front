@@ -20,11 +20,24 @@ export class JourFermeService {
   }
 
   listerJourFermeParAnnee(annee: number) {
-    return this.http.get<JourFermeVisualisation[]>(`http://localhost:8080/jourFerme/date?annee=`+annee);
+    return this.http.get<JourFermeVisualisation[]>(`http://localhost:8080/jourFerme/date?annee=` +annee);
+  }
+
+  getJourFermeParId(id: number) {
+    return this.http.get<JourFermeVisualisation>(`http://localhost:8080/jourFerme/id?id=`+id);
   }
 
   ajouterJourFerme(date: Date, type: TypeJourFerme, commentaire: string): Observable<JourFermeAjout> {
     return this.http.post<JourFermeAjout>(`http://localhost:8080/jourFerme`,
+      {
+        date: `${date}`,
+        type: `${type}`,
+        commentaire: `${commentaire}`
+      });
+  }
+
+  modifierJourFerme(id: number, date: Date, type: TypeJourFerme, commentaire: string): Observable<JourFermeVisualisation> {
+    return this.http.put<JourFermeVisualisation>(`http://localhost:8080/jourFerme/modification?id=` +id,
       {
         date: `${date}`,
         type: `${type}`,
