@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VisualisationAbsenceService } from 'src/app/service/visualisation-absence.service';
-import { Absence } from 'src/app/models/absence';
+import { AbsenceVisualisation } from 'src/app/models/absence-visualisation';
 import { AuthService } from 'src/app/service/auth.service';
 import { Collegue } from 'src/app/auth/auth.domains';
 import { Solde } from 'src/app/models/solde';
@@ -29,12 +29,13 @@ export class VisualisationAbsenceComponent implements OnInit {
   faPlus = faPlus;
 
   // Initialisations
-  listeAbsences: Absence[];
+  listeAbsences: AbsenceVisualisation[];
   listeSoldes: Solde[];
   collegue: Collegue;
   message: string;
 
-  constructor(private absenceService: VisualisationAbsenceService, private authService: AuthService,  private modalService: NgbModal, private router: Router) { }
+  constructor(private absenceService: VisualisationAbsenceService, private authService: AuthService,  private modalService: NgbModal,
+              private router: Router) { }
 
   ngOnInit(): void {
 
