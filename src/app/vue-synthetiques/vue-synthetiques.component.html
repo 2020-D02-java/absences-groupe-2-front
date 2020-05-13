@@ -1,0 +1,32 @@
+<div class="row justify-content-md-center">
+	<div class="col-md-auto" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
+		<h2>Vues synth&eacute;tiques</h2>
+	</div>
+</div>
+
+<table class="table table-striped m-3">
+	<thead class="bg-secondary">
+		<tr>
+			<th scope="col" class="border border-dark">Liste des rapports</th>
+			<th scope="col" class="border border-dark">Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="border border-dark">Vue par d&eacute;partement par jour et par collaborateur</td>
+			<td class="border border-dark">
+				<button class="btn" routerLink="../vueParDepartementParJourParCollaborateur">
+					<fa-icon [icon]="faEye"></fa-icon>
+				</button>
+			</td>
+		</tr>
+		<tr>
+			<td class="border border-dark">Histogramme par d&eacute;partement et par jour</td>
+			<td class="border border-dark">
+				<button class="btn" routerLink="../histogrammeParDepartementParJour">
+					<fa-icon [icon]="faEye"></fa-icon>
+				</button>
+			</td>
+		</tr>
+	</tbody>
+</table>

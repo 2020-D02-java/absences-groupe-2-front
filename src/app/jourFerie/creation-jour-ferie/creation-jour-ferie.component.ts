@@ -12,14 +12,17 @@ import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 })
 export class CreationJourFerieComponent implements OnInit {
 
+  // Icones
   faCheck = faCheck;
   faTimes = faTimes;
+
+  // Initialisations
   formCreationJourFerme: FormGroup;
   messageErreur = '';
   messageValidation = '';
-  constructor(private router: Router,
-    private formBuilder: FormBuilder,
-    private jourFermeService: JourFermeService) { }
+
+  // Constructeur
+  constructor(private router: Router, private formBuilder: FormBuilder, private jourFermeService: JourFermeService) { }
 
   ngOnInit(): void {
     this.initialiserFormulaire();
@@ -32,6 +35,7 @@ export class CreationJourFerieComponent implements OnInit {
       commentaireJourFerme: ['']
     });
   }
+
   validerFormulaire() {
 
     // R�cup�ration des donn�es du formulaire

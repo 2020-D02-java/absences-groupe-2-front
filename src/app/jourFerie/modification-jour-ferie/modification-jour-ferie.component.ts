@@ -3,8 +3,8 @@ import { Router, RouterLinkActive, ActivatedRoute } from '@angular/router';
 import { JourFermeService } from 'src/app/service/jour-ferme.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { formatDate } from '@angular/common';
-import { JourFerme } from 'src/app/models/jour-ferme';
 import { TypeJourFerme } from 'src/app/models/type-jour-ferme';
+import { JourFermeVisualisation } from 'src/app/models/jour-ferme-visualisation';
 
 @Component({
   selector: 'app-modification-jour-ferie',
@@ -17,7 +17,7 @@ export class ModificationJourFerieComponent implements OnInit {
   messageErreur = '';
   messageValidation = '';
   id: number;
-  jourFerme: JourFerme;
+  jourFerme: JourFermeVisualisation;
 
   constructor(private router: Router,
     private formBuilder: FormBuilder,

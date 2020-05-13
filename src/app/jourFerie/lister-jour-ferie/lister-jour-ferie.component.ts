@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { JourFermeService } from 'src/app/service/jour-ferme.service';
-import { JourFerme } from 'src/app/models/jour-ferme';
 import { Observable } from 'rxjs';
 import { Collegue } from 'src/app/auth/auth.domains';
 import { AuthService } from 'src/app/service/auth.service';
 import { faTrash, faPlus, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { Type } from '@angular/compiler';
 import { TypeJourFerme } from 'src/app/models/type-jour-ferme';
 import { ModificationJourFerieComponent } from '../modification-jour-ferie/modification-jour-ferie.component';
+import { Role } from 'src/app/models/role';
+import { JourFermeVisualisation } from 'src/app/models/jour-ferme-visualisation';
 
 @Component({
   selector: 'app-lister-jour-ferie',
@@ -18,20 +19,26 @@ import { ModificationJourFerieComponent } from '../modification-jour-ferie/modif
 })
 export class ListerJourFerieComponent implements OnInit {
 
+  // Enumerations
+  roleEnum = Role;
+
+  // Icones
   faPencil = faPencilAlt;
   faTrash = faTrash;
   faPlus = faPlus;
-  listeJourFerme: JourFerme[] = new Array();
-  currentListJourFerme: JourFerme[] = new Array();
+
+  // Initialisations
+  listeJourFerme: JourFermeVisualisation[] = new Array();
+  currentListJourFerme: JourFermeVisualisation[] = new Array();
   utilisateurConnecte: Collegue;
   collegueConnecte: Observable<Collegue>;
   yearSelect;
 
   // Message validation modale
   message: string;
-
   listYears: number[] = new Array();
 
+  // Constructeur
   constructor(private jourFermeService: JourFermeService, private authSrv: AuthService, private modalService: NgbModal, private router: Router) { }
 
   ngOnInit(): void {
@@ -85,9 +92,6 @@ export class ListerJourFerieComponent implements OnInit {
   // [DEBUT] ***** GESTION DU MODAL DE SUPPRESSION ****** //
 
   onDelete(id: number) {
-    console.log(id);
-    this.message = 'SUPPRESSION CONFIRMEE ! REDIRECTION ... ';
-    this.router.navigate(['/listerJourFerie']);
     this.jourFermeService.suppressionJourFerme(id).subscribe(
         data => this.refresh(data));
     }

@@ -5,13 +5,13 @@
 </div>
 <br/>
 <table class="table table-striped">
-    <thead class="thead-light">
+    <thead class="bg-secondary">
         <tr>
             <th scope="col" class="border border-dark">Date de début</th>
             <th scope="col" class="border border-dark">Date de fin</th>
             <th scope="col" class="border border-dark">Type</th>
             <th scope="col" class="border border-dark">Statut</th>
-            <th *ngIf="collegue.roles[0] == 'ROLE_ADMINISTRATEUR'" scope="col" class="border border-dark">Action</th>
+            <th *ngIf="collegue.roles[0] == roleEnum.RoleAdmin" scope="col" class="border border-dark">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -22,10 +22,39 @@
             <td class="border border-dark">{{absence.statut}}</td>
             <td class="border border-dark">
               <a routerLink="../modificationAbsence">
-                <button *ngIf="absence.statut == statut.INITIALE || absence.statut == statut.REJETEE" class="btn"><fa-icon [icon]="faPencil"></fa-icon></button>
+                <button *ngIf="absence.statut == statutEnum.INITIALE || absence.statut == statutEnum.REJETEE" class="btn"><fa-icon [icon]="faPencil"></fa-icon></button>
               </a>
-                <button class="btn"><fa-icon [icon]="faTrash"></fa-icon></button>
+                <button *ngIf="absence.statut == statutEnum.INITIALE" class="btn" (click)="open(mymodal, absence.id)">
+                    <fa-icon [icon]="faTrash"></fa-icon>
+                </button>
             </td>
+            <!-- moddal choix suppression -->
+            <ng-template #mymodal let-modal>
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title">Suppression d'une absence</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                        <span aria-hidden="true">X</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5>&Ecirc;tes vous s&ucirc;r de vouloir supprimer : <br></h5>
+                    <ul>
+                        <li><b>Id : </b>{{absence.id}}</li>
+                        <li><b>Date de d&eacute;but : </b>{{absence.dateDebut}}</li>
+                        <li><b>Date de fin : </b>{{absence.dateFin}}</li>
+                        <li><b>Type : </b>{{absence.type | lowercase}}</li>
+                        <li><b>Statut : </b>{{absence.statut}}</li>
+                        <li><b>Motif : </b>{{absence.motif}}</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <div class="alert alert-success" role="success" *ngIf="message">
+                        <b>{{message}}</b>
+                    </div>
+                    <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Je suis sur
+                        !</button>
+                </div>
+            </ng-template>
         </tr>
     </tbody>
 </table>
@@ -50,8 +79,8 @@
 
 <label><b>Solde des compteurs :</b></label>
 <ul *ngFor="let solde of listeSoldes">
-  <li *ngIf="solde.type.toString() == 'CONGES_PAYES'">Congés payés : {{solde.nombreDeJours}}</li>
-  <li *ngIf="solde.type.toString() == 'RTT_EMPLOYE'">RTT : {{solde.nombreDeJours}}</li>
+  <li *ngIf="solde.type.toString() == soldeEnum.CONGES_PAYES">Congés payés : {{solde.nombreDeJours}}</li>
+  <li *ngIf="solde.type.toString() == soldeEnum.RTT_EMPLOYE">RTT : {{solde.nombreDeJours}}</li>
 </ul>
 <br/>
 
