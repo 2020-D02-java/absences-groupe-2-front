@@ -30,7 +30,7 @@
             <td class="border border-dark">{{jour.date | date:'EEEE'}}</td>
             <td class="border border-dark">{{jour.commentaire}}</td>
             <td *ngIf="utilisateurConnecte.roles[0] == roleEnum.RoleAdmin" class="border border-dark w-10">
-                <button class="btn">
+                <button class="btn" routerLink="../modificationJourFerie/{{jour.id}}">
                     <fa-icon [icon]="faPencil"></fa-icon>
                 </button>
                 <button class="btn" (click)="open(mymodal, jour.id)">

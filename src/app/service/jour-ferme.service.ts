@@ -24,7 +24,7 @@ export class JourFermeService {
   }
 
   getJourFermeParId(id: number) {
-    return this.http.get<JourFermeVisualisation>(`http://localhost:8080/jourFerme/date?annee=`+id);
+    return this.http.get<JourFermeVisualisation>(`http://localhost:8080/jourFerme/id?id=`+id);
   }
 
   ajouterJourFerme(date: Date, type: TypeJourFerme, commentaire: string): Observable<JourFermeAjout> {
@@ -36,11 +36,11 @@ export class JourFermeService {
       });
   }
 
-  modifierJourFerme(id: number, date: Date, typeJourFerme: TypeJourFerme, commentaire: string): Observable<JourFermeVisualisation> {
+  modifierJourFerme(id: number, date: Date, type: TypeJourFerme, commentaire: string): Observable<JourFermeVisualisation> {
     return this.http.put<JourFermeVisualisation>(`http://localhost:8080/jourFerme/modification?id=` +id,
       {
         date: `${date}`,
-        typeJourFerme: `${typeJourFerme}`,
+        type: `${type}`,
         commentaire: `${commentaire}`
       });
   }
