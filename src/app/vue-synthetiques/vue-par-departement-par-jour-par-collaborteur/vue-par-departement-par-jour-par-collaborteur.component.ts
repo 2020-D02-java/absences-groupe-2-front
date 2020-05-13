@@ -9,8 +9,11 @@ import { CollegueService } from 'src/app/service/collegue.service';
 })
 export class VueParDepartementParJourParCollaborteurComponent implements OnInit {
 
+  // Initialisations
   listeCollegues: Collegue[] = new Array();
   message: string;
+
+  // Constructeur
   constructor(private collegueService: CollegueService) { }
 
   ngOnInit(): void {

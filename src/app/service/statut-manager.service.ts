@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { map, tap } from 'rxjs/operators';
+import { Role } from 'src/app/models/role';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class StatutManagerService {
       .pipe(
         map(col => {
           for (const role of col.roles){
-            if (role.match('ROLE_MANAGER'))
+            if (role.match(Role.RoleManager))
             {
               // Le role manager est bien trouvé, on retourne true
               return true;

@@ -6,6 +6,8 @@ import { Collegue } from 'src/app/auth/auth.domains';
 import { Solde } from 'src/app/models/solde';
 import { faPencilAlt, faTrash, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Statut } from 'src/app/models/statut';
+import { Role } from 'src/app/models/role';
+import { TypeSolde } from 'src/app/models/type-solde';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 
@@ -16,19 +18,23 @@ import { Router } from '@angular/router';
 })
 export class VisualisationAbsenceComponent implements OnInit {
 
+  // Enumerations
+  statutEnum = Statut;
+  roleEnum = Role;
+  soldeEnum = TypeSolde;
+
+  // Icones
   faPencil = faPencilAlt;
   faTrash = faTrash;
   faPlus = faPlus;
-  statut = Statut;
 
+  // Initialisations
   listeAbsences: Absence[];
   listeSoldes: Solde[];
   collegue: Collegue;
-
   message: string;
 
-  constructor(private absenceService: VisualisationAbsenceService,
-              private authService: AuthService,  private modalService: NgbModal, private router: Router) { }
+  constructor(private absenceService: VisualisationAbsenceService, private authService: AuthService,  private modalService: NgbModal, private router: Router) { }
 
   ngOnInit(): void {
 
