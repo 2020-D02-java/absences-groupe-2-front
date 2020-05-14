@@ -41,7 +41,7 @@ export class ModificationAbsenceComponent implements OnInit {
         this.absence = abs;
         this.initialiserFormulaire();
       }, (error) => {
-        console.log('Erreur ' + error);
+        this.messageErreur = error.error.message;
       }
     )
   }
@@ -97,8 +97,8 @@ export class ModificationAbsenceComponent implements OnInit {
     else {
       this.AbsenceService.modifierAbsence(this.id, dateDebut, dateFin, type, motif, Statut.INITIALE).subscribe(
         () => { },
-        () => {
-          this.messageErreur = 'ERREUR';
+        (error) => {
+          this.messageErreur = error.error.message;
         }, () => {
           this.messageValidation = 'FORMULAIRE VALIDE. REDIRECTION ...';
           this.messageErreur = '';

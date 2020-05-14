@@ -51,8 +51,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authSrv.verifierAuthentification().subscribe(
       (etatConnexion) => {
         this.utilisateurConnecte = etatConnexion;
-      }, (error) => {
-        console.log('Erreur ' + error);
       }
     );
   }

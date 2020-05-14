@@ -31,16 +31,16 @@ export class ModificationJourFermeComponent implements OnInit {
     private routerLinkActive: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // Snapshot pour r�cup�rer l'id pass� via l'url
+    // Snapshot pour récupérer l'id passé via l'url
     this.id = this.routerLinkActive.snapshot.params['id'];
 
-    // Subscription � l'observable
+    // Subscription à l'observable
     this.jourFermeService.getJourFermeParId(this.id).subscribe(
       (jour) => {
         this.jourFerme = jour;
         this.initialiserFormulaire();
       }, (error) => {
-        console.log('Erreur ' + error);
+        this.messageErreur = error.error.message;
       }
     )
 
@@ -56,7 +56,7 @@ export class ModificationJourFermeComponent implements OnInit {
 
   validerFormulaire() {
 
-    // R�cup�ration des donn�es du formulaire
+    // Rï¿½cupï¿½ration des donnï¿½es du formulaire
     const dateJourFerme = this.formModificationJourFerme.get('dateJourFerme').value;
     const typeJourFerme = this.formModificationJourFerme.get('typeJourFerme').value;
     const commentaireJourFerme = this.formModificationJourFerme.get('commentaireJourFerme').value;
@@ -67,8 +67,8 @@ export class ModificationJourFermeComponent implements OnInit {
     // Verifier jour de la semaine
     const jourSaisie = formatDate(dateJourFerme, 'E', 'en-US');
 
-    // V�rification du jour saisi
-    // Cas 1 , jour saisi est dans le pass�, erreur
+    // Vï¿½rification du jour saisi
+    // Cas 1 , jour saisi est dans le passï¿½, erreur
     // Cas 2 , saisie RTT le WE, erreur
     // Cas 3 , cas JOUR FERIE et commentaire manquant
     // Cas 4 , jour saisi est dans le futur, ok
@@ -85,8 +85,8 @@ export class ModificationJourFermeComponent implements OnInit {
     else {
       this.jourFermeService.modifierJourFerme(this.id, dateJourFerme, typeJourFerme, commentaireJourFerme).subscribe(
         () => { },
-        () => {
-          this.messageErreur = 'ERREUR';
+        (error) => {
+          this.messageErreur = error.error.message;
         }, () => {
           this.messageValidation = 'FORMULAIRE VALIDE. REDIRECTION ...';
           this.messageErreur = '';

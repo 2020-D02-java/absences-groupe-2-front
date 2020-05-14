@@ -83,8 +83,8 @@ export class DemandeAbsenceComponent implements OnInit {
       console.log(dateDebut, dateFin, motif, type);
       this.AbsenceService.demanderAbsence(dateDebut, dateFin, type, motif, Statut.INITIALE).subscribe(
         () => { },
-        () => {
-          this.messageErreur = 'ERREUR';
+        (error) => {
+          this.messageErreur = error.error.message;
         }, () => {
           this.messageValidation = 'FORMULAIRE VALIDE. REDIRECTION ...';
           this.messageErreur = '';

@@ -44,7 +44,7 @@ export class VisualisationAbsenceComponent implements OnInit {
       (col) => {
         this.collegue = col
       }, (error) => {
-        this.messageErreur = 'ERREUR LORS DE L\'INITIALISATION DES DONNEES';
+        this.messageErreur = error.error.message;
       }
     );
 
@@ -52,7 +52,7 @@ export class VisualisationAbsenceComponent implements OnInit {
       (absences) => {
         this.listeAbsences = absences;
       }, (error) => {
-        this.messageErreur = 'ERREUR LORS DE L\'INITIALISATION DES DONNEES';
+        this.messageErreur = error.error.message;
       }
     );
 
@@ -61,7 +61,7 @@ export class VisualisationAbsenceComponent implements OnInit {
         this.listeSoldes = soldes
       },
       (error) => {
-        this.messageErreur = 'ERREUR LORS DE L\'INITIALISATION DES DONNEES';
+        this.messageErreur = error.error.message;
       }
     );
   }
@@ -83,12 +83,18 @@ export class VisualisationAbsenceComponent implements OnInit {
 
   refresh(data) {
     this.absenceService.listerAbsencesCollegue()
-      .subscribe(absences => this.listeAbsences = absences,
-        err => console.log('oops'));
+      .subscribe((absences) => {
+        this.listeAbsences = absences
+      }, (error) => {
+        this.messageErreur = error.error.message;
+      });
 
     this.absenceService.listerSoldesCollegue()
-      .subscribe(soldes => this.listeSoldes = soldes,
-        err => console.log('oops'));
+      .subscribe((soldes) => {
+        this.listeSoldes = soldes
+      }, (error) => {
+        this.messageErreur = error.error.message;
+      });
   }
 
 }
