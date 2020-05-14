@@ -29,6 +29,7 @@ export class ListerJourFermeComponent implements OnInit {
   currentListJourFerme: JourFermeVisualisation[] = new Array();
   utilisateurConnecte: Collegue;
   collegueConnecte: Observable<Collegue>;
+  messageErreur = '';
   yearSelect;
 
   // Message validation modale
@@ -44,7 +45,7 @@ export class ListerJourFermeComponent implements OnInit {
       (listeJours) => {
         this.listeJourFerme = listeJours;
       }, (error) => {
-        console.log('Erreur ' + error);
+        this.messageErreur = 'ERREUR LORS DE L\'INITIALISATION DES DONNEES';
       }
     )
     this.getAllYear();
@@ -56,7 +57,7 @@ export class ListerJourFermeComponent implements OnInit {
       (etatConnexion) => {
         this.utilisateurConnecte = etatConnexion;
       }, (error) => {
-        console.log('Error , error, fuyez ! ' + error);
+        this.messageErreur = '';
       }
     );
   }
