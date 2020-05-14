@@ -76,11 +76,13 @@
     </div>
 </div>
 
-
-
 <label><b>Solde des compteurs :</b></label>
 <ul *ngFor="let solde of listeSoldes">
     <li *ngIf="solde.type.toString() == soldeEnum.CONGES_PAYES">Congés payés : {{solde.nombreDeJours}}</li>
     <li *ngIf="solde.type.toString() == soldeEnum.RTT_EMPLOYE">RTT : {{solde.nombreDeJours}}</li>
 </ul>
 <br />
+
+<div class="alert alert-danger" role="danger" *ngIf="messageErreur">
+    <b>{{messageErreur}}</b>
+</div>

@@ -65,6 +65,7 @@
         </tr>
     </tbody>
 </table>
+
 <div class="row justify-content-md-center">
     <div class="col-md-auto">
         <a routerLink="../creationJourFerme" [hidden]="utilisateurConnecte.roles[0]!=roleEnum.RoleAdmin"><button
@@ -72,4 +73,8 @@
                 <fa-icon [icon]="faPlus"></fa-icon> Ajouter jour ferm&eacute;
             </button></a>
     </div>
+</div>
+
+<div class="alert alert-danger" role="danger" *ngIf="messageErreur">
+    <b>{{messageErreur}}</b>
 </div>

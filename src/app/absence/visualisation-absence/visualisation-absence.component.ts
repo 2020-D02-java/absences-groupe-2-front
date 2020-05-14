@@ -33,24 +33,37 @@ export class VisualisationAbsenceComponent implements OnInit {
   listeSoldes: Solde[];
   collegue: Collegue;
   message: string;
+  messageErreur = '';
 
   constructor(private absenceService: VisualisationAbsenceService, private authService: AuthService, private modalService: NgbModal,
     private router: Router) { }
 
   ngOnInit(): void {
 
-    this.authService.collegueConnecteObs
-      .subscribe(col => this.collegue = col,
-        err => console.log('oops'));
+    this.authService.collegueConnecteObs.subscribe(
+      (col) => {
+        this.collegue = col
+      }, (error) => {
+        this.messageErreur = 'ERREUR LORS DE L\'INITIALISATION DES DONNEES';
+      }
+    );
 
-    this.absenceService.listerAbsencesCollegue()
-      .subscribe(absences => this.listeAbsences = absences,
-        err => console.log('oops'));
+    this.absenceService.listerAbsencesCollegue().subscribe(
+      (absences) => {
+        this.listeAbsences = absences;
+      }, (error) => {
+        this.messageErreur = 'ERREUR LORS DE L\'INITIALISATION DES DONNEES';
+      }
+    );
 
-    this.absenceService.listerSoldesCollegue()
-      .subscribe(soldes => this.listeSoldes = soldes,
-        err => console.log('oops'));
-
+    this.absenceService.listerSoldesCollegue().subscribe(
+      (soldes) => {
+        this.listeSoldes = soldes
+      },
+      (error) => {
+        this.messageErreur = 'ERREUR LORS DE L\'INITIALISATION DES DONNEES';
+      }
+    );
   }
 
 
