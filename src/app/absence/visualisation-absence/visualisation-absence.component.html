@@ -3,7 +3,7 @@
         <h2>Gestion des absences</h2>
     </div>
 </div>
-<br/>
+<br />
 <table class="table table-striped">
     <thead class="bg-secondary">
         <tr>
@@ -21,10 +21,12 @@
             <td class="border border-dark">{{absence.type | lowercase}}</td>
             <td class="border border-dark">{{absence.statut}}</td>
             <td class="border border-dark">
-              <a routerLink="../modificationAbsence">
-                <button *ngIf="absence.statut == statutEnum.INITIALE || absence.statut == statutEnum.REJETEE" class="btn"><fa-icon [icon]="faPencil"></fa-icon></button>
-              </a>
-                <button *ngIf="absence.statut == statutEnum.INITIALE" class="btn" (click)="open(mymodal, absence.id)">
+                <button *ngIf="absence.statut == statutEnum.INITIALE || absence.statut == statutEnum.REJETEE"
+                    class="btn" routerLink="../modificationAbsence/{{absence.id}}">
+                    <fa-icon [icon]="faPencil"></fa-icon>
+                </button>
+                <button *ngIf="absence.statut == statutEnum.INITIALE || absence.statut == statutEnum.REJETEE"
+                    class="btn" (click)="open(mymodal, absence.id)">
                     <fa-icon [icon]="faTrash"></fa-icon>
                 </button>
             </td>
@@ -39,7 +41,6 @@
                 <div class="modal-body">
                     <h5>&Ecirc;tes vous s&ucirc;r de vouloir supprimer : <br></h5>
                     <ul>
-                        <li><b>Id : </b>{{absence.id}}</li>
                         <li><b>Date de d&eacute;but : </b>{{absence.dateDebut}}</li>
                         <li><b>Date de fin : </b>{{absence.dateFin}}</li>
                         <li><b>Type : </b>{{absence.type | lowercase}}</li>
@@ -66,21 +67,20 @@
 </div> -->
 
 <div class="row justify-content-md-center">
-  <div class="col-md-auto">
-      <a routerLink="../demandeAbsence">
-        <button class="btn btn-success">
-              <fa-icon [icon]="faPlus"></fa-icon> Demande d'absence
-        </button>
-      </a>
-  </div>
+    <div class="col-md-auto">
+        <a routerLink="../demandeAbsence">
+            <button class="btn btn-success">
+                <fa-icon [icon]="faPlus"></fa-icon> Demande d'absence
+            </button>
+        </a>
+    </div>
 </div>
 
 
 
 <label><b>Solde des compteurs :</b></label>
 <ul *ngFor="let solde of listeSoldes">
-  <li *ngIf="solde.type.toString() == soldeEnum.CONGES_PAYES">Congés payés : {{solde.nombreDeJours}}</li>
-  <li *ngIf="solde.type.toString() == soldeEnum.RTT_EMPLOYE">RTT : {{solde.nombreDeJours}}</li>
+    <li *ngIf="solde.type.toString() == soldeEnum.CONGES_PAYES">Congés payés : {{solde.nombreDeJours}}</li>
+    <li *ngIf="solde.type.toString() == soldeEnum.RTT_EMPLOYE">RTT : {{solde.nombreDeJours}}</li>
 </ul>
-<br/>
-
+<br />

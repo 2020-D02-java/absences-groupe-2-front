@@ -34,8 +34,8 @@ export class VisualisationAbsenceComponent implements OnInit {
   collegue: Collegue;
   message: string;
 
-  constructor(private absenceService: VisualisationAbsenceService, private authService: AuthService,  private modalService: NgbModal,
-              private router: Router) { }
+  constructor(private absenceService: VisualisationAbsenceService, private authService: AuthService, private modalService: NgbModal,
+    private router: Router) { }
 
   ngOnInit(): void {
 
@@ -48,18 +48,18 @@ export class VisualisationAbsenceComponent implements OnInit {
         err => console.log('oops'));
 
     this.absenceService.listerSoldesCollegue()
-    .subscribe(soldes => this.listeSoldes = soldes,
-      err => console.log('oops'));
+      .subscribe(soldes => this.listeSoldes = soldes,
+        err => console.log('oops'));
 
   }
 
 
-    // [DEBUT] ***** GESTION DU MODAL DE SUPPRESSION ****** //
+  // [DEBUT] ***** GESTION DU MODAL DE SUPPRESSION ****** //
 
   onDelete(id: number) {
     this.absenceService.suppressionAbsence(id).subscribe(
-        data => this.refresh(data));
-    }
+      data => this.refresh(data));
+  }
   // [FIN] ***** GESTION DU MODAL DE SUPPRESSION ****** //
 
   open(content, id) {
@@ -74,8 +74,8 @@ export class VisualisationAbsenceComponent implements OnInit {
         err => console.log('oops'));
 
     this.absenceService.listerSoldesCollegue()
-    .subscribe(soldes => this.listeSoldes = soldes,
-      err => console.log('oops'));
+      .subscribe(soldes => this.listeSoldes = soldes,
+        err => console.log('oops'));
   }
 
 }

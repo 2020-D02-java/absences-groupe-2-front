@@ -7,16 +7,15 @@ registerLocaleData(localeFr);
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {AuthComponent} from './auth/auth.component';
-import {TechComponent} from './tech/tech.component';
-import {RouterModule, Routes} from '@angular/router';
-import {AuthInterceptorService} from './auth/auth-interceptor.service';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { AuthComponent } from './auth/auth.component';
+import { TechComponent } from './tech/tech.component';
+import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { CreationJourFerieComponent } from './jourFerie/creation-jour-ferie/creation-jour-ferie.component';
-import { ListerJourFerieComponent } from './jourFerie/lister-jour-ferie/lister-jour-ferie.component';
+import { CreationJourFermeComponent } from './jourFerme/creation-jour-ferme/creation-jour-ferme.component';
+import { ListerJourFermeComponent } from './jourFerme/lister-jour-ferme/lister-jour-ferme.component';
 import { AccesRefuseComponent } from './erreurNavigation/acces-refuse/acces-refuse.component';
 import { FourOhFourComponent } from './erreurNavigation/four-oh-four/four-oh-four.component';
 import { DemandeAbsenceComponent } from './absence/demande-absence/demande-absence.component';
@@ -26,11 +25,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { VisualisationAbsenceService } from './service/visualisation-absence.service';
 import { ModificationAbsenceComponent } from './absence/modification-absence/modification-absence.component';
-import { ModificationJourFerieComponent } from './jourFerie/modification-jour-ferie/modification-jour-ferie.component';
+import { ModificationJourFermeComponent } from './jourFerme/modification-jour-ferme/modification-jour-ferme.component';
 import { VueSynthetiquesComponent } from './vue-synthetiques/vue-synthetiques.component';
 import { VueParDepartementParJourParCollaborteurComponent } from './vue-synthetiques/vue-par-departement-par-jour-par-collaborteur/vue-par-departement-par-jour-par-collaborteur.component';
 import { HistogrammeParDepartementParJourComponent } from './vue-synthetiques/histogramme-par-departement-par-jour/histogramme-par-departement-par-jour.component';
 import { CollegueService } from './service/collegue.service';
+import { PlanningAbsenceComponent } from './absence/planning-absence/planning-absence.component';
 
 
 @NgModule({
@@ -40,17 +40,18 @@ import { CollegueService } from './service/collegue.service';
     TechComponent,
     HeaderComponent,
     FooterComponent,
-    CreationJourFerieComponent,
-    ListerJourFerieComponent,
+    CreationJourFermeComponent,
+    ListerJourFermeComponent,
     AccesRefuseComponent,
     FourOhFourComponent,
     DemandeAbsenceComponent,
     VisualisationAbsenceComponent,
     ModificationAbsenceComponent,
-    ModificationJourFerieComponent,
+    ModificationJourFermeComponent,
     VueSynthetiquesComponent,
     VueParDepartementParJourParCollaborteurComponent,
-    HistogrammeParDepartementParJourComponent
+    HistogrammeParDepartementParJourComponent,
+    PlanningAbsenceComponent
   ],
   imports: [
     BrowserModule,
@@ -66,12 +67,12 @@ import { CollegueService } from './service/collegue.service';
     VisualisationAbsenceService,
     CollegueService,
     {
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptorService,
-    multi: true
-  },
-  {provide: LOCALE_ID, useValue: 'fr-CA' }
-],
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    },
+    { provide: LOCALE_ID, useValue: 'fr-CA' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

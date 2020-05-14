@@ -6,11 +6,11 @@ import { formatDate } from '@angular/common';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'app-creation-jour-ferie',
-  templateUrl: './creation-jour-ferie.component.html',
-  styleUrls: ['./creation-jour-ferie.component.scss']
+  selector: 'app-creation-jour-ferme',
+  templateUrl: './creation-jour-ferme.component.html',
+  styleUrls: ['./creation-jour-ferme.component.scss']
 })
-export class CreationJourFerieComponent implements OnInit {
+export class CreationJourFermeComponent implements OnInit {
 
   // Icones
   faCheck = faCheck;
@@ -55,30 +55,26 @@ export class CreationJourFerieComponent implements OnInit {
     // Cas 3 , cas JOUR FERIE et commentaire manquant
     // Cas 4 , jour saisi est dans le futur, ok
 
-    if (dateJourFerme < dateAujourdhui)
-    {
+    if (dateJourFerme < dateAujourdhui) {
       this.messageErreur = 'ERREUR. SAISIE DANS LE PASSE IMPOSSIBLE.';
     }
-    else if (typeJourFerme === 'RTT_EMPLOYEUR' && (jourSaisie === 'Sat' || jourSaisie === 'Sun'))
-    {
+    else if (typeJourFerme === 'RTT_EMPLOYEUR' && (jourSaisie === 'Sat' || jourSaisie === 'Sun')) {
       this.messageErreur = 'ERREUR. IMPOSSIBLE DE SAISIE UN RTT LE WEEK-END.';
     }
-    else if (typeJourFerme === 'JOURS_FERIES' && commentaireJourFerme === '')
-    {
+    else if (typeJourFerme === 'JOURS_FERIES' && commentaireJourFerme === '') {
       this.messageErreur = 'ERREUR. LE COMMENTAIRE EST OBLIGATOIRE POUR LES JOURS FERIES.';
     }
-    else
-    {
+    else {
       this.jourFermeService.ajouterJourFerme(dateJourFerme, typeJourFerme, commentaireJourFerme).subscribe(
         () => { },
         () => {
           this.messageErreur = 'ERREUR';
         }, () => {
-          this.messageValidation = 'FORMULAIRE VALIDE !';
+          this.messageValidation = 'FORMULAIRE VALIDE. REDIRECTION ...';
           this.messageErreur = '';
           setTimeout(() => {
             // Redirection au bout de 2 secondes
-            this.router.navigate(['listerJourFerie']);
+            this.router.navigate(['listerJourFerme']);
           }, 2000);
         }
       );
