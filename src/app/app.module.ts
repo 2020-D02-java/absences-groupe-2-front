@@ -23,7 +23,6 @@ import { JourFermeService } from './service/jour-ferme.service';
 import { VisualisationAbsenceComponent } from './absence/visualisation-absence/visualisation-absence.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { VisualisationAbsenceService } from './service/visualisation-absence.service';
 import { ModificationAbsenceComponent } from './absence/modification-absence/modification-absence.component';
 import { ModificationJourFermeComponent } from './jourFerme/modification-jour-ferme/modification-jour-ferme.component';
 import { VueSynthetiquesComponent } from './vue-synthetiques/vue-synthetiques.component';
@@ -31,6 +30,7 @@ import { VueParDepartementParJourParCollaborteurComponent } from './vue-syntheti
 import { HistogrammeParDepartementParJourComponent } from './vue-synthetiques/histogramme-par-departement-par-jour/histogramme-par-departement-par-jour.component';
 import { CollegueService } from './service/collegue.service';
 import { PlanningAbsenceComponent } from './absence/planning-absence/planning-absence.component';
+import { AbsenceService } from './service/absence.service';
 
 
 @NgModule({
@@ -51,7 +51,7 @@ import { PlanningAbsenceComponent } from './absence/planning-absence/planning-ab
     VueSynthetiquesComponent,
     VueParDepartementParJourParCollaborteurComponent,
     HistogrammeParDepartementParJourComponent,
-    PlanningAbsenceComponent
+    PlanningAbsenceComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,7 +64,7 @@ import { PlanningAbsenceComponent } from './absence/planning-absence/planning-ab
   ],
   providers: [
     JourFermeService,
-    VisualisationAbsenceService,
+    AbsenceService,
     CollegueService,
     {
       provide: HTTP_INTERCEPTORS,

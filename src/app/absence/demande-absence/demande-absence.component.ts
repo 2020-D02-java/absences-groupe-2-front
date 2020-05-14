@@ -3,8 +3,8 @@ import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { formatDate } from '@angular/common';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DemandeAbsenceService } from 'src/app/service/demande-absence.service';
 import { Statut } from 'src/app/models/statut';
+import { AbsenceService } from 'src/app/service/absence.service';
 
 
 @Component({
@@ -26,7 +26,7 @@ export class DemandeAbsenceComponent implements OnInit {
   // Constructeur
   constructor(private router: Router,
     private formBuilder: FormBuilder,
-    private demandeAbsenceService: DemandeAbsenceService) { }
+    private AbsenceService: AbsenceService) { }
 
   ngOnInit(): void {
     this.initialiserFormulaire();
@@ -68,7 +68,7 @@ export class DemandeAbsenceComponent implements OnInit {
     }
     else {
       console.log(dateDebut, dateFin, motif, type);
-      this.demandeAbsenceService.ajouterAbsence(dateDebut, dateFin, type, motif, Statut.INITIALE).subscribe(
+      this.AbsenceService.demanderAbsence(dateDebut, dateFin, type, motif, Statut.INITIALE).subscribe(
         () => { },
         () => {
           this.messageErreur = 'ERREUR';
