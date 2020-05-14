@@ -59,7 +59,7 @@ export class CreationJourFermeComponent implements OnInit {
       this.messageErreur = 'ERREUR. SAISIE DANS LE PASSE IMPOSSIBLE.';
     }
     else if (typeJourFerme === 'RTT_EMPLOYEUR' && (jourSaisie === 'Sat' || jourSaisie === 'Sun')) {
-      this.messageErreur = 'ERREUR. IMPOSSIBLE DE SAISIE UN RTT LE WEEK-END.';
+      this.messageErreur = 'ERREUR. IMPOSSIBLE DE SAISIR UN RTT LE WEEK-END.';
     }
     else if (typeJourFerme === 'JOURS_FERIES' && commentaireJourFerme === '') {
       this.messageErreur = 'ERREUR. LE COMMENTAIRE EST OBLIGATOIRE POUR LES JOURS FERIES.';
