@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { VisualisationAbsenceService } from 'src/app/service/visualisation-absence.service';
 import { AbsenceVisualisation } from 'src/app/models/absence-visualisation';
 import { AuthService } from 'src/app/service/auth.service';
 import { Collegue } from 'src/app/auth/auth.domains';
@@ -10,6 +9,7 @@ import { Role } from 'src/app/models/role';
 import { TypeSolde } from 'src/app/models/type-solde';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { AbsenceService } from 'src/app/service/absence.service';
 
 
 @Component({
@@ -34,7 +34,7 @@ export class VisualisationAbsenceComponent implements OnInit {
   collegue: Collegue;
   message: string;
 
-  constructor(private absenceService: VisualisationAbsenceService, private authService: AuthService, private modalService: NgbModal,
+  constructor(private absenceService: AbsenceService, private authService: AuthService, private modalService: NgbModal,
     private router: Router) { }
 
   ngOnInit(): void {

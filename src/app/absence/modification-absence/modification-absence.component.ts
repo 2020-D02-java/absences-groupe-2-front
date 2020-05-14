@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { formatDate } from '@angular/common';
-import { ModifierAbenceService } from 'src/app/service/modifier-abence.service';
 import { Statut } from 'src/app/models/statut';
 import { AbsenceVisualisation } from 'src/app/models/absence-visualisation';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { AbsenceService } from 'src/app/service/absence.service';
 
 @Component({
   selector: 'app-modification-absence',
@@ -29,14 +29,14 @@ export class ModificationAbsenceComponent implements OnInit {
   constructor(private router: Router,
     private formBuilder: FormBuilder,
     private routerLinkActive: ActivatedRoute,
-    private modifierAbsenceService: ModifierAbenceService) { }
+    private AbsenceService: AbsenceService) { }
 
   ngOnInit(): void {
-    // Snapshot pour récupérer l'id passé via l'url
+    // Snapshot pour rï¿½cupï¿½rer l'id passï¿½ via l'url
     this.id = this.routerLinkActive.snapshot.params['id'];
 
-    // Subscription à l'observable
-    this.modifierAbsenceService.getAbsenceParId(this.id).subscribe(
+    // Subscription ï¿½ l'observable
+    this.AbsenceService.getAbsenceParId(this.id).subscribe(
       (abs) => {
         this.absence = abs;
         this.initialiserFormulaire();
@@ -82,7 +82,7 @@ export class ModificationAbsenceComponent implements OnInit {
       this.messageErreur = 'ERREUR. LE MOTIF EST OBLIGATOIRE POUR UNE DEMANDE DE CONGES SANS SOLDE.';
     }
     else {
-      this.modifierAbsenceService.modifierAbsence(this.id, dateDebut, dateFin, type, motif, Statut.INITIALE).subscribe(
+      this.AbsenceService.modifierAbsence(this.id, dateDebut, dateFin, type, motif, Statut.INITIALE).subscribe(
         () => { },
         () => {
           this.messageErreur = 'ERREUR';
