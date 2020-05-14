@@ -45,7 +45,7 @@ export class ListerJourFermeComponent implements OnInit {
       (listeJours) => {
         this.listeJourFerme = listeJours;
       }, (error) => {
-        this.messageErreur = 'ERREUR LORS DE L\'INITIALISATION DES DONNEES';
+        this.messageErreur = error.error.message;
       }
     )
     this.getAllYear();
@@ -57,7 +57,7 @@ export class ListerJourFermeComponent implements OnInit {
       (etatConnexion) => {
         this.utilisateurConnecte = etatConnexion;
       }, (error) => {
-        this.messageErreur = '';
+        this.messageErreur = error.error.message;
       }
     );
   }
@@ -78,7 +78,7 @@ export class ListerJourFermeComponent implements OnInit {
       (listeJours) => {
         this.listeJourFerme = listeJours;
       }, (error) => {
-        console.log('Erreur ' + error);
+        this.messageErreur = error.error.message;
       }
     )
   }
@@ -106,7 +106,7 @@ export class ListerJourFermeComponent implements OnInit {
       (listeJours) => {
         this.listeJourFerme = listeJours;
       }, (error) => {
-        console.log('Erreur ' + error);
+        this.messageErreur = error.error.message;
       }
     )
   }
