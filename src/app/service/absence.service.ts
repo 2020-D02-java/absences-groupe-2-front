@@ -6,7 +6,10 @@ import { Observable } from 'rxjs';
 import { Solde } from '../models/solde';
 import { TypeAbsence } from '../models/type-absence';
 import { AbsenceDemande } from '../models/absence-demande';
+import { environment } from 'src/environments/environment';
 
+const URL_BACKEND_ABSENCE = environment.baseUrl + 'absences';
+const URL_BACKEND_SOLDE = environment.baseUrl + 'soldes';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,22 +20,22 @@ export class AbsenceService {
 
   // Lister toutes les absences collegue
   listerAbsencesCollegue(): Observable<AbsenceVisualisation[]> {
-    return this.http.get<AbsenceVisualisation[]>(`http://localhost:8080/absences`);
+    return this.http.get<AbsenceVisualisation[]>(`${URL_BACKEND_ABSENCE}`);
   }
 
   // Lister tous les soldes collegue
   listerSoldesCollegue(): Observable<Solde[]> {
-    return this.http.get<Solde[]>(`http://localhost:8080/soldes`);
+    return this.http.get<Solde[]>(`${URL_BACKEND_SOLDE}`);
   }
 
    // R�cup�rer donn�es d'une absence, VIA ID
    getAbsenceParId(id: number) {
-    return this.http.get<AbsenceVisualisation>(`http://localhost:8080/absences/id?id=` + id);
+    return this.http.get<AbsenceVisualisation>(`${URL_BACKEND_ABSENCE}/id?id=` + id);
   }
 
   // Ajouter une absence
   demanderAbsence(dateDebut: Date, dateFin: Date, type: TypeAbsence, motif: string, statut: string): Observable<AbsenceDemande> {
-    return this.http.post<AbsenceDemande>(`http://localhost:8080/absences`,
+    return this.http.post<AbsenceDemande>(`${URL_BACKEND_ABSENCE}`,
       {
         dateDebut: `${dateDebut}`,
         dateFin: `${dateFin}`,
@@ -45,7 +48,7 @@ export class AbsenceService {
   // Modifier une absence, VIA ID
   modifierAbsence(id: number, dateDebut: Date, dateFin: Date, type: TypeAbsence, motif: string, statut: string)
   : Observable<AbsenceVisualisation> {
-    return this.http.put<AbsenceVisualisation>(`http://localhost:8080/absences/modification?id=` + id,
+    return this.http.put<AbsenceVisualisation>(`${URL_BACKEND_ABSENCE}/modification?id=` + id,
       {
         dateDebut: `${dateDebut}`,
         dateFin: `${dateFin}`,
@@ -57,6 +60,6 @@ export class AbsenceService {
 
   // Suppression d'une absence, VIA ID
   suppressionAbsence(id: number): Observable<AbsenceVisualisation> {
-    return this.http.delete<AbsenceVisualisation>(`http://localhost:8080/absences/delete?id=${id}`);
+    return this.http.delete<AbsenceVisualisation>(`${URL_BACKEND_ABSENCE}/delete?id=${id}`);
   }
 }
