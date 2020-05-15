@@ -16,6 +16,7 @@ import { VueSynthetiquesComponent } from './vue-synthetiques/vue-synthetiques.co
 import { StatutManagerService } from './service/statut-manager.service';
 import { VueParDepartementParJourParCollaborteurComponent } from './vue-synthetiques/vue-par-departement-par-jour-par-collaborteur/vue-par-departement-par-jour-par-collaborteur.component';
 import { HistogrammeParDepartementParJourComponent } from './vue-synthetiques/histogramme-par-departement-par-jour/histogramme-par-departement-par-jour.component';
+import { ValidationDemandesComponent } from './validation-demandes/validation-demandes.component';
 
 const routes: Routes = [
   // canActivate: [StatutConnecteService] ==> Permet de v�rifier si l'utilisateur est connect�
@@ -42,6 +43,7 @@ const routes: Routes = [
   { path: 'vueSynthetiques', component: VueSynthetiquesComponent, canActivate: [StatutConnecteService, StatutManagerService] },
   { path: 'vueParDepartementParJourParCollaborateur', component: VueParDepartementParJourParCollaborteurComponent, canActivate: [StatutConnecteService, StatutManagerService] },
   { path: 'histogrammeParDepartementParJour', component: HistogrammeParDepartementParJourComponent, canActivate: [StatutConnecteService, StatutManagerService] },
+  { path: 'validationDemandesComponent', component: ValidationDemandesComponent, canActivate: [StatutConnecteService, StatutManagerService] },
 
   { path: '', redirectTo: '/tech', pathMatch: 'full' },
   // Cas url inexistant

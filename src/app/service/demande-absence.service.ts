@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
 import { AbsenceDemande } from '../models/absence-demande';
 import { TypeAbsence } from '../models/type-absence';
+import { AbsenceVisualisation } from '../models/absence-visualisation';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,10 @@ export class DemandeAbsenceService {
         motif: `${motif}`,
         statut: `${statut}`
       });
+  }
+
+  getAbsencesparStatut() {
+    return this.http.get<AbsenceVisualisation[]>('http://localhost:8080/absences/statut');
   }
 
 }

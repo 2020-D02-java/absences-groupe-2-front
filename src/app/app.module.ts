@@ -31,6 +31,7 @@ import { VueSynthetiquesComponent } from './vue-synthetiques/vue-synthetiques.co
 import { VueParDepartementParJourParCollaborteurComponent } from './vue-synthetiques/vue-par-departement-par-jour-par-collaborteur/vue-par-departement-par-jour-par-collaborteur.component';
 import { HistogrammeParDepartementParJourComponent } from './vue-synthetiques/histogramme-par-departement-par-jour/histogramme-par-departement-par-jour.component';
 import { CollegueService } from './service/collegue.service';
+import { ValidationDemandesComponent } from './validation-demandes/validation-demandes.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { CollegueService } from './service/collegue.service';
     ModificationJourFerieComponent,
     VueSynthetiquesComponent,
     VueParDepartementParJourParCollaborteurComponent,
-    HistogrammeParDepartementParJourComponent
+    HistogrammeParDepartementParJourComponent,
+    ValidationDemandesComponent
   ],
   imports: [
     BrowserModule,
