@@ -21,7 +21,7 @@ export class VueParDepartementParJourParCollaborteurComponent implements OnInit 
       (value) => {
         this.listeCollegues = value;
       }, (error) => {
-        this.message = error;
+        this.message = error.error.message;
       }
     )
   }

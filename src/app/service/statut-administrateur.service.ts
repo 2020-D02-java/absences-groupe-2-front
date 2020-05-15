@@ -9,16 +9,17 @@ import { Role } from 'src/app/models/role';
 })
 export class StatutAdministrateurService {
 
+  // Constructeur
   constructor(private _authSrv: AuthService, private _router: Router) {
   }
 
+  // Mis en place pour la guard "Administrateur"
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this._authSrv.verifierAuthentification()
       .pipe(
         map(col => {
-          for (const role of col.roles){
-            if (role.match(Role.RoleAdmin))
-            {
+          for (const role of col.roles) {
+            if (role.match(Role.RoleAdmin)) {
               // Le role administrateur est bien trouvé, on retourne true
               return true;
             }

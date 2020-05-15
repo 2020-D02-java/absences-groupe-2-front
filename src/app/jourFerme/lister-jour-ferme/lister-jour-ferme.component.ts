@@ -6,18 +6,15 @@ import { AuthService } from 'src/app/service/auth.service';
 import { faTrash, faPlus, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
-import { Type } from '@angular/compiler';
-import { TypeJourFerme } from 'src/app/models/type-jour-ferme';
-import { ModificationJourFerieComponent } from '../modification-jour-ferie/modification-jour-ferie.component';
 import { Role } from 'src/app/models/role';
 import { JourFermeVisualisation } from 'src/app/models/jour-ferme-visualisation';
 
 @Component({
-  selector: 'app-lister-jour-ferie',
-  templateUrl: './lister-jour-ferie.component.html',
-  styleUrls: ['./lister-jour-ferie.component.scss']
+  selector: 'app-lister-jour-ferme',
+  templateUrl: './lister-jour-ferme.component.html',
+  styleUrls: ['./lister-jour-ferme.component.scss']
 })
-export class ListerJourFerieComponent implements OnInit {
+export class ListerJourFermeComponent implements OnInit {
 
   // Enumerations
   roleEnum = Role;
@@ -32,6 +29,7 @@ export class ListerJourFerieComponent implements OnInit {
   currentListJourFerme: JourFermeVisualisation[] = new Array();
   utilisateurConnecte: Collegue;
   collegueConnecte: Observable<Collegue>;
+  messageErreur = '';
   yearSelect;
 
   // Message validation modale
@@ -47,7 +45,7 @@ export class ListerJourFerieComponent implements OnInit {
       (listeJours) => {
         this.listeJourFerme = listeJours;
       }, (error) => {
-        console.log('Erreur ' + error);
+        this.messageErreur = error.error.message;
       }
     )
     this.getAllYear();
@@ -59,7 +57,7 @@ export class ListerJourFerieComponent implements OnInit {
       (etatConnexion) => {
         this.utilisateurConnecte = etatConnexion;
       }, (error) => {
-        console.log('Error , error, fuyez ! ' + error);
+        this.messageErreur = error.error.message;
       }
     );
   }
@@ -80,7 +78,7 @@ export class ListerJourFerieComponent implements OnInit {
       (listeJours) => {
         this.listeJourFerme = listeJours;
       }, (error) => {
-        console.log('Erreur ' + error);
+        this.messageErreur = error.error.message;
       }
     )
   }
@@ -93,8 +91,8 @@ export class ListerJourFerieComponent implements OnInit {
 
   onDelete(id: number) {
     this.jourFermeService.suppressionJourFerme(id).subscribe(
-        data => this.refresh(data));
-    }
+      data => this.refresh(data));
+  }
   // [FIN] ***** GESTION DU MODAL DE SUPPRESSION ****** //
 
   open(content, id) {
@@ -108,11 +106,9 @@ export class ListerJourFerieComponent implements OnInit {
       (listeJours) => {
         this.listeJourFerme = listeJours;
       }, (error) => {
-        console.log('Erreur ' + error);
+        this.messageErreur = error.error.message;
       }
     )
   }
-
-
 
 }

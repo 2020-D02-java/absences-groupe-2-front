@@ -13,10 +13,11 @@ import { AuthService } from '../service/auth.service';
 })
 export class AuthComponent implements OnInit {
 
-
+  // Initisalisations
   collegue: Collegue = new Collegue({});
   err: boolean;
 
+  // Constructeur
   constructor(private authSrv: AuthService, private router: Router) { }
 
   ngOnInit() {

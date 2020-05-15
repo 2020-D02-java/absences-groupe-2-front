@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { VisualisationAbsenceService } from 'src/app/service/visualisation-absence.service';
 import { AbsenceVisualisation } from 'src/app/models/absence-visualisation';
 import { AuthService } from 'src/app/service/auth.service';
 import { Collegue } from 'src/app/auth/auth.domains';
@@ -10,6 +9,7 @@ import { Role } from 'src/app/models/role';
 import { TypeSolde } from 'src/app/models/type-solde';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { AbsenceService } from 'src/app/service/absence.service';
 
 
 @Component({
@@ -33,33 +33,46 @@ export class VisualisationAbsenceComponent implements OnInit {
   listeSoldes: Solde[];
   collegue: Collegue;
   message: string;
+  messageErreur = '';
 
-  constructor(private absenceService: VisualisationAbsenceService, private authService: AuthService,  private modalService: NgbModal,
+  constructor(private absenceService: AbsenceService, private authService: AuthService, private modalService: NgbModal,
               private router: Router) { }
 
   ngOnInit(): void {
 
-    this.authService.collegueConnecteObs
-      .subscribe(col => this.collegue = col,
-        err => console.log('oops'));
+    this.authService.collegueConnecteObs.subscribe(
+      (col) => {
+        this.collegue = col
+      }, (error) => {
+        this.messageErreur = error.error.message;
+      }
+    );
 
-    this.absenceService.listerAbsencesCollegue()
-      .subscribe(absences => this.listeAbsences = absences,
-        err => console.log('oops'));
+    this.absenceService.listerAbsencesCollegue().subscribe(
+      (absences) => {
+        this.listeAbsences = absences;
+      }, (error) => {
+        this.messageErreur = error.error.message;
+      }
+    );
 
-    this.absenceService.listerSoldesCollegue()
-    .subscribe(soldes => this.listeSoldes = soldes,
-      err => console.log('oops'));
-
+    this.absenceService.listerSoldesCollegue().subscribe(
+      (soldes) => {
+        this.listeSoldes = soldes
+      },
+      (error) => {
+        this.messageErreur = error.error.message;
+      }
+    );
   }
 
 
-    // [DEBUT] ***** GESTION DU MODAL DE SUPPRESSION ****** //
+  // [DEBUT] ***** GESTION DU MODAL DE SUPPRESSION ****** //
 
   onDelete(id: number) {
     this.absenceService.suppressionAbsence(id).subscribe(
-        data => this.refresh(data));
-    }
+      data => this.refresh(data));
+  }
   // [FIN] ***** GESTION DU MODAL DE SUPPRESSION ****** //
 
   open(content, id) {
@@ -70,12 +83,18 @@ export class VisualisationAbsenceComponent implements OnInit {
 
   refresh(data) {
     this.absenceService.listerAbsencesCollegue()
-      .subscribe(absences => this.listeAbsences = absences,
-        err => console.log('oops'));
+      .subscribe((absences) => {
+        this.listeAbsences = absences
+      }, (error) => {
+        this.messageErreur = error.error.message;
+      });
 
     this.absenceService.listerSoldesCollegue()
-    .subscribe(soldes => this.listeSoldes = soldes,
-      err => console.log('oops'));
+      .subscribe((soldes) => {
+        this.listeSoldes = soldes
+      }, (error) => {
+        this.messageErreur = error.error.message;
+      });
   }
 
 }

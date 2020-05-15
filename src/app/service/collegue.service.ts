@@ -7,10 +7,11 @@ import { Collegue } from '../auth/auth.domains';
 })
 export class CollegueService {
 
+  // Constructeur
   constructor(private http: HttpClient) { }
 
   // Lister tous les collegues existant
-    listerCollegues() {
+  listerCollegues() {
     return this.http.get<Collegue[]>(`http://localhost:8080/collegue`);
   }
 }

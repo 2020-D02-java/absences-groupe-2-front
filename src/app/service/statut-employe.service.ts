@@ -9,16 +9,17 @@ import { Role } from 'src/app/models/role';
 })
 export class StatutEmployeService {
 
+  // Constructeur
   constructor(private _authSrv: AuthService, private _router: Router) {
   }
 
+  // Mis en place pour la guard "Employe"
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this._authSrv.verifierAuthentification()
       .pipe(
         map(col => {
-          for (const role of col.roles){
-            if (role.match(Role.RoleEmploye))
-            {
+          for (const role of col.roles) {
+            if (role.match(Role.RoleEmploye)) {
               // Le role employe est bien trouvé, on retourne true
               return true;
             }

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light mb-4" style="background-color: #e3f2fd;">
     <ng-container *ngIf="collegueConnecte | async as col">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-	<span class="navbar-toggler-icon"></span>
+			<span class="navbar-toggler-icon"></span>
 		</button>
         <img src="https://media.discordapp.net/attachments/705412798665982013/706796752291889172/CONGES-ET-PREUVES.png" alt="" style="width: 40px;height: 40px;" />
         <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -12,16 +12,16 @@
                     <a class="nav-link" routerLink="visualisationAbsence">Gestion des absences</a>
                 </li>
                 <li routerLinkActive="active" class="nav-item" *ngIf="col.roles[0] == roleEnum.RoleManager || col.roles[0] == roleEnum.RoleAdmin || col.roles[0] == roleEnum.RoleEmploye">
-                    <a class="nav-link" routerLink="#">Planning des absences</a>
+                    <a class="nav-link" routerLink="planningAbsence">Planning des absences</a>
                 </li>
                 <li routerLinkActive="active" class="nav-item" *ngIf="col.roles[0] == roleEnum.RoleManager">
-                    <a class="nav-link" routerLink="validationDemandesComponent">Validation demandes</a>
+                    <a class="nav-link" routerLink="#">Validation demandes</a>
                 </li>
                 <li routerLinkActive="active" class="nav-item" *ngIf="col.roles[0] == roleEnum.RoleManager">
                     <a class="nav-link" routerLink="vueSynthetiques">Vues synthétiques</a>
                 </li>
                 <li routerLinkActive="active" class="nav-item" *ngIf="col.roles[0] == roleEnum.RoleManager || col.roles[0] == roleEnum.RoleAdmin || col.roles[0] == roleEnum.RoleEmploye">
-                    <a class="nav-link" routerLink="listerJourFerie">Jours feriés</a>
+                    <a class="nav-link" routerLink="listerJourFerme">Jours ferm&eacute;s</a>
                 </li>
             </ul>
             <div class="mx-2 p-1 col-sm-4 col-4  col-md-auto" style="border: 1px solid #ced4da;background-color: #e9ecef; border-radius: 5px; ">

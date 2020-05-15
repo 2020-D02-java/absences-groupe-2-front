@@ -9,16 +9,17 @@ import { Role } from 'src/app/models/role';
 })
 export class StatutManagerService {
 
+  // Constructeur
   constructor(private _authSrv: AuthService, private _router: Router) {
   }
 
+  // Mise en place pour la guard "Manager"
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this._authSrv.verifierAuthentification()
       .pipe(
         map(col => {
-          for (const role of col.roles){
-            if (role.match(Role.RoleManager))
-            {
+          for (const role of col.roles) {
+            if (role.match(Role.RoleManager)) {
               // Le role manager est bien trouvé, on retourne true
               return true;
             }
