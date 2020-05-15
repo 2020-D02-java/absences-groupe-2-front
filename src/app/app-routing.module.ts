@@ -37,7 +37,7 @@ const routes: Routes = [
   { path: 'vueSynthetiques', component: VueSynthetiquesComponent, canActivate: [StatutConnecteService, StatutManagerService] },
   { path: 'vueParDepartementParJourParCollaborateur', component: VueParDepartementParJourParCollaborteurComponent, canActivate: [StatutConnecteService, StatutManagerService] },
   { path: 'histogrammeParDepartementParJour', component: HistogrammeParDepartementParJourComponent, canActivate: [StatutConnecteService, StatutManagerService] },
-  { path: 'validationDemandesComponent', component: ValidationDemandesComponent, canActivate: [StatutConnecteService, StatutManagerService] },
+  { path: 'validationDemandes', component: ValidationDemandesComponent, canActivate: [StatutConnecteService, StatutManagerService] },
 
   { path: '', redirectTo: '/tech', pathMatch: 'full' },
   // Cas url inexistant

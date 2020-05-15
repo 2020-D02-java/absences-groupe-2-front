@@ -23,11 +23,11 @@
             <td class="border border-dark">{{abs.type}}</td>
             <td class="border border-dark">{{abs.collegue.nom}}</td>
             <td class="border border-dark w-10">
-                <button class="btn">
-                    <fa-icon [icon]=""></fa-icon>
+                <button class="btn" (click)='validerDemande(abs.id)'>
+                    <fa-icon [icon]="faCheck" class="text-success"></fa-icon>
                 </button>
-                <button class="btn">
-                    <fa-icon [icon]=""></fa-icon>
+                <button class="btn" (click)='refuserDemande()'>
+                    <fa-icon [icon]="faTimes" class="text-danger"></fa-icon>
                 </button>
             </td>
         </tr>
