@@ -2,9 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
-
 registerLocaleData(localeFr);
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
@@ -31,7 +29,7 @@ import { HistogrammeParDepartementParJourComponent } from './vue-synthetiques/hi
 import { CollegueService } from './service/collegue.service';
 import { PlanningAbsenceComponent } from './absence/planning-absence/planning-absence.component';
 import { AbsenceService } from './service/absence.service';
-
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
@@ -60,7 +58,8 @@ import { AbsenceService } from './service/absence.service';
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
-    NgbModule
+    NgbModule,
+    FullCalendarModule
   ],
   providers: [
     JourFermeService,
