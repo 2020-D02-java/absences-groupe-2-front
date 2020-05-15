@@ -65,6 +65,6 @@ export class AbsenceService {
 
     // Traitement de nuit
     traitementDeNuit(): Observable<void>{
-      return this.http.post<void>(`http://localhost:8080/absences/traitement-de-nuit`, {});
+      return this.http.post<void>(`${URL_BACKEND_ABSENCE}/traitement-de-nuit`, {});
     }
 }
