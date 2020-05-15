@@ -5,7 +5,6 @@ import { AuthService } from 'src/app/service/auth.service';
 import { Collegue } from 'src/app/auth/auth.domains';
 import { Solde } from 'src/app/models/solde';
 import { TypeSolde } from 'src/app/models/type-solde';
-import { Observable } from 'rxjs';
 import { AbsenceVisualisation } from 'src/app/models/absence-visualisation';
 import { Evenement } from 'src/app/models/Evenement';
 
@@ -45,7 +44,7 @@ export class PlanningAbsenceComponent implements OnInit {
         this.listeAbsences.forEach(value => {
           let date: Date;
           for (date = new Date(value.dateDebut); date <= new Date(value.dateFin) ; date.setDate(new Date(date).getDate() + 1)){
-            let event: Evenement = new Evenement(value.type,);
+            let event: Evenement = new Evenement(value.type, this.convertDate(date));
             this.events.push(event);
           } 
         });
@@ -64,6 +63,11 @@ export class PlanningAbsenceComponent implements OnInit {
       }
     );
   }
+  convertDate(inputFormat: Date) {
+    var d = new Date(inputFormat)
+    return [d.getFullYear(), this.pad(d.getMonth()+1), this.pad(d.getDate())].join('-')
+  }
 
+  pad(s: number) { return (s < 10) ? '0' + s : s; }
 
 }
