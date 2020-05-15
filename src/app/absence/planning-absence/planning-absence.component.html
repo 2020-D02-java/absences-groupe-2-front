@@ -3,4 +3,17 @@
         <h2>Planning des absences</h2>
     </div>
     </div>
-    <full-calendar defaultView="dayGridMonth" [plugins]="calendarPlugins"></full-calendar>
+
+    <full-calendar defaultView="dayGridMonth" 
+    [plugins]="calendarPlugins"
+    [weekends] = "false"
+    [height] = 600
+    [locale] = "locale"
+    [events]=  "event"
+    ></full-calendar> 
+
+    <label><b>Solde des compteurs :</b></label>
+<ul *ngFor="let solde of listeSoldes">
+    <li *ngIf="solde.type.toString() == soldeEnum.CONGES_PAYES">Congés payés : {{solde.nombreDeJours}}</li>
+    <li *ngIf="solde.type.toString() == soldeEnum.RTT_EMPLOYE">RTT : {{solde.nombreDeJours}}</li>
+</ul>
