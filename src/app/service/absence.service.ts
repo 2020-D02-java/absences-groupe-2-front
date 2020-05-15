@@ -62,4 +62,9 @@ export class AbsenceService {
   suppressionAbsence(id: number): Observable<AbsenceVisualisation> {
     return this.http.delete<AbsenceVisualisation>(`${URL_BACKEND_ABSENCE}/delete?id=${id}`);
   }
+
+    // Traitement de nuit
+    traitementDeNuit(): Observable<void>{
+      return this.http.post<void>(`http://localhost:8080/absences/traitement-de-nuit`, {});
+    }
 }

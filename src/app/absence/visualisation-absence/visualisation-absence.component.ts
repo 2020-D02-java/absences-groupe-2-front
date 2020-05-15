@@ -36,7 +36,7 @@ export class VisualisationAbsenceComponent implements OnInit {
   messageErreur = '';
 
   constructor(private absenceService: AbsenceService, private authService: AuthService, private modalService: NgbModal,
-    private router: Router) { }
+              private router: Router) { }
 
   ngOnInit(): void {
 
