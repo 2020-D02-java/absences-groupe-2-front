@@ -52,6 +52,10 @@
 							<div *ngIf="(abs.emailCollegue==collegues.email)&&
 							(
 								(
+									abs.statut=='VALIDEE'
+								)
+								&&
+								(
 									abs.dateDebut.toString()<=(anneeSelectionnee+'-'+moisSelectionne+'-'+jour[0])
 								)
 								&&
