@@ -31,6 +31,7 @@ import { HistogrammeParDepartementParJourComponent } from './vue-synthetiques/hi
 import { CollegueService } from './service/collegue.service';
 import { PlanningAbsenceComponent } from './absence/planning-absence/planning-absence.component';
 import { AbsenceService } from './service/absence.service';
+import { AccueilComponent } from './accueil/accueil.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { AbsenceService } from './service/absence.service';
     VueParDepartementParJourParCollaborteurComponent,
     HistogrammeParDepartementParJourComponent,
     PlanningAbsenceComponent,
+    AccueilComponent,
   ],
   imports: [
     BrowserModule,
