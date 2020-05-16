@@ -7,6 +7,7 @@ import { faPencilAlt, faTrash, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { Statut } from 'src/app/models/statut';
 import { Role } from 'src/app/models/role';
 import { TypeSolde } from 'src/app/models/type-solde';
+import { TypeAbsence } from 'src/app/models/type-absence';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { AbsenceService } from 'src/app/service/absence.service';
@@ -22,6 +23,7 @@ export class VisualisationAbsenceComponent implements OnInit {
   statutEnum = Statut;
   roleEnum = Role;
   soldeEnum = TypeSolde;
+  typeAbsenceEnum = TypeAbsence;
 
   // Icones
   faPencil = faPencilAlt;
@@ -36,7 +38,7 @@ export class VisualisationAbsenceComponent implements OnInit {
   messageErreur = '';
 
   constructor(private absenceService: AbsenceService, private authService: AuthService, private modalService: NgbModal,
-    private router: Router) { }
+              private router: Router) { }
 
   ngOnInit(): void {
 
