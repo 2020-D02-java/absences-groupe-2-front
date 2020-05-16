@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Collegue } from 'src/app/auth/auth.domains';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { CollegueService } from 'src/app/service/collegue.service';
 import { formatDate } from '@angular/common';
 import { AbsenceService } from 'src/app/service/absence.service';
@@ -11,6 +12,9 @@ import { AbsenceVisualisationEmail } from 'src/app/models/absence-visualisation-
   styleUrls: ['./vue-par-departement-par-jour-par-collaborteur.component.scss']
 })
 export class VueParDepartementParJourParCollaborteurComponent implements OnInit {
+
+  // Icones
+  faTimes = faTimes;
 
   // Selection en cours
   jourEnCours = new Date();
@@ -34,7 +38,7 @@ export class VueParDepartementParJourParCollaborteurComponent implements OnInit 
     {
       number: 0,
       nom: '-- Choisir --'
-    },{
+    }, {
       number: 1,
       nom: 'Janvier'
     }, {
@@ -163,12 +167,12 @@ export class VueParDepartementParJourParCollaborteurComponent implements OnInit 
 
   // Cas select par mois
   filtrerParMois(mois) {
-          let j;
-      if (mois <= 9) {
-        j = '0' + mois;
-      } else {
-        j = mois;
-      }
+    let j;
+    if (mois <= 9) {
+      j = '0' + mois;
+    } else {
+      j = mois;
+    }
     this.moisSelectionne = j;
     this.nombreJoursDansLeMois(mois, this.anneeSelectionnee);
   }
