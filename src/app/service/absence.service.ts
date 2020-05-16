@@ -7,7 +7,7 @@ import { Solde } from '../models/solde';
 import { TypeAbsence } from '../models/type-absence';
 import { AbsenceDemande } from '../models/absence-demande';
 import { environment } from 'src/environments/environment';
-import { AbsenceVisualisationId } from '../models/absence-visualisation-id';
+import { AbsenceVisualisationEmail } from '../models/absence-visualisation-email';
 
 const URL_BACKEND_ABSENCE = environment.baseUrl + 'absences';
 const URL_BACKEND_SOLDE = environment.baseUrl + 'soldes';
@@ -25,8 +25,8 @@ export class AbsenceService {
   }
 
     // Lister toutes les absences
-  listerAbsencesToutesCollegue(): Observable<AbsenceVisualisationId[]> {
-    return this.http.get<AbsenceVisualisationId[]>(`${URL_BACKEND_ABSENCE}/all`);
+  listerAbsencesToutesCollegue(): Observable<AbsenceVisualisationEmail[]> {
+    return this.http.get<AbsenceVisualisationEmail[]>(`${URL_BACKEND_ABSENCE}/all`);
   }
 
   // Lister tous les soldes collegue

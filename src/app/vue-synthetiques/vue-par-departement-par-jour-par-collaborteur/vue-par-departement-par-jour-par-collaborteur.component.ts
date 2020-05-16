@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Collegue } from 'src/app/auth/auth.domains';
 import { CollegueService } from 'src/app/service/collegue.service';
 import { formatDate } from '@angular/common';
-import { AbsenceVisualisationId } from 'src/app/models/absence-visualisation-id';
 import { AbsenceService } from 'src/app/service/absence.service';
+import { AbsenceVisualisationEmail } from 'src/app/models/absence-visualisation-email';
 
 @Component({
   selector: 'app-vue-par-departement-par-jour-par-collaborteur',
@@ -22,7 +22,7 @@ export class VueParDepartementParJourParCollaborteurComponent implements OnInit 
   listeCollegues: Collegue[] = new Array();
   message: string;
 
-  listeAbsences: AbsenceVisualisationId[] = new Array();
+  listeAbsences: AbsenceVisualisationEmail[] = new Array();
 
   // Année
   yearSelect: number;
@@ -33,51 +33,42 @@ export class VueParDepartementParJourParCollaborteurComponent implements OnInit 
   listeMois = [
     {
       number: 0,
-      correspondance: '01',
+      nom: '-- Choisir --'
+    },{
+      number: 1,
       nom: 'Janvier'
     }, {
-      number: 1,
-      correspondance: '02',
+      number: 2,
       nom: 'Fevrier'
     }, {
-      number: 2,
-      correspondance: '03',
+      number: 3,
       nom: 'Mars'
     }, {
-      number: 3,
-      correspondance: '04',
+      number: 4,
       nom: 'Avril'
     }, {
-      number: 4,
-      correspondance: '05',
+      number: 5,
       nom: 'Mai'
     }, {
-      number: 5,
-      correspondance: '06',
+      number: 6,
       nom: 'Juin'
     }, {
-      number: 6,
-      correspondance: '07',
+      number: 7,
       nom: 'Juillet'
     }, {
-      number: 7,
-      correspondance: '08',
+      number: 8,
       nom: 'Aout'
     }, {
-      number: 8,
-      correspondance: '09',
+      number: 9,
       nom: 'Septembre'
     }, {
-      number: 9,
-      correspondance: '10',
+      number: 10,
       nom: 'Octobre'
     }, {
-      number: 10,
-      correspondance: '11',
+      number: 11,
       nom: 'Novembre'
     }, {
-      number: 11,
-      correspondance: '12',
+      number: 12,
       nom: 'Decembre'
     }];
 
@@ -117,8 +108,10 @@ export class VueParDepartementParJourParCollaborteurComponent implements OnInit 
     this.getAllYear();
     // On récupere la date du jour
     const now = new Date();
+    let moisPlusUn = now.getMonth() + 1;
+    console.log(moisPlusUn);
     // On initialise l'affichage du tableau au mois en cours.
-    this.nombreJoursDansLeMois(now.getMonth(), now.getFullYear());
+    this.nombreJoursDansLeMois(moisPlusUn, now.getFullYear());
   }
 
 
@@ -128,13 +121,13 @@ export class VueParDepartementParJourParCollaborteurComponent implements OnInit 
     this.tableauDeJours = new Array();
 
     // Nombre de jours dans le mois en cours
-    const nbJoursMois = new Date(annee, mois + 1, 0).getDate();
+    const nbJoursMois = new Date(annee, mois, 0).getDate();
 
     // Afficher tous les jours du mois en cours
     for (let i = 1; i < nbJoursMois + 1; i++) {
 
       // Recréer toutes les dates du mois en cours, pour récupérer le jour (Lundi, Mardi, ...)
-      const dateABoucler = new Date(`${annee}-${mois + 1}-${i}`);
+      const dateABoucler = new Date(`${annee}-${mois}-${i}`);
 
       // Récupérer le nom du jour en cours (Lundi, Mardi, ...)
       const jourSaisie = formatDate(dateABoucler, 'E', 'en-US');
@@ -170,19 +163,16 @@ export class VueParDepartementParJourParCollaborteurComponent implements OnInit 
 
   // Cas select par mois
   filtrerParMois(mois) {
-    this.moisSelectionne = mois;
+          let j;
+      if (mois <= 9) {
+        j = '0' + mois;
+      } else {
+        j = mois;
+      }
+    this.moisSelectionne = j;
     this.nombreJoursDansLeMois(mois, this.anneeSelectionnee);
   }
 
-  filterCollegue(date) {
-    for (let i; i < this.listeAbsences.length; i++) {
-      if (date === this.listeAbsences[i].dateDebut) {
-        this.message = 'c';
-      } else {
-        this.message = '-'
-      }
-    }
-  }
 
 
 }
