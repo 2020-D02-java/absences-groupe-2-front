@@ -1,4 +1,4 @@
-#Avant-propos
+# Avant-propos
 
 Bienvenue sur l'application de Gestion des Absences.
 
