@@ -1,35 +1,39 @@
-<div class="row justify-content-md-center">
-    <div class="col-md-auto" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
-        <h2>Validation des demandes</h2>
+<ng-container *ngIf="collegueConnecte | async as col">
+    <div class="row justify-content-md-center">
+        <div class="col-md-auto" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
+            <h2>Validation des demandes</h2>
+        </div>
     </div>
-</div>
 
-<br>
+    <br>
 
-<table class="table table-striped">
-    <thead class="bg-secondary">
-        <tr>
-            <th scope="col" class="border border-dark">Date de début</th>
-            <th scope="col" class="border border-dark">Date de fin</th>
-            <th scope="col" class="border border-dark">Type</th>
-            <th scope="col" class="border border-dark">Nom</th>
-            <th scope="col" class="border border-dark">Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let abs of listAbsences">
-            <td class="border border-dark">{{abs.dateDebut}}</td>
-            <td class="border border-dark">{{abs.dateFin}}</td>
-            <td class="border border-dark">{{abs.type}}</td>
-            <td class="border border-dark">{{abs.collegue.nom}}</td>
-            <td class="border border-dark w-10">
-                <button class="btn" (click)='validerDemande(abs.id)'>
-                    <fa-icon [icon]="faCheck" class="text-success"></fa-icon>
-                </button>
-                <button class="btn" (click)='refuserDemande(abs.id)'>
-                    <fa-icon [icon]="faTimes" class="text-danger"></fa-icon>
-                </button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+    <table class="table table-striped">
+        <thead class="bg-secondary">
+            <tr>
+                <th scope="col" class="border border-dark">Date de début</th>
+                <th scope="col" class="border border-dark">Date de fin</th>
+                <th scope="col" class="border border-dark">Type</th>
+                <th scope="col" class="border border-dark">Nom</th>
+                <th scope="col" class="border border-dark">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let abs of listAbsences">
+                <ng-container *ngIf="abs.manager.nom === col.nom">
+                    <td class="border border-dark">{{abs.dateDebut}}</td>
+                    <td class="border border-dark">{{abs.dateFin}}</td>
+                    <td class="border border-dark">{{abs.type}}</td>
+                    <td class="border border-dark">{{abs.collegue.nom}}</td>
+                    <td class="border border-dark w-10">
+                        <button class="btn" (click)='validerDemande(abs.id)'>
+                        <fa-icon [icon]="faCheck" class="text-success"></fa-icon>
+                    </button>
+                        <button class="btn" (click)='refuserDemande(abs.id)'>
+                        <fa-icon [icon]="faTimes" class="text-danger"></fa-icon>
+                    </button>
+                    </td>
+                </ng-container>
+            </tr>
+        </tbody>
+    </table>
+</ng-container>

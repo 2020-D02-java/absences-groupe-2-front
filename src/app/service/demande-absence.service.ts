@@ -13,9 +13,7 @@ const URL_BACKEND = environment.baseUrl + 'absences';
 })
 export class DemandeAbsenceService {
 
-
   constructor(private http: HttpClient) { }
-
 
   ajouterAbsence(dateDebut: Date, dateFin: Date, type: TypeAbsence, motif: string, statut: string): Observable<AbsenceDemande> {
     return this.http.post<AbsenceDemande>(`${URL_BACKEND}`,
