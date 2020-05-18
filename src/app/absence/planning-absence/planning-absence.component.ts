@@ -9,7 +9,7 @@ import { AbsenceVisualisation } from 'src/app/models/absence-visualisation';
 import { Evenement } from 'src/app/models/Evenement';
 import { Statut } from 'src/app/models/statut';
 import { JourFermeService } from 'src/app/service/jour-ferme.service';
-import { JourFermeVisualisation } from 'src/app/models/jour-ferme-visualisation';
+import { JourFermeVisuPlanning } from 'src/app/models/jour-ferme-visu-planning';
 
 
 @Component({
@@ -28,10 +28,10 @@ export class PlanningAbsenceComponent implements OnInit {
   messageErreur = '';
   listeAbsences: AbsenceVisualisation[];
   events: Evenement[] = [];
- /* eventFerme: Evenement[] = [];*/
+
   loadCalendar: boolean = false;
   statutEnum = Statut;
-  listeJourFerme: JourFermeVisualisation[] = new Array();
+  listeJourFerme: JourFermeVisuPlanning[] = new Array();
 
 
   constructor(private absenceService: AbsenceService, private authService: AuthService, private jourFermeService: JourFermeService) { }
@@ -47,7 +47,7 @@ export class PlanningAbsenceComponent implements OnInit {
       }
     );
 
-    /* // Afficher les absences
+    // Afficher les absences
     this.absenceService.listerAbsencesCollegue().subscribe(
       (absences) => {
         this.listeAbsences = absences;
@@ -65,7 +65,7 @@ export class PlanningAbsenceComponent implements OnInit {
         this.messageErreur = error.error.message;
       }
     );
- */
+
     //Lister solde du collegue
     this.absenceService.listerSoldesCollegue().subscribe(
       (soldes) => {
@@ -77,7 +77,7 @@ export class PlanningAbsenceComponent implements OnInit {
     );
 
     // Lister les jours fermés
-    this.jourFermeService.listerJourFerme().subscribe(
+    this.jourFermeService.listerJourFermePlanning().subscribe(
       (listeJours) => {
         this.listeJourFerme = listeJours;
         this.listeJourFerme.forEach(data => {
@@ -86,8 +86,7 @@ export class PlanningAbsenceComponent implements OnInit {
             let eventFerme: Evenement = new Evenement(data.commentaire, this.convertDate(dateFerme));
             this.events.push(eventFerme);
           console.log(eventFerme.title)
-          }
-         
+          }         
         });
         this.loadCalendar = true;
       }, (error) => {

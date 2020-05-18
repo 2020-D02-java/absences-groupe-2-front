@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
 import { TypeJourFerme } from '../models/type-jour-ferme';
 import { JourFermeVisualisation } from '../models/jour-ferme-visualisation';
+import { JourFermeVisuPlanning } from '../models/jour-ferme-visu-planning';
 import { JourFermeAjout } from '../models/jour-ferme-ajout';
 import { environment } from 'src/environments/environment';
 
@@ -20,17 +21,22 @@ export class JourFermeService {
     return this.http.get<JourFermeVisualisation[]>(`${URL_BACKEND}`);
   }
 
-  // Lister tous les jours fermes, filtre par années
+  // Lister tous les jours fermes planning
+  listerJourFermePlanning() {
+    return this.http.get<JourFermeVisuPlanning[]>(`${URL_BACKEND}`);
+  }
+
+  // Lister tous les jours fermes, filtre par annï¿½es
   listerJourFermeParAnnee(annee: number) {
     return this.http.get<JourFermeVisualisation[]>(`${URL_BACKEND}/date?annee=` + annee);
   }
 
-  // Récupérer données d'un jour fermé, VIA ID
+  // Rï¿½cupï¿½rer donnï¿½es d'un jour fermï¿½, VIA ID
   getJourFermeParId(id: number) {
     return this.http.get<JourFermeVisualisation>(`${URL_BACKEND}/id?id=` + id);
   }
 
-  // Ajouter un jour fermé
+  // Ajouter un jour fermï¿½
   ajouterJourFerme(date: Date, type: TypeJourFerme, commentaire: string): Observable<JourFermeAjout> {
     return this.http.post<JourFermeAjout>(`${URL_BACKEND}`,
       {
@@ -40,7 +46,7 @@ export class JourFermeService {
       });
   }
 
-  // Modifier un jour fermé
+  // Modifier un jour fermï¿½
   modifierJourFerme(id: number, date: Date, type: TypeJourFerme, commentaire: string): Observable<JourFermeVisualisation> {
     return this.http.put<JourFermeVisualisation>(`${URL_BACKEND}/modification?id=` + id,
       {
@@ -50,7 +56,7 @@ export class JourFermeService {
       });
   }
 
-  // Supprimer un jour fermé
+  // Supprimer un jour fermï¿½
   suppressionJourFerme(id: number): Observable<JourFermeVisualisation> {
     return this.http.delete<JourFermeVisualisation>(`${URL_BACKEND}/delete?id=${id}`);
   }
