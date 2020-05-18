@@ -8,7 +8,7 @@ import { TypeSolde } from 'src/app/models/type-solde';
 import { AbsenceVisualisation } from 'src/app/models/absence-visualisation';
 import { Evenement } from 'src/app/models/Evenement';
 import { Statut } from 'src/app/models/statut';
-import {JourFermeService} from 'src/app/service/jour-ferme.service';
+import { JourFermeService } from 'src/app/service/jour-ferme.service';
 import { JourFermeVisualisation } from 'src/app/models/jour-ferme-visualisation';
 
 
@@ -28,13 +28,13 @@ export class PlanningAbsenceComponent implements OnInit {
   messageErreur = '';
   listeAbsences: AbsenceVisualisation[];
   events: Evenement[] = [];
-  eventsFermes : Evenement[] = [];
+ /* eventFerme: Evenement[] = [];*/
   loadCalendar: boolean = false;
   statutEnum = Statut;
   listeJourFerme: JourFermeVisualisation[] = new Array();
 
 
-  constructor(private absenceService: AbsenceService, private authService: AuthService, private jourFermeService :JourFermeService) { }
+  constructor(private absenceService: AbsenceService, private authService: AuthService, private jourFermeService: JourFermeService) { }
 
   ngOnInit(): void {
 
@@ -46,7 +46,8 @@ export class PlanningAbsenceComponent implements OnInit {
         this.messageErreur = error.error.message;
       }
     );
-    // Afficher les absences
+
+    /* // Afficher les absences
     this.absenceService.listerAbsencesCollegue().subscribe(
       (absences) => {
         this.listeAbsences = absences;
@@ -64,7 +65,7 @@ export class PlanningAbsenceComponent implements OnInit {
         this.messageErreur = error.error.message;
       }
     );
-
+ */
     //Lister solde du collegue
     this.absenceService.listerSoldesCollegue().subscribe(
       (soldes) => {
@@ -74,7 +75,29 @@ export class PlanningAbsenceComponent implements OnInit {
         this.messageErreur = error.error.message;
       }
     );
+
+    // Lister les jours fermés
+    this.jourFermeService.listerJourFerme().subscribe(
+      (listeJours) => {
+        this.listeJourFerme = listeJours;
+        this.listeJourFerme.forEach(data => {
+          let dateFerme: Date;
+          for (dateFerme = new Date(data.date); dateFerme <= new Date(data.date); dateFerme.setDate(new Date(dateFerme).getDate() + 1)) {
+            let eventFerme: Evenement = new Evenement(data.commentaire, this.convertDate(dateFerme));
+            this.events.push(eventFerme);
+          console.log(eventFerme.title)
+          }
+         
+        });
+        this.loadCalendar = true;
+      }, (error) => {
+        this.messageErreur = error.error.message;
+      }
+    );
+
   }
+
+  //Conversion de la date au bon format
   convertDate(inputFormat: Date) {
     var d = new Date(inputFormat)
     return [d.getFullYear(), this.pad(d.getMonth() + 1), this.pad(d.getDate())].join('-')
@@ -82,21 +105,6 @@ export class PlanningAbsenceComponent implements OnInit {
 
   pad(s: number) { return (s < 10) ? '0' + s : s; }
 
-  /*// Lister les jours fermés
-  this.jourFermeService.listerJourFermeParAnnee().subscribe(
-    (listeJours) => {
-      this.listeJourFerme = listeJours;
-      this.listeJourFerme.forEach(data => {
-          let date: Date;
-          for (date = new Date(data.date); date <= new Date(value.dateFin); date.setDate(new Date(date).getDate() + 1)) {
-            let eventFerme: Evenement = new Evenement(data.type, this.convertDate(date));
-            this.eventsFerme.push(eventFerme);
-          }
-      });
-      this.loadCalendar = true;
-    }, (error) => {
-      this.messageErreur = error.error.message;
-    }
-  );  */
+
 
 }
