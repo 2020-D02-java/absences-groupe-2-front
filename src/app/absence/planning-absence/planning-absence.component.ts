@@ -56,7 +56,7 @@ export class PlanningAbsenceComponent implements OnInit {
             let date: Date;
             for (date = new Date(value.dateDebut); date <= new Date(value.dateFin); date.setDate(new Date(date).getDate() + 1)) {
               let event: Evenement = new Evenement(value.type, this.convertDate(date));
-              this.events.push(event);
+              this.events.push(event);            
             }
           }
         });
