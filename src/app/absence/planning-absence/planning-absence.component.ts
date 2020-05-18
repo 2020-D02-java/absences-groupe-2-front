@@ -85,8 +85,7 @@ export class PlanningAbsenceComponent implements OnInit {
           for (dateFerme = new Date(data.date); dateFerme <= new Date(data.date); dateFerme.setDate(new Date(dateFerme).getDate() + 1)) {
             let eventFerme: Evenement = new Evenement(data.commentaire, this.convertDate(dateFerme));
             this.events.push(eventFerme);
-          console.log(eventFerme.title)
-          }         
+          }
         });
         this.loadCalendar = true;
       }, (error) => {
@@ -98,8 +97,8 @@ export class PlanningAbsenceComponent implements OnInit {
 
   //Conversion de la date au bon format
   convertDate(inputFormat: Date) {
-    var d = new Date(inputFormat)
-    return [d.getFullYear(), this.pad(d.getMonth() + 1), this.pad(d.getDate())].join('-')
+    const d = new Date(inputFormat);
+    return [d.getFullYear(), this.pad(d.getMonth() + 1), this.pad(d.getDate())].join('-');
   }
 
   pad(s: number) { return (s < 10) ? '0' + s : s; }
