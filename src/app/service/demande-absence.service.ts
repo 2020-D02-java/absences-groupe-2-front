@@ -40,4 +40,12 @@ export class DemandeAbsenceService {
     });
   }
 
+  refuserDemande(id: number) {
+    return this.http.put<AbsenceVisualisation>(`${URL_BACKEND}/refuser?id=` +id,
+    {
+      id: `${id}`,
+      statut: Statut.REJETEE
+    });
+  }
+
 }

@@ -42,8 +42,15 @@ export class ValidationDemandesComponent implements OnInit {
     )
   }
 
-  refuserDemande() {
-
+  refuserDemande(id: number) {
+    this.absenceService.refuserDemande(id).subscribe(
+      () => {
+        window.location.reload();
+      },
+      (error) => {
+        this.messageErreur = error.error.message;
+      }
+    )
   }
 
 }
