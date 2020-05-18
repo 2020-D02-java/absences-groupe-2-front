@@ -32,6 +32,7 @@ import { CollegueService } from './service/collegue.service';
 import { ValidationDemandesComponent } from './validation-demandes/validation-demandes.component';
 import { PlanningAbsenceComponent } from './absence/planning-absence/planning-absence.component';
 import { AbsenceService } from './service/absence.service';
+import { AccueilComponent } from './accueil/accueil.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { AbsenceService } from './service/absence.service';
     VueParDepartementParJourParCollaborteurComponent,
     HistogrammeParDepartementParJourComponent,
     PlanningAbsenceComponent,
-    ValidationDemandesComponent
+    ValidationDemandesComponent,
+    AccueilComponent
   ],
   imports: [
     BrowserModule,

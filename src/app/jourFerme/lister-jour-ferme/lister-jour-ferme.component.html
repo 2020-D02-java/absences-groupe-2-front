@@ -12,7 +12,7 @@
     </select>
 </div>
 
-<table class="table table-striped">
+<table class="table table-striped" style="margin-bottom: 100px;">
     <thead class="bg-secondary">
         <tr>
             <th scope="col" class="border border-dark">Date</th>
@@ -30,10 +30,10 @@
             <td class="border border-dark">{{jour.date | date:'EEEE'}}</td>
             <td class="border border-dark">{{jour.commentaire}}</td>
             <td *ngIf="utilisateurConnecte.roles[0] == roleEnum.RoleAdmin" class="border border-dark w-10">
-                <button class="btn" routerLink="../modificationJourFerme/{{jour.id}}">
+                <button class="btn" routerLink="../modificationJourFerme/{{jour.id}}" *ngIf="jour.statut != statutEnum.VALIDEE">
                     <fa-icon [icon]="faPencil"></fa-icon>
                 </button>
-                <button class="btn" (click)="open(mymodal, jour.id)">
+                <button class="btn" (click)="open(mymodal, jour.id)" *ngIf="jour.statut != statutEnum.VALIDEE">
                     <fa-icon [icon]="faTrash"></fa-icon>
                 </button>
             </td>

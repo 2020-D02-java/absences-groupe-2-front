@@ -11,14 +11,16 @@
             <th scope="col" class="border border-dark">Date de fin</th>
             <th scope="col" class="border border-dark">Type</th>
             <th scope="col" class="border border-dark">Statut</th>
-            <th *ngIf="collegue.roles[0] == roleEnum.RoleAdmin" scope="col" class="border border-dark">Action</th>
+            <th scope="col" class="border border-dark">Action</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let absence of listeAbsences">
             <td class="border border-dark">{{absence.dateDebut | date: 'dd/MM/yyyy'}}</td>
             <td class="border border-dark">{{absence.dateFin | date: 'dd/MM/yyyy'}}</td>
-            <td class="border border-dark">{{absence.type | lowercase}}</td>
+            <td *ngIf='absence.type == typeAbsenceEnum.CONGES_PAYES' class="border border-dark">congés payés</td>
+            <td *ngIf='absence.type == typeAbsenceEnum.CONGES_SANS_SOLDE' class="border border-dark">congés sans soldes</td>
+            <td *ngIf='absence.type == typeAbsenceEnum.RTT_EMPLOYE' class="border border-dark">RTT</td>
             <td class="border border-dark">{{absence.statut}}</td>
             <td class="border border-dark">
                 <button *ngIf="absence.statut == statutEnum.INITIALE || absence.statut == statutEnum.REJETEE"
@@ -60,12 +62,6 @@
     </tbody>
 </table>
 
-<!-- <div class="row">
-  <div class="offset-9 col-3">
-   <a routerLink="../demandeAbsence"><button class="float-right btn btn-success">Demander une absence</button></a>
-  </div>
-</div> -->
-
 <div class="row justify-content-md-center">
     <div class="col-md-auto">
         <a routerLink="../demandeAbsence">
@@ -76,12 +72,14 @@
     </div>
 </div>
 
-<label><b>Solde des compteurs :</b></label>
-<ul *ngFor="let solde of listeSoldes">
-    <li *ngIf="solde.type.toString() == soldeEnum.CONGES_PAYES">Congés payés : {{solde.nombreDeJours}}</li>
-    <li *ngIf="solde.type.toString() == soldeEnum.RTT_EMPLOYE">RTT : {{solde.nombreDeJours}}</li>
-</ul>
-<br />
+<div style="margin-bottom: 70px;">
+  <label><b>Solde des compteurs :</b></label>
+  <ul *ngFor="let solde of listeSoldes">
+      <li *ngIf="solde.type.toString() == soldeEnum.CONGES_PAYES">Congés payés : {{solde.nombreDeJours}} jours</li>
+      <li *ngIf="solde.type.toString() == soldeEnum.RTT_EMPLOYE">RTT : {{solde.nombreDeJours}} jours</li>
+  </ul>
+  <br />
+</div>
 
 <div class="alert alert-danger" role="danger" *ngIf="messageErreur">
     <b>{{messageErreur}}</b>

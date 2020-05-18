@@ -1,31 +1,29 @@
+<script type="text/javascript" src="date.js"></script>
 <div class="row justify-content-md-center">
 	<div class="col-md-auto" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
 		<h2>Vue par d&eacute;partement par jour et par collaborateur</h2>
 	</div>
 </div>
+
 <div>
 	<div class="row mt-3">
-		<!-- Département -->
-		<div class="col-sm">
-			<h4 class="col-4">D&eacute;partement</h4>
-			<select class="form-control col-8">
-				<option>--LES OPTIONS--</option>
-			</select>
-		</div>
 
 		<!-- Mois -->
 		<div class="col-sm">
 			<h4 class="col-4">Mois</h4>
 			<select class="form-control col-8">
-				<option>--LES OPTIONS--</option>
+				<option *ngFor="let moi of listeMois" (click)="filtrerParMois(moi.number)" ng-model="moi.number">
+					{{moi.nom}}
+				</option>
 			</select>
 		</div>
 
 		<!-- Année -->
 		<div class="col-sm">
-			<h4 class="col-4">Ann&eacute;e</h4>
-			<select class="form-control col-8">
-				<option>--LES OPTIONS--</option>
+			<h4 class="col-4">Annee</h4>
+			<select class="form-control" [(ngModel)]="yearSelect">
+				<option *ngFor="let annee of listeAnnees" (click)="filtrerParAnnee(annee)" ng-model="annee">{{annee}}
+				</option>
 			</select>
 		</div>
 	</div>
@@ -35,73 +33,55 @@
 	<thead class="bg-secondary">
 		<tr>
 			<th scope="col" class="border border-dark">Nom</th>
-			<th scope="col" class="border border-dark">01</th>
-			<th scope="col" class="border border-dark">02</th>
-			<th scope="col" class="border border-dark">03</th>
-			<th scope="col" class="border border-dark">04</th>
-			<th scope="col" class="border border-dark">05</th>
-			<th scope="col" class="border border-dark">06</th>
-			<th scope="col" class="border border-dark">07</th>
-			<th scope="col" class="border border-dark">08</th>
-			<th scope="col" class="border border-dark">09</th>
-			<th scope="col" class="border border-dark">10</th>
-			<th scope="col" class="border border-dark">11</th>
-			<th scope="col" class="border border-dark">12</th>
-			<th scope="col" class="border border-dark">13</th>
-			<th scope="col" class="border border-dark">14</th>
-			<th scope="col" class="border border-dark">15</th>
-			<th scope="col" class="border border-dark">16</th>
-			<th scope="col" class="border border-dark">17</th>
-			<th scope="col" class="border border-dark">18</th>
-			<th scope="col" class="border border-dark">19</th>
-			<th scope="col" class="border border-dark">20</th>
-			<th scope="col" class="border border-dark">21</th>
-			<th scope="col" class="border border-dark">22</th>
-			<th scope="col" class="border border-dark">23</th>
-			<th scope="col" class="border border-dark">24</th>
-			<th scope="col" class="border border-dark">25</th>
-			<th scope="col" class="border border-dark">26</th>
-			<th scope="col" class="border border-dark">27</th>
-			<th scope="col" class="border border-dark">28</th>
-			<th scope="col" class="border border-dark">29</th>
-			<th scope="col" class="border border-dark">30</th>
-			<th scope="col" class="border border-dark">31</th>
+			<th *ngFor="let jour of tableauDeJours" class="border border-dark">{{jour[0]}}</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr *ngFor="let collegues of listeCollegues">
 			<td scope="col" class="border border-dark">{{collegues.nom}}</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
-			<td scope="col" class="border border-dark">-</td>
+			<ng-container *ngFor="let jour of tableauDeJours">
+				<!-- Cas 1 , le jour est un jour WEEK-END, il est grisé -->
+				<td scope="col" class="bg-secondary border border-dark"
+					*ngIf="jour[1]=='Sat' || jour[1]=='Sun'; else autreCas"></td>
+
+				<!-- Cas 2 , le jour n'est pas un jour WEEK-END, on affiche le contenu-->
+				<ng-template #autreCas>
+
+					<td scope="col" class="border border-dark">
+						<ng-container *ngFor="let abs of listeAbsences">
+							<div *ngIf="(abs.emailCollegue==collegues.email)&&
+							(
+								(
+									abs.statut=='VALIDEE'
+								)
+								&&
+								(
+									abs.dateDebut.toString()<=(anneeSelectionnee+'-'+moisSelectionne+'-'+jour[0])
+								)
+								&&
+								(
+									abs.dateFin.toString()>=(anneeSelectionnee+'-'+moisSelectionne+'-'+jour[0])
+								)
+							)">{{abs.type | slice:0:1}}</div>
+						</ng-container>
+					</td>
+
+				</ng-template>
+			</ng-container>
 		</tr>
 	</tbody>
 </table>
+
+<div class="row justify-content-md-center">
+    <div class="col-md-auto">
+        <a routerLink="../vueSynthetiques">
+            <button class="btn btn-danger">
+                <fa-icon [icon]="faTimes"></fa-icon> Retour
+            </button>
+        </a>
+    </div>
+</div>
+
+<div class="alert alert-info col-md-auto mt-3"  style="width:40%;" role="alert">
+  <b>C</b>: Cong&eacute;s, <b>F</b>: F&eacute;ri&eacute;, <b>M</b>: Mission, <b>R</b>: RTT, <b>S</b>: Sans solde.
+</div>

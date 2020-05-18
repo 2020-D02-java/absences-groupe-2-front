@@ -74,6 +74,7 @@ export class ModificationAbsenceComponent implements OnInit {
     // -- Gestion des erreurs --
     // 1. Cas jour saisi dans le passé ou aujourd'hui, erreur
     // 2. Cas DateFin < DateDebut
+    // 2.0 En cas d'oubli de saisie de type d'absence
     // 2.1 Cas date d�but saisie le WE, erreur
     // 2.1 Cas date fin saisie le WE, erreur
     // 3. Cas congès sans solde, et motif manquant
@@ -84,6 +85,9 @@ export class ModificationAbsenceComponent implements OnInit {
     }
     else if (dateFin < dateDebut) {
       this.messageErreur = 'ERREUR. LA DATE DE FIN NE PEUT ETRE INFERIEURE A LA DATE DE DEBUT DE CONGES.';
+    }
+    else if (type === 'null') {
+      this.messageErreur = 'IL EST NECESSAIRE DE SELECTIONNER UN TYPE D\'ABSENCE';
     }
     else if (jourSaisieDateDebut === 'Sat' || jourSaisieDateDebut === 'Sun') {
       this.messageErreur = 'ERREUR. LA DATE DE DEBUT NE PEUT PAS AVOIR LIEU DURANT LE WEEK-END.';
