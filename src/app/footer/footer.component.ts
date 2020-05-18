@@ -26,7 +26,7 @@ export class FooterComponent implements OnInit {
 
   traitementDeNuit(): void {
     this.absenceService.traitementDeNuit().subscribe();
-    this.router.navigate(['listerJourFerme']);
+    this.router.navigate(['visualisationAbsence']);
   }
 
 }
