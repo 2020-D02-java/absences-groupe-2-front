@@ -29,7 +29,9 @@ export class PlanningAbsenceComponent implements OnInit {
   listeAbsences: AbsenceVisualisation[];
   events: Evenement[] = [];
 
+
   loadCalendar: boolean = false;
+  loadCalendarFerme: boolean = false;
   statutEnum = Statut;
   listeJourFerme: JourFermeVisuPlanning[] = new Array();
 
@@ -47,35 +49,6 @@ export class PlanningAbsenceComponent implements OnInit {
       }
     );
 
-    // Afficher les absences
-    this.absenceService.listerAbsencesCollegue().subscribe(
-      (absences) => {
-        this.listeAbsences = absences;
-        this.listeAbsences.forEach(value => {
-          if (value.statut == this.statutEnum.VALIDEE) {
-            let date: Date;
-            for (date = new Date(value.dateDebut); date <= new Date(value.dateFin); date.setDate(new Date(date).getDate() + 1)) {
-              let event: Evenement = new Evenement(value.type, this.convertDate(date));
-              this.events.push(event);            
-            }
-          }
-        });
-        this.loadCalendar = true;
-      }, (error) => {
-        this.messageErreur = error.error.message;
-      }
-    );
-
-    //Lister solde du collegue
-    this.absenceService.listerSoldesCollegue().subscribe(
-      (soldes) => {
-        this.listeSoldes = soldes
-      },
-      (error) => {
-        this.messageErreur = error.error.message;
-      }
-    );
-
     // Lister les jours fermés
     this.jourFermeService.listerJourFermePlanning().subscribe(
       (listeJours) => {
@@ -89,6 +62,35 @@ export class PlanningAbsenceComponent implements OnInit {
         });
         this.loadCalendar = true;
       }, (error) => {
+        this.messageErreur = error.error.message;
+      }
+    );
+
+    // Afficher les absences
+    this.absenceService.listerAbsencesCollegue().subscribe(
+      (absences) => {
+        this.listeAbsences = absences;
+        this.listeAbsences.forEach(value => {
+          if (value.statut == this.statutEnum.VALIDEE) {
+            let date: Date;
+            for (date = new Date(value.dateDebut); date <= new Date(value.dateFin); date.setDate(new Date(date).getDate() + 1)) {
+              let event: Evenement = new Evenement(value.type, this.convertDate(date));
+              this.events.push(event);
+            }
+          }
+        });
+        this.loadCalendarFerme = true;
+      }, (error) => {
+        this.messageErreur = error.error.message;
+      }
+    );
+
+    //Lister solde du collegue
+    this.absenceService.listerSoldesCollegue().subscribe(
+      (soldes) => {
+        this.listeSoldes = soldes
+      },
+      (error) => {
         this.messageErreur = error.error.message;
       }
     );

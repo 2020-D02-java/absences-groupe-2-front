@@ -4,13 +4,14 @@
         <h2>Planning des absences</h2>
     </div>
 </div>
-<div *ngIf="loadCalendar">
+<div *ngIf="loadCalendar && loadCalendarFerme">
     <full-calendar defaultView="dayGridMonth"
     [plugins]="calendarPlugins"
     [weekends]="false"
     [height]=600
     [locale]="locale"
     [events]="events"
+    
     eventColor = "#33FF8A"
     ></full-calendar>
 </div>
