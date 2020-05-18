@@ -3,20 +3,24 @@
     <div class="col-md-auto" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
         <h2>Planning des absences</h2>
     </div>
-    </div>
-<!--[events]="[
-    { title: 'event 1', date: '2019-04-01' },
-    { title: 'event 2', date: '2019-04-02' }
-  ]"-->
-    <full-calendar defaultView="dayGridMonth" 
-    [plugins]="calendarPlugins"
-    [weekends] = "false"
-    [height] = 600
-    [locale] = "locale"
-    [events]=  "events"
-    ></full-calendar>
+</div>
+<div *ngIf="loadCalendar">
+<full-calendar defaultView="dayGridMonth" 
+[plugins]="calendarPlugins" 
+[weekends]="false" 
+[height]=600 
+[locale]="locale"
+[events]="events"
+[events] = "[
+{ title: 'event 1', date: '2020-05-01' },
+{ title: 'event 2', date: '2020-05-02' }
+]"></full-calendar>
+</div>
+
+<div style="margin-bottom : 100px">
     <label><b>Solde des compteurs :</b></label>
-<ul *ngFor="let solde of listeSoldes">
-    <li *ngIf="solde.type.toString() == soldeEnum.CONGES_PAYES">Congés payés : {{solde.nombreDeJours}}</li>
-    <li *ngIf="solde.type.toString() == soldeEnum.RTT_EMPLOYE">RTT : {{solde.nombreDeJours}}</li>
-</ul>
+    <ul *ngFor="let solde of listeSoldes">
+        <li *ngIf="solde.type.toString() == soldeEnum.CONGES_PAYES">Congés payés : {{solde.nombreDeJours}} jour(s)</li>
+        <li *ngIf="solde.type.toString() == soldeEnum.RTT_EMPLOYE">RTT : {{solde.nombreDeJours}} jour(s)</li>
+    </ul>
+</div>
