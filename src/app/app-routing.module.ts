@@ -17,28 +17,30 @@ import { StatutManagerService } from './service/statut-manager.service';
 import { VueParDepartementParJourParCollaborteurComponent } from './vue-synthetiques/vue-par-departement-par-jour-par-collaborteur/vue-par-departement-par-jour-par-collaborteur.component';
 import { HistogrammeParDepartementParJourComponent } from './vue-synthetiques/histogramme-par-departement-par-jour/histogramme-par-departement-par-jour.component';
 import { PlanningAbsenceComponent } from './absence/planning-absence/planning-absence.component';
+import { AccueilComponent } from './accueil/accueil.component';
 
 const routes: Routes = [
   // canActivate: [StatutConnecteService] ==> Permet de verifier si l'utilisateur est connecte
   // canActivate: [StatutAdministrateurService] ==> Permet de verifier si l'utilisateur connecte est bien un administrateur
   // canActivate: [StatutManagerService] ==> Permet de verifier si l'utilisateur connecte est bien un manager
   // canActivate: [StatutEmployeService] ==> Permet de verifier si l'utilisateur connecte est bien un employe
+  { path: 'accueil', component: AccueilComponent, canActivate: [StatutConnecteService]}, //  tech accessible uniquement si connecte
   { path: 'tech', component: TechComponent, canActivate: [StatutConnecteService] }, //  tech accessible uniquement si connecte
   { path: 'auth', component: AuthComponent },
   { path: 'listerJourFerme', component: ListerJourFermeComponent, canActivate: [StatutConnecteService] },
   { path: 'creationJourFerme', component: CreationJourFermeComponent, canActivate: [StatutConnecteService, StatutAdministrateurService] },
-  { path: 'accesRefuse', component: AccesRefuseComponent },
+  { path: 'accesRefuse', component: AccesRefuseComponent, canActivate: [StatutConnecteService] },
   { path: 'demandeAbsence', component: DemandeAbsenceComponent, canActivate: [StatutConnecteService] },
   { path: 'visualisationAbsence', component: VisualisationAbsenceComponent, canActivate: [StatutConnecteService] },
-  { path: 'modificationAbsence/:id', component: ModificationAbsenceComponent, canActivate: [StatutConnecteService, StatutAdministrateurService] },
+  { path: 'modificationAbsence/:id', component: ModificationAbsenceComponent, canActivate: [StatutConnecteService] },
   { path: 'modificationJourFerme/:id', component: ModificationJourFermeComponent, canActivate: [StatutConnecteService, StatutAdministrateurService] },
   { path: 'planningAbsence', component: PlanningAbsenceComponent, canActivate: [StatutConnecteService] },
   { path: 'vueSynthetiques', component: VueSynthetiquesComponent, canActivate: [StatutConnecteService, StatutManagerService] },
   { path: 'vueParDepartementParJourParCollaborateur', component: VueParDepartementParJourParCollaborteurComponent, canActivate: [StatutConnecteService, StatutManagerService] },
   { path: 'histogrammeParDepartementParJour', component: HistogrammeParDepartementParJourComponent, canActivate: [StatutConnecteService, StatutManagerService] },
-  { path: '', redirectTo: '/tech', pathMatch: 'full' },
+  { path: '', redirectTo: '/accueil', pathMatch: 'full' },
   // Cas url inexistant
-  { path: 'not-found', component: FourOhFourComponent },
+  { path: 'not-found', component: FourOhFourComponent , canActivate: [StatutConnecteService]},
   // Bien faire attention de laisser ce path en fin de liste, mettre les votres avant.
   { path: '**', redirectTo: '/not-found' }
 ];

@@ -52,6 +52,7 @@ export class CreationJourFermeComponent implements OnInit {
     // V�rification du jour saisi
     // Cas 1 , jour saisi est dans le pass�, erreur
     // Cas 2 , saisie RTT le WE, erreur
+    // Cas 2.1, cas oubli saisie de type jour ferme
     // Cas 3 , cas JOUR FERIE et commentaire manquant
     // Cas 4 , jour saisi est dans le futur, ok
 
@@ -60,6 +61,9 @@ export class CreationJourFermeComponent implements OnInit {
     }
     else if (typeJourFerme === 'RTT_EMPLOYEUR' && (jourSaisie === 'Sat' || jourSaisie === 'Sun')) {
       this.messageErreur = 'ERREUR. IMPOSSIBLE DE SAISIR UN RTT LE WEEK-END.';
+    }
+    else if (typeJourFerme === 'null') {
+      this.messageErreur = 'IL EST NECESSAIRE DE SELECTIONNER UN TYPE DE JOUR FERME';
     }
     else if (typeJourFerme === 'JOURS_FERIES' && commentaireJourFerme === '') {
       this.messageErreur = 'ERREUR. LE COMMENTAIRE EST OBLIGATOIRE POUR LES JOURS FERIES.';

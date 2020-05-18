@@ -30,6 +30,8 @@ import { CollegueService } from './service/collegue.service';
 import { PlanningAbsenceComponent } from './absence/planning-absence/planning-absence.component';
 import { AbsenceService } from './service/absence.service';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { AccueilComponent } from './accueil/accueil.component';
+
 
 @NgModule({
   declarations: [
@@ -50,6 +52,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     VueParDepartementParJourParCollaborteurComponent,
     HistogrammeParDepartementParJourComponent,
     PlanningAbsenceComponent,
+    AccueilComponent,
   ],
   imports: [
     BrowserModule,
