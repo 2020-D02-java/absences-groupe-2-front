@@ -93,7 +93,6 @@ export class PlanningAbsenceComponent implements OnInit {
         this.messageErreur = error.error.message;
       }
     );
-
   }
 
   //Conversion de la date au bon format
