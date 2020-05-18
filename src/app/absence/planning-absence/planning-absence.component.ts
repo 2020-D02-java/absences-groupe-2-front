@@ -40,7 +40,7 @@ export class PlanningAbsenceComponent implements OnInit {
 
   ngOnInit(): void {
 
-    //récupération du collegue connecté
+    // Récupération du collegue connecté
     this.authService.collegueConnecteObs.subscribe(
       (col) => {
         this.collegue = col
@@ -71,7 +71,7 @@ export class PlanningAbsenceComponent implements OnInit {
       (absences) => {
         this.listeAbsences = absences;
         this.listeAbsences.forEach(value => {
-          if (value.statut == this.statutEnum.VALIDEE) {
+          if (value.statut === this.statutEnum.VALIDEE) {
             let date: Date;
             for (date = new Date(value.dateDebut); date <= new Date(value.dateFin); date.setDate(new Date(date).getDate() + 1)) {
               let event: Evenement = new Evenement(value.type, this.convertDate(date));
@@ -85,10 +85,10 @@ export class PlanningAbsenceComponent implements OnInit {
       }
     );
 
-    //Lister solde du collegue
+    // Lister solde du collegue
     this.absenceService.listerSoldesCollegue().subscribe(
       (soldes) => {
-        this.listeSoldes = soldes
+        this.listeSoldes = soldes;
       },
       (error) => {
         this.messageErreur = error.error.message;
@@ -97,7 +97,7 @@ export class PlanningAbsenceComponent implements OnInit {
 
   }
 
-  //Conversion de la date au bon format
+  // Conversion de la date au bon format
   convertDate(inputFormat: Date) {
     const d = new Date(inputFormat);
     return [d.getFullYear(), this.pad(d.getMonth() + 1), this.pad(d.getDate())].join('-');
