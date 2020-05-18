@@ -52,7 +52,7 @@
                 </div>
                 <div class="modal-footer">
                     <div class="alert alert-success" role="success" *ngIf="message">
-                        <b>{{message}}</b>
+                        <b>{{message | uppercase}}</b>
                     </div>
                     <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Je suis sur
                         !</button>
@@ -82,5 +82,5 @@
 </div>
 
 <div class="alert alert-danger" role="danger" *ngIf="messageErreur">
-    <b>{{messageErreur}}</b>
+    <b>{{messageErreur | uppercase}}</b>
 </div>
