@@ -6,7 +6,7 @@ import { Collegue } from 'src/app/auth/auth.domains';
 import { Solde } from 'src/app/models/solde';
 import { TypeSolde } from 'src/app/models/type-solde';
 import { AbsenceVisualisation } from 'src/app/models/absence-visualisation';
-import { Evenement } from 'src/app/models/Evenement';
+import { Evenement } from 'src/app/models/evenement';
 import { Statut } from 'src/app/models/statut';
 import { JourFermeService } from 'src/app/service/jour-ferme.service';
 import { JourFermeVisuPlanning } from 'src/app/models/jour-ferme-visu-planning';
