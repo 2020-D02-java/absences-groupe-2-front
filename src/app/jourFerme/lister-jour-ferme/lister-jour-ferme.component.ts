@@ -8,6 +8,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { Role } from 'src/app/models/role';
 import { JourFermeVisualisation } from 'src/app/models/jour-ferme-visualisation';
+import { Statut } from 'src/app/models/statut';
 
 @Component({
   selector: 'app-lister-jour-ferme',
@@ -18,6 +19,7 @@ export class ListerJourFermeComponent implements OnInit {
 
   // Enumerations
   roleEnum = Role;
+  statutEnum = Statut;
 
   // Icones
   faPencil = faPencilAlt;
