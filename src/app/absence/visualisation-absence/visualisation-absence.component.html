@@ -72,13 +72,13 @@
     </div>
 </div>
 
-<div>
-  <label><b>Solde des compteurs :</b></label>
+
+<div class="alert alert-info col-md-auto mt-3" style="width:25%;" role="alert">
+  <label><b><u>Solde des compteurs</u> :</b></label>
   <ul *ngFor="let solde of listeSoldes">
-      <li *ngIf="solde.type.toString() == soldeEnum.CONGES_PAYES">Congés payés : {{solde.nombreDeJours}} jour(s)</li>
-      <li *ngIf="solde.type.toString() == soldeEnum.RTT_EMPLOYE">RTT : {{solde.nombreDeJours}} jour(s)</li>
+      <li *ngIf="solde.type.toString() == soldeEnum.CONGES_PAYES"><b>Congés payés</b> : {{solde.nombreDeJours}} jour(s)</li>
+      <li *ngIf="solde.type.toString() == soldeEnum.RTT_EMPLOYE"><b>RTT</b> : {{solde.nombreDeJours}} jour(s)</li>
   </ul>
-  <br />
 </div>
 
 <div class="alert alert-danger" role="danger" *ngIf="messageErreur">
