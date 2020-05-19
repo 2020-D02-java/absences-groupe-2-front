@@ -7,8 +7,8 @@
     <label class="col-lg-3">
         <h4>Selection par ann&eacute;e : </h4>
     </label>
-    <select class="form-control col-lg-2" [(ngModel)]='yearSelect'>
-        <option *ngFor="let year of listYears" (click)="filterYear(year)" ng-model="year">{{year}}</option>
+    <select class="form-control col-lg-2" [ngModel]='yearSelect' (ngModelChange)="filterYear($event)">
+        <option *ngFor="let year of listYears" [value]="year">{{year}}</option>
     </select>
 </div>
 
