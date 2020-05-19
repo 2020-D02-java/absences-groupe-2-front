@@ -30,6 +30,7 @@ export class VueParDepartementParJourParCollaborteurComponent implements OnInit 
 
   // Année
   yearSelect: number;
+  moisSelect: number;
   listeAnnees: number[] = new Array();
 
   // Mois

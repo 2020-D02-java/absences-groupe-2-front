@@ -73,7 +73,8 @@ export class VisualisationAbsenceComponent implements OnInit {
 
   onDelete(id: number) {
     this.absenceService.suppressionAbsence(id).subscribe(
-      data => this.refresh(data));
+      data => this.refresh(data)
+      );
   }
   // [FIN] ***** GESTION DU MODAL DE SUPPRESSION ****** //
 

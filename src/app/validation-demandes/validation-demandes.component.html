@@ -25,15 +25,65 @@
                     <td class="border border-dark">{{abs.type}}</td>
                     <td class="border border-dark">{{abs.collegue.nom}}</td>
                     <td class="border border-dark w-10">
-                        <button class="btn" (click)='validerDemande(abs.id)'>
-                        <fa-icon [icon]="faCheck" class="text-success"></fa-icon>
-                    </button>
-                        <button class="btn" (click)='refuserDemande(abs.id)'>
-                        <fa-icon [icon]="faTimes" class="text-danger"></fa-icon>
-                    </button>
+                        <button class="btn" (click)="openValidation(modalValidation, abs.id)">
+                            <fa-icon [icon]="faCheck" class="text-success"></fa-icon>
+                        </button>
+                        <button class="btn" (click)="openSuppression(modalSuppression, abs.id)">
+                            <fa-icon [icon]="faTimes" class="text-danger"></fa-icon>
+                        </button>
                     </td>
                 </ng-container>
+
+
+                <!-- modal choix suppression -->
+                <ng-template #modalSuppression let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Refuse d'une demande d'absence</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">X</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h5>&Ecirc;tes vous s&ucirc;r de vouloir refuser la demande : <br></h5>
+                        <ul>
+                            <li><b>Date de d&eacute;but : </b>{{abs.dateDebut}}</li>
+                            <li><b>Date de fin : </b>{{abs.dateFin}}</li>
+                            <li><b>Type : </b>{{abs.type | lowercase}}</li>
+                            <li><b>Statut : </b>{{abs.statut}}</li>
+                            <li><b>Motif : </b>{{abs.motif}}</li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Je suis sur
+                            !</button>
+                    </div>
+                </ng-template>
+
+
+                <!-- modal choix validation -->
+                <ng-template #modalValidation let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Validation d'une absence</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">X</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h5>&Ecirc;tes vous s&ucirc;r de vouloir valider: <br></h5>
+                        <ul>
+                            <li><b>Date de d&eacute;but : </b>{{abs.dateDebut}}</li>
+                            <li><b>Date de fin : </b>{{abs.dateFin}}</li>
+                            <li><b>Type : </b>{{abs.type | lowercase}}</li>
+                            <li><b>Statut : </b>{{abs.statut}}</li>
+                            <li><b>Motif : </b>{{abs.motif}}</li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" (click)="modal.close('Save click')">Valider</button>
+                    </div>
+                </ng-template>
             </tr>
+
         </tbody>
     </table>
 </ng-container>

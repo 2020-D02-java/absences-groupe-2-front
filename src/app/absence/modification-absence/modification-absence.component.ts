@@ -6,6 +6,9 @@ import { Statut } from 'src/app/models/statut';
 import { AbsenceVisualisation } from 'src/app/models/absence-visualisation';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { AbsenceService } from 'src/app/service/absence.service';
+import { AuthService } from 'src/app/service/auth.service';
+import { Collegue } from 'src/app/auth/auth.domains';
+import { AbsenceVisualisationEmail } from 'src/app/models/absence-visualisation-email';
 
 @Component({
   selector: 'app-modification-absence',
@@ -18,25 +21,70 @@ export class ModificationAbsenceComponent implements OnInit {
   faCheck = faCheck;
   faTimes = faTimes;
 
+  // Verification
+  emailVerification: string;
+
   // Initialisations
   formModificationAbsence: FormGroup;
   messageErreur = '';
   messageValidation = '';
   id: number;
   absence: AbsenceVisualisation;
+  collegue: Collegue;
+  listeAbsences: AbsenceVisualisationEmail[] = new Array();
 
   // Constructeur
   constructor(private router: Router,
     private formBuilder: FormBuilder,
     private routerLinkActive: ActivatedRoute,
-    private AbsenceService: AbsenceService) { }
+    private absenceService: AbsenceService,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
+    // Initialisation du formulaire vide.
+    this.formModificationAbsence = this.formBuilder.group({
+      dateDebut: ['', Validators.required],
+      dateFin: ['', Validators.required],
+      typeAbsence: ['', Validators.required],
+      motifAbsence: ['']
+    });
+
     // Snapshot pour rï¿½cupï¿½rer l'id passï¿½ via l'url
     this.id = this.routerLinkActive.snapshot.params['id'];
 
-    // Subscription ï¿½ l'observable
-    this.AbsenceService.getAbsenceParId(this.id).subscribe(
+    // Récupération informations du collegue connecté (email) pour la vérification suivante.
+    this.authService.collegueConnecteObs.subscribe(
+      (col) => {
+        this.collegue = col
+      }, (error) => {
+        this.messageErreur = error.error.message;
+      }
+    );
+
+    // Nous vérifions que l'utilisateur n'essai pas de passer une ID absence dans l'url, 
+    // pour modifier une absence à laquelle il ne devrait pas avoir accès
+    this.absenceService.listerAbsencesToutesCollegue().subscribe(
+      (absences) => {
+        this.listeAbsences = absences;
+        this.listeAbsences.forEach(data => {
+          if (data.id == this.routerLinkActive.snapshot.params['id']) {
+
+            // On recupere l'email de l'absence récupérée
+            this.emailVerification = data.emailCollegue;
+
+            // On vérifie que l'absence corresponde bien à un absence associée au collegue connecté
+            // Auquel cas on le redirige
+            if (this.emailVerification !== this.collegue.email) {
+              this.router.navigate(['accesRefuse']);
+
+            }
+          }
+        });
+      }
+    );
+
+    // Récupération des informations
+    this.absenceService.getAbsenceParId(this.id).subscribe(
       (abs) => {
         this.absence = abs;
         this.initialiserFormulaire();
@@ -99,7 +147,7 @@ export class ModificationAbsenceComponent implements OnInit {
       this.messageErreur = 'ERREUR. LE MOTIF EST OBLIGATOIRE POUR UNE DEMANDE DE CONGES SANS SOLDE.';
     }
     else {
-      this.AbsenceService.modifierAbsence(this.id, dateDebut, dateFin, type, motif, Statut.INITIALE).subscribe(
+      this.absenceService.modifierAbsence(this.id, dateDebut, dateFin, type, motif, Statut.INITIALE).subscribe(
         () => { },
         (error) => {
           this.messageErreur = error.error.message;
