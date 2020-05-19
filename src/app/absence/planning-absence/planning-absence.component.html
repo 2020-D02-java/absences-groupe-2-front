@@ -1,5 +1,24 @@
+<!DOCTYPE html>
 <div class="row justify-content-md-center">
     <div class="col-md-auto" style="border: 1px solid #ced4da;background-color: #e3f2fd; border-radius:7px; ">
         <h2>Planning des absences</h2>
     </div>
+</div>
+<div *ngIf="loadCalendar && loadCalendarFerme">
+    <full-calendar defaultView="dayGridMonth"
+    [plugins]="calendarPlugins"
+    [weekends]="false"
+    [height]=600
+    [locale]="locale"
+    [events]="events"
+    
+    eventColor = "#33FF8A"
+    ></full-calendar>
+</div>
+<div>
+    <label><b>Solde des compteurs :</b></label>
+    <ul *ngFor="let solde of listeSoldes">
+        <li *ngIf="solde.type.toString() == soldeEnum.CONGES_PAYES">Congés payés : {{solde.nombreDeJours}} jour(s)</li>
+        <li *ngIf="solde.type.toString() == soldeEnum.RTT_EMPLOYE">RTT : {{solde.nombreDeJours}} jour(s)</li>
+    </ul>
 </div>

@@ -37,10 +37,10 @@
             </div>
 
             <div class="alert alert-danger" role="danger" *ngIf="messageErreur">
-                <b>{{messageErreur}}</b>
+                <b>{{messageErreur | uppercase}}</b>
             </div>
             <div class="alert alert-success" role="success" *ngIf="messageValidation">
-                <b>{{messageValidation}}</b>
+                <b>{{messageValidation | uppercase}}</b>
             </div>
 
             <div class="row justify-content-md-center">

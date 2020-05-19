@@ -16,6 +16,7 @@ import { VueSynthetiquesComponent } from './vue-synthetiques/vue-synthetiques.co
 import { StatutManagerService } from './service/statut-manager.service';
 import { VueParDepartementParJourParCollaborteurComponent } from './vue-synthetiques/vue-par-departement-par-jour-par-collaborteur/vue-par-departement-par-jour-par-collaborteur.component';
 import { HistogrammeParDepartementParJourComponent } from './vue-synthetiques/histogramme-par-departement-par-jour/histogramme-par-departement-par-jour.component';
+import { ValidationDemandesComponent } from './validation-demandes/validation-demandes.component';
 import { PlanningAbsenceComponent } from './absence/planning-absence/planning-absence.component';
 import { AccueilComponent } from './accueil/accueil.component';
 
@@ -38,7 +39,9 @@ const routes: Routes = [
   { path: 'vueSynthetiques', component: VueSynthetiquesComponent, canActivate: [StatutConnecteService, StatutManagerService] },
   { path: 'vueParDepartementParJourParCollaborateur', component: VueParDepartementParJourParCollaborteurComponent, canActivate: [StatutConnecteService, StatutManagerService] },
   { path: 'histogrammeParDepartementParJour', component: HistogrammeParDepartementParJourComponent, canActivate: [StatutConnecteService, StatutManagerService] },
-  { path: '', redirectTo: '/accueil', pathMatch: 'full' },
+  { path: 'validationDemandes', component: ValidationDemandesComponent, canActivate: [StatutConnecteService, StatutManagerService] },
+
+  { path: '', redirectTo: '/tech', pathMatch: 'full' },
   // Cas url inexistant
   { path: 'not-found', component: FourOhFourComponent , canActivate: [StatutConnecteService]},
   // Bien faire attention de laisser ce path en fin de liste, mettre les votres avant.
