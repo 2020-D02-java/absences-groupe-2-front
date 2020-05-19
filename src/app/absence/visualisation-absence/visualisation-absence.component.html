@@ -11,7 +11,7 @@
             <th scope="col" class="border border-dark">Date de fin</th>
             <th scope="col" class="border border-dark">Type</th>
             <th scope="col" class="border border-dark">Statut</th>
-            <th scope="col" class="border border-dark">Action</th>
+            <th scope="col" class="border border-dark text-center">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -22,7 +22,7 @@
             <td *ngIf='absence.type == typeAbsenceEnum.CONGES_SANS_SOLDE' class="border border-dark">congés sans soldes</td>
             <td *ngIf='absence.type == typeAbsenceEnum.RTT_EMPLOYE' class="border border-dark">RTT</td>
             <td class="border border-dark">{{absence.statut}}</td>
-            <td class="border border-dark">
+            <td class="border border-dark text-center">
                 <button *ngIf="absence.statut == statutEnum.INITIALE || absence.statut == statutEnum.REJETEE"
                     class="btn" routerLink="../modificationAbsence/{{absence.id}}">
                     <fa-icon [icon]="faPencil"></fa-icon>

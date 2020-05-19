@@ -3,7 +3,7 @@
         <h2>Jours feri&eacute;s et RTT employeurs</h2>
     </div>
 </div>
-<div class="row m-3">
+<div class="row mt-3 mb-3">
     <label class="col-lg-3">
         <h4>Selection par ann&eacute;e : </h4>
     </label>
@@ -19,7 +19,7 @@
             <th scope="col" class="border border-dark">Type</th>
             <th scope="col" class="border border-dark">Jour</th>
             <th scope="col" class="border border-dark">Commentaires</th>
-            <th *ngIf="utilisateurConnecte.roles[0] == roleEnum.RoleAdmin" scope="col" class="border border-dark">
+            <th *ngIf="utilisateurConnecte.roles[0] == roleEnum.RoleAdmin" scope="col" class="border border-dark text-center">
                 Action</th>
         </tr>
     </thead>
@@ -29,7 +29,7 @@
             <td class="border border-dark">{{jour.type}}</td>
             <td class="border border-dark">{{jour.date | date:'EEEE'}}</td>
             <td class="border border-dark">{{jour.commentaire}}</td>
-            <td *ngIf="utilisateurConnecte.roles[0] == roleEnum.RoleAdmin" class="border border-dark w-10">
+            <td *ngIf="utilisateurConnecte.roles[0] == roleEnum.RoleAdmin" class="border border-dark w-10 text-center">
                 <button class="btn" routerLink="../modificationJourFerme/{{jour.id}}" *ngIf="jour.statut != statutEnum.VALIDEE">
                     <fa-icon [icon]="faPencil"></fa-icon>
                 </button>
