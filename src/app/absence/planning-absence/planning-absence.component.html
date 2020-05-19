@@ -16,7 +16,7 @@
     ></full-calendar>
 </div>
 
-<div class="alert alert-info col-md-auto mt-3" style="width:25%;" role="alert">
+<div class="alert alert-info mt-3 col-md-5 col-lg-3 col-auto" role="alert">
   <label><b><u>Solde des compteurs</u> :</b></label>
   <ul *ngFor="let solde of listeSoldes">
       <li *ngIf="solde.type.toString() == soldeEnum.CONGES_PAYES"><b>Congés payés</b> : {{solde.nombreDeJours}} jour(s)</li>
