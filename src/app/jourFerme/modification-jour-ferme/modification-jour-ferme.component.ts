@@ -19,6 +19,7 @@ export class ModificationJourFermeComponent implements OnInit {
 
   // Initialisations
   formModificationJourFerme: FormGroup;
+
   messageErreur = '';
   messageValidation = '';
   id: number;
@@ -31,6 +32,13 @@ export class ModificationJourFermeComponent implements OnInit {
     private routerLinkActive: ActivatedRoute) { }
 
   ngOnInit(): void {
+    // Initialisation du formulaire vide.
+    this.formModificationJourFerme = this.formBuilder.group({
+      dateJourFerme: ['', Validators.required],
+      typeJourFerme: ['', Validators.required],
+      commentaireJourFerme: ['']
+    });
+
     // Snapshot pour récupérer l'id passé via l'url
     this.id = this.routerLinkActive.snapshot.params['id'];
 

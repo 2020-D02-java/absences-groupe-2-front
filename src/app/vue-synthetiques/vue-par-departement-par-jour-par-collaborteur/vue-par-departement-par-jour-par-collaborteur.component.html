@@ -11,8 +11,8 @@
 		<!-- Mois -->
 		<div class="col-sm">
 			<h4 class="col-4">Mois</h4>
-			<select class="form-control col-8">
-				<option *ngFor="let moi of listeMois" (click)="filtrerParMois(moi.number)" ng-model="moi.number">
+			<select class="form-control" [(ngModel)]="moisSelect" (ngModelChange)="filtrerParMois($event)">
+				<option *ngFor="let moi of listeMois" [value]="moi.number" ng-model="moi">
 					{{moi.nom}}
 				</option>
 			</select>
@@ -21,15 +21,16 @@
 		<!-- Année -->
 		<div class="col-sm">
 			<h4 class="col-4">Annee</h4>
-			<select class="form-control" [(ngModel)]="yearSelect">
-				<option *ngFor="let annee of listeAnnees" (click)="filtrerParAnnee(annee)" ng-model="annee">{{annee}}
+			<select class="form-control" [(ngModel)]="yearSelect" (ngModelChange)="filtrerParAnnee($event)">
+				<option *ngFor="let annee of listeAnnees" [value]="annee" ng-model="annee">
+					{{annee}}
 				</option>
 			</select>
 		</div>
 	</div>
 </div>
 
-<table class="table table-striped mt-3">
+<table class="table table-striped mt-3 auto">
 	<thead class="bg-secondary">
 		<tr>
 			<th scope="col" class="border border-dark">Nom</th>
@@ -73,15 +74,15 @@
 </table>
 
 <div class="row justify-content-md-center">
-    <div class="col-md-auto">
-        <a routerLink="../vueSynthetiques">
-            <button class="btn btn-danger">
-                <fa-icon [icon]="faTimes"></fa-icon> Retour
-            </button>
-        </a>
-    </div>
+	<div class="col-md-auto">
+		<a routerLink="../vueSynthetiques">
+			<button class="btn btn-danger">
+				<fa-icon [icon]="faTimes"></fa-icon> Retour
+			</button>
+		</a>
+	</div>
 </div>
 
-<div class="alert alert-info col-md-auto mt-3"  style="width:40%;" role="alert">
-  <b>C</b>: Cong&eacute;s, <b>F</b>: F&eacute;ri&eacute;, <b>M</b>: Mission, <b>R</b>: RTT, <b>S</b>: Sans solde.
+<div class="alert alert-info col-md-auto mt-3" style="width:40%;" role="alert">
+	<b>C</b>: Cong&eacute;s, <b>F</b>: F&eacute;ri&eacute;, <b>M</b>: Mission, <b>R</b>: RTT, <b>S</b>: Sans solde.
 </div>

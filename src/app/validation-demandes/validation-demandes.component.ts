@@ -6,6 +6,7 @@ import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../service/auth.service';
 import { Collegue } from '../auth/auth.domains';
 import { Observable } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-validation-demandes',
@@ -24,7 +25,7 @@ export class ValidationDemandesComponent implements OnInit {
   messageValidation = '';
   messageErreur = '';
 
-  constructor(private absenceService: DemandeAbsenceService, private authSrv: AuthService) { }
+  constructor(private modalService: NgbModal, private absenceService: DemandeAbsenceService, private authSrv: AuthService) { }
 
   ngOnInit(): void {
     this.absenceService.getAbsencesparStatut(Statut.EN_ATTENTE_VALIDATION).subscribe(
@@ -33,15 +34,15 @@ export class ValidationDemandesComponent implements OnInit {
       }, (error) => {
         console.log('Erreur ' + error);
       }
-      )
+    )
 
-      this.collegueConnecte = this.authSrv.collegueConnecteObs;
+    this.collegueConnecte = this.authSrv.collegueConnecteObs;
   }
 
   validerDemande(id: number) {
     this.absenceService.validerDemande(id).subscribe(
-      () => { 
-        window.location.reload();
+      (data) => {
+        this.refresh(data);
       },
       (error) => {
         this.messageErreur = error.error.message;
@@ -51,13 +52,37 @@ export class ValidationDemandesComponent implements OnInit {
 
   refuserDemande(id: number) {
     this.absenceService.refuserDemande(id).subscribe(
-      () => {
-        window.location.reload();
+      (data) => {
+        this.refresh(data);
       },
       (error) => {
         this.messageErreur = error.error.message;
       }
     )
+  }
+
+
+  refresh(data) {
+    this.absenceService.getAbsencesparStatut(Statut.EN_ATTENTE_VALIDATION).subscribe(
+      (absences) => {
+        this.listAbsences = absences;
+      }, (error) => {
+        console.log('Erreur ' + error);
+      }
+    )
+  }
+
+  // MODALE
+
+  openSuppression(content, id) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      this.refuserDemande(id);
+    });
+  }
+  openValidation(content, id) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      this.validerDemande(id);
+    });
   }
 
 }

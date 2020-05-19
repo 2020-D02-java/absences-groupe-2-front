@@ -30,7 +30,7 @@ const routes: Routes = [
   { path: 'auth', component: AuthComponent },
   { path: 'listerJourFerme', component: ListerJourFermeComponent, canActivate: [StatutConnecteService] },
   { path: 'creationJourFerme', component: CreationJourFermeComponent, canActivate: [StatutConnecteService, StatutAdministrateurService] },
-  { path: 'accesRefuse', component: AccesRefuseComponent, canActivate: [StatutConnecteService] },
+  
   { path: 'demandeAbsence', component: DemandeAbsenceComponent, canActivate: [StatutConnecteService] },
   { path: 'visualisationAbsence', component: VisualisationAbsenceComponent, canActivate: [StatutConnecteService] },
   { path: 'modificationAbsence/:id', component: ModificationAbsenceComponent, canActivate: [StatutConnecteService] },
@@ -41,7 +41,8 @@ const routes: Routes = [
   { path: 'histogrammeParDepartementParJour', component: HistogrammeParDepartementParJourComponent, canActivate: [StatutConnecteService, StatutManagerService] },
   { path: 'validationDemandes', component: ValidationDemandesComponent, canActivate: [StatutConnecteService, StatutManagerService] },
 
-  { path: '', redirectTo: '/tech', pathMatch: 'full' },
+  { path: '', redirectTo: '/accueil', pathMatch: 'full' },
+  { path: 'accesRefuse', component: AccesRefuseComponent, canActivate: [StatutConnecteService] },
   // Cas url inexistant
   { path: 'not-found', component: FourOhFourComponent , canActivate: [StatutConnecteService]},
   // Bien faire attention de laisser ce path en fin de liste, mettre les votres avant.
