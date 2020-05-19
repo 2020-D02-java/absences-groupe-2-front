@@ -14,7 +14,7 @@
                 <th scope="col" class="border border-dark">Date de fin</th>
                 <th scope="col" class="border border-dark">Type</th>
                 <th scope="col" class="border border-dark">Nom</th>
-                <th scope="col" class="border border-dark">Action</th>
+                <th scope="col" class="border border-dark text-center">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -24,7 +24,7 @@
                     <td class="border border-dark">{{abs.dateFin}}</td>
                     <td class="border border-dark">{{abs.type}}</td>
                     <td class="border border-dark">{{abs.collegue.nom}}</td>
-                    <td class="border border-dark w-10">
+                    <td class="border border-dark w-10 text-center">
                         <button class="btn" (click)="openValidation(modalValidation, abs.id)">
                             <fa-icon [icon]="faCheck" class="text-success"></fa-icon>
                         </button>
