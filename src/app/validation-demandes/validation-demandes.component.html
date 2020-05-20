@@ -20,8 +20,8 @@
         <tbody>
             <tr *ngFor="let abs of listAbsences">
                 <ng-container *ngIf="abs.manager.nom === col.nom">
-                    <td class="border border-dark">{{abs.dateDebut}}</td>
-                    <td class="border border-dark">{{abs.dateFin}}</td>
+                    <td class="border border-dark">{{abs.dateDebut  | date: 'dd/MM/yyyy'}}</td>
+                    <td class="border border-dark">{{abs.dateFin  | date: 'dd/MM/yyyy'}}</td>
                     <td class="border border-dark">{{abs.type}}</td>
                     <td class="border border-dark">{{abs.collegue.nom}}</td>
                     <td class="border border-dark w-10 text-center">

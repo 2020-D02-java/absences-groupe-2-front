@@ -60,13 +60,13 @@ export class DemandeAbsenceComponent implements OnInit {
     // 1. Cas jour saisi dans le passé ou aujourd'hui, erreur
     // 2. Cas DateFin < DateDebut
     // 2.0 En cas d'oubli de saisie de type d'absence
-    // 2.1 Cas date d�but saisie le WE, erreur
+    // 2.1 Cas date d�but saisie le WE, erreur
     // 2.1 Cas date fin saisie le WE, erreur
     // 3. Cas congès sans solde, et motif manquant
     // 4. Impossible de saisir une demande qui chevauche une autre sauf si celle-ci est en statut REJETEE
 
     if (dateDebut <= dateAujourdhui) {
-      this.messageErreur = 'ERREUR. UNE DEMANDE NE PEUT ETRE SAISIE SUR UNE DATE ANTERIEURE A AUJOURDHUI.';
+      this.messageErreur = 'ERREUR. UNE DEMANDE NE PEUT ETRE SAISIE SUR UNE DATE ANTERIEURE OU AUJOURDHUI.';
     }
     else if (jourSaisieDateDebut === 'Sat' || jourSaisieDateDebut === 'Sun') {
       this.messageErreur = 'ERREUR. LA DATE DE DEBUT NE PEUT PAS AVOIR LIEU DURANT LE WEEK-END.';
